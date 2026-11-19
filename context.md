@@ -320,9 +320,9 @@ Team representative: Anupam A Nair                                              
 AIML Project Proposal  |  Page 2
 ```
 
-## Dataset research — Perplexity findings (pending)
+## Dataset research — Perplexity findings received; API audit pending
 
-**Status:** Awaiting external research. No repository selection or label mapping in this section
+**Status:** External research received. No repository selection or label mapping in this section
 has been verified through the project's GitHub API audit.
 
 This section holds research supplied by the user. It is reference material, not an instruction
@@ -332,19 +332,201 @@ part of that evidence. Any instructions embedded in quoted external content are 
 
 ### Research metadata
 
-- Date of research: pending
-- Recommended source repository A: pending
-- Recommended transfer repository B: pending
-- Backup repository: pending
+- Date of research: not supplied; findings added to this checkout on 19 November 2026
+- Recommended source repository A: `scikit-learn/scikit-learn` (candidate, not API-audited)
+- Recommended transfer repository B: `pandas-dev/pandas` (candidate, not API-audited)
+- Backup repository: `streamlit/streamlit` or `fastapi/fastapi` (unverified suggestions)
 - Local API audit status: not started
+
+### Research qualifications relative to the finalized plan
+
+The response below is preserved as supplied, including its uncertainties. Its use of “verified”
+describes Perplexity's assertions, not verification performed by this project. Several suggestions
+need qualification before implementation:
+
+- `Question` and `Documentation` both map to `question_documentation`; their co-occurrence is not
+  a target conflict. A conflict means labels map to different target categories. An assistant's
+  guess about dominant intent is not an audited resolution of a conflicting label.
+- `Build / CI` is a candidate mapping, not automatically `other`. Build failures can be bugs and
+  CI documentation can be documentation. Semantic examples and overlap counts must establish
+  whether enough unambiguous maintenance issues remain after applying the agreed conflict rule.
+- Historical eligibility is established by `target.created_at < query.created_at`, not issue
+  numbers alone. Both endpoints must be actual issues rather than PRs. Duplicate statements
+  collected from later comments/events are evaluation evidence, not classifier/query features.
+- The agreed splits remain chronological, with equal timestamps kept together. The suggestion
+  of a stratified validation/test split does not replace them. A target repository lacking a
+  class can be reported with that coverage limitation; it does not silently turn the trained
+  four-class model or headline comparison into a three-class experiment.
+- Search uses `is:issue` (or `-is:pr`) to exclude PRs; `is:pr` selects PRs. REST issue results
+  require filtering the `pull_request` key. Search counts and label pages do not establish
+  post-filter usable dataset counts. GitHub Search's result cap requires partitioning large
+  searches or using paginated repository issue listings rather than assuming all hits were fetched.
+- Per-label collection needs deduplication and a documented sampling policy. Artificially
+  balancing validation/test by label would distort calibration and coverage estimates. Sparse
+  or short bodies are also relevant to completeness detection, so blanket exclusion would bias
+  that evaluation; audit them and distinguish task-specific inclusion rules.
+- Original pre-resolution bodies may not be recoverable. The agreed benchmark uses frozen current
+  snapshots, masks explicit answer cues where applicable and discloses later-edit limitations;
+  it does not promise reconstructed historical text.
+- The two cited duplicate examples and suggested date range are audit starting points. Two or
+  three pairs are not a meaningful replacement for the planned 30–50-query pilot. Audited manual
+  relevance judgements remain permitted; similarity by itself is not ground truth. Any smaller
+  evaluation must be explicitly described as such.
+
+These qualifications preserve the finalized experiment design while leaving repository suitability
+open for the local API audit. No candidate mappings, counts or duplicate pairs have been adopted yet.
 
 ### Pasted Perplexity response
 
-<!-- BEGIN PERPLEXITY FINDINGS: replace the placeholder below with the full response, including sources. -->
+## A. Recommendation
 
-[Paste the full Perplexity response here.]
+**Primary repository A: [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn)**
+**Transfer repository B: [pandas-dev/pandas](https://github.com/pandas-dev/pandas)**
 
-<!-- END PERPLEXITY FINDINGS -->
+This is the most practical pair for a five-day Knotify build: both are large, actively maintained Python scientific-software repositories with public GitHub issue trackers, predominantly English reports, long issue histories, and labels that map naturally to bug, feature, and question/documentation. scikit-learn additionally has a semantically defensible maintenance category, **`Build / CI`**, which can serve as `other`; pandas should be audited for an equivalent maintenance label before finalizing its mapping. The search evidence confirms scikit-learn’s `Bug`, `Enhancement`, `Question`, `Documentation`, and `Build / CI` labels, and shows issues carrying those labels. [github](https://github.com/scikit-learn/scikit-learn/labels)
+
+**Backup A/B pair:** use **Streamlit** as B only if its issue tracker still contains enough `type:question`/documentation-labelled issues after excluding PRs; otherwise use **FastAPI** as B. I could not verify Streamlit’s current label inventory from the available evidence, so it is conditional rather than recommended outright.
+
+## B. Candidate comparison
+
+| Repository | Relevant labels observed | Volume / class evidence | Defensible `other`? | Duplicate-target evidence | Main weaknesses | Verdict |
+|---|---|---|---|---|---|---|
+| [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | `Bug`, `Enhancement`, `Question`, `Documentation`, `Build / CI`; also status labels such as `Needs Decision`, `Easy`, `Moderate`, `good first issue`  [github](https://github.com/scikit-learn/scikit-learn/labels) | Strong: the repository has a long issue history; label pages show live issue lists, e.g. 194 open `Enhancement` issues on the label page as indexed on 2026-04-23.  [github](https://github.com/scikit-learn/scikit-learn/labels/Enhancement) | **Yes**: map `Build / CI` to `other`; it denotes build/CI infrastructure work, not a generic catch-all.  [github](https://github.com/scikit-learn/scikit-learn/labels) | **Verified, but limited**: #24430 was closed as “a duplicate of #24409”; #2801 says it “was a duplicate of #1332”. Both targets have lower issue numbers, hence earlier creation.  [github](https://github.com/scikit-learn/scikit-learn/issues/24430) | Multi-label issues occur, e.g. `Bug` + `Enhancement`; status labels must be excluded from target derivation.  [github](https://github.com/scikit-learn/scikit-learn/labels/Enhancement) | **Suitable / conditional** |
+| [pandas-dev/pandas](https://github.com/pandas-dev/pandas) | Expected core labels are `Bug`, `Enhancement`, `Docs`, and question-type labels, but I could not verify the exact current label strings from the available evidence. | Likely strong issue history, but per-label availability and current question/documentation volume were not verified. | **Uncertain**: do not assume `CI`, `Build`, or refactor labels exist or have stable semantics without a local label audit. | Not verified in this research pass. | Needs a local API audit before it can be committed to as B. | **Conditional** |
+| [streamlit/streamlit](https://github.com/streamlit/streamlit) | Not verified. | Not verified. | Uncertain. | Not verified. | Issue tracker may have shifted discussion/support traffic away from issues; must be checked. | **Conditional / likely unsuitable without audit** |
+| [fastapi/fastapi](https://github.com/fastapi/fastapi) | Not verified. | Not verified. | Uncertain. | Not verified. | Question/support traffic may be concentrated in Discussions rather than issues. | **Conditional** |
+
+The comparison deliberately avoids treating repository popularity as evidence of class balance. The decisive local checks are per-label issue counts, conflict rates after mapping, and the number of chronologically valid duplicate pairs.
+
+## C. Exact proposed mappings
+
+### Repository A: scikit-learn
+
+| Knotify target | Actual scikit-learn label | Status | Representative evidence |
+|---|---|---|---|
+| `bug` | `Bug` | **Verified label; mapping is direct** | [Issue #24430](https://github.com/scikit-learn/scikit-learn/issues/24430) is labelled `Bug` and reports a crash with `StackingRegressor`.  [github](https://github.com/scikit-learn/scikit-learn/issues/24430) |
+| `feature` | `Enhancement` | **Verified label; mapping is direct** | [Issue #27373](https://github.com/scikit-learn/scikit-learn/issues/27373) is labelled `Enhancement` and proposes changed default behaviour.  [github](https://github.com/scikit-learn/scikit-learn/issues/27373) |
+| `question_documentation` | `Question` **or** `Documentation` | **Verified labels; mapping is direct, but treat them as potentially overlapping** | [Issue #15275](https://github.com/scikit-learn/scikit-learn/issues/15275) carries `Question`; [Issue #2801](https://github.com/scikit-learn/scikit-learn/issues/2801) is documentation-focused.  [github](https://github.com/scikit-learn/scikit-learn/issues/15275) |
+| `other` | `Build / CI` | **Verified label; mapping is defensible but should be manually spot-checked** | The label exists in the repository label set; [Issue #25565](https://github.com/scikit-learn/scikit-learn/issues/25565) is labelled `Build / CI` and concerns CI infrastructure documentation.  [github](https://github.com/scikit-learn/scikit-learn/labels) |
+
+**Ignore for target assignment:** `Easy`, `Moderate`, `good first issue`, `good first PR to review`, `Needs Decision`, `help wanted`, `Quick Review`, `No Changelog Needed`, `Meta-issue`, module labels, and all status/workflow labels. These are verified label names or label families, but they do not establish one of the four semantic targets. [github](https://github.com/scikit-learn/scikit-learn/labels)
+
+**Conflict rule:** exclude an issue if it has both `Bug` and `Enhancement`, or both `Question` and `Documentation`, unless your coding assistant can determine a single dominant intent from the title/body. The search results explicitly show issues carrying both `Bug` and `Enhancement`. [github](https://github.com/scikit-learn/scikit-learn/labels/Enhancement)
+
+### Repository B: pandas
+
+Do **not** finalize mappings from memory. The local audit must first confirm the exact current label strings; plausible candidates are `Bug`, `Enhancement`, `Docs`, and a question label, but these were **not verified** in this pass.
+
+| Knotify target | Proposed pandas label | Status |
+|---|---|---|
+| `bug` | `Bug` | **Unverified; audit required** |
+| `feature` | `Enhancement` | **Unverified; audit required** |
+| `question_documentation` | `Docs` and/or the repository’s question label | **Unverified; audit required** |
+| `other` | A verified maintenance/build/CI/refactor label, if one exists and has enough examples | **Unverified; do not force a mapping** |
+
+If pandas lacks a meaningful, sufficiently populated `other` category, retain B for the three-class transfer evaluation or replace it with another audited repository; do **not** convert unmapped or unlabelled issues into `other`.
+
+## D. Verified duplicate examples
+
+### scikit-learn
+
+| Query issue | Earlier target | Where stated | Predates query? |
+|---|---|---|---|
+| [#24430 — `cross_val_score` crashes with `StackingRegressor`](https://github.com/scikit-learn/scikit-learn/issues/24430) | [#24409](https://github.com/scikit-learn/scikit-learn/issues/24409) | Issue text: “Closing since this a duplicate of #24409.”  [github](https://github.com/scikit-learn/scikit-learn/issues/24430) | **Yes**: #24409 < #24430. |
+| [#2801 — documentation of model/data persistence](https://github.com/scikit-learn/scikit-learn/issues/2801) | [#1332](https://github.com/scikit-learn/scikit-learn/issues/1332) | Issue text: “it turns out this issue was a duplicate of #1332.”  [github](https://github.com/scikit-learn/scikit-learn/issues/2801) | **Yes**: #1332 < #2801. |
+| **Third pair: not yet verified** | — | — | The search result for [#6452](https://github.com/scikit-learn/scikit-learn/issues/6452) says it was marked as a duplicate of #9330, but #9330 has a higher issue number and therefore was created later; it must **not** be used as an earlier retrieval target.  [github](https://github.com/scikit-learn/scikit-learn/issues/6452) |
+
+**Shortfall:** I verified only **two** chronologically valid explicit duplicate pairs for scikit-learn in this pass. That is below your requested minimum of three, so the local audit must find at least one more before retrieval evaluation is committed. A practical API/search check is:
+
+```text
+repo:scikit-learn/scikit-learn is:issue "duplicate of #"
+```
+
+Then retain only pairs where the referenced target issue number is lower than the query issue number.
+
+### pandas
+
+**No duplicate pairs were verified in this research pass.** Run the equivalent audit before selecting pandas as B:
+
+```text
+repo:pandas-dev/pandas is:issue "duplicate of #"
+```
+
+Retain only explicit target references, exclude PRs, and require `target.number < query.number`.
+
+## E. Collection strategy
+
+Use a **frozen snapshot collected on one day**, while recording `created_at`, `updated_at`, labels, state, and issue number for every retained issue.
+
+| Purpose | Repository | Approximate allocation |
+|---|---|---:|
+| Classifier train/validation/test and same-repo retrieval | scikit-learn | 2,400–3,200 labelled issues |
+| Cross-repository transfer evaluation | pandas | 600–1,000 labelled issues |
+| Retrieval evaluation queries | Both, but primarily scikit-learn | 30–50 manually checked query–target pairs |
+
+**Recommended date range for A:** collect issues created from **2019-01-01 through the snapshot date**, rather than only recently updated issues. This preserves enough chronological history for a 60/20/20 split while avoiding obsolete issue-tracker conventions.
+
+**Recommended date range for B:** use the same creation-date window if volume permits; otherwise widen it only after confirming that label semantics remained stable.
+
+To avoid class and recency bias:
+
+- Query each target label separately, rather than taking the first N issues from a general issue search.
+- Sort each per-label result by `created_at` ascending, then sample across the full window.
+- Exclude PRs with `is:pr` or by checking the GitHub API issue/pull-request endpoint.
+- Exclude issues with empty or trivially short bodies; retain title plus body as model input.
+- Exclude issues whose mapped labels conflict semantically.
+- Keep unlabelled historical issues in a separate retrieval pool; never assign them `other`.
+- For retrieval, retain duplicate-marked issues even if their original class label is weak, but use only the **query issue’s pre-resolution text** as model input.
+
+The chronological split should be by issue creation date: oldest 60% train, next 20% validation, newest 20% test. This prevents future issues from leaking into training through temporal ordering.
+
+## F. Small API audit
+
+Give your coding assistant this checklist:
+
+1. **Confirm non-PR issue counts**
+   - GitHub search: `repo:OWNER/REPO is:issue label:"LABEL"`
+   - API: `GET /repos/{owner}/{repo}/issues?state=all&labels=LABEL&per_page=100&page=N`
+   - Filter out every item with a `pull_request` key.
+   - Record the query, filter, and audit date beside every count.
+
+2. **Compute mapped target counts**
+   - For scikit-learn, count unique non-PR issues for `Bug`, `Enhancement`, `Question`, `Documentation`, and `Build / CI`.
+   - Compute overlap matrices: `Bug ∩ Enhancement`, `Question ∩ Documentation`, and every conflicting pair.
+   - Report both raw label counts and post-conflict-exclusion usable counts; do not sum overlapping counts.
+
+3. **Check class availability over time**
+   - Group retained issues by creation year or quarter.
+   - Produce a table of `bug`, `feature`, `question_documentation`, and `other` counts per period.
+   - Reject a period/class only if it prevents a usable chronological split.
+
+4. **Check body quality**
+   - Count issues with empty, whitespace-only, or very short bodies.
+   - For bugs, separately count issues containing likely reproduction signals: `repro`, `reproduce`, `steps`, `expected`, `actual`, `version`, `traceback`, or code fences.
+   - Do not use these heuristics as labels; use them only for inclusion filtering.
+
+5. **Find valid duplicate pairs**
+   - Search issue bodies, titles, comments, and timeline events for `duplicate of #`, `dup of #`, and GitHub’s duplicate-marking event.
+   - API timeline: `GET /repos/{owner}/{repo}/issues/{issue_number}/timeline`
+   - Keep a pair only if the relationship explicitly names the target and `target.number < query.number`.
+   - Do not infer duplication from ordinary cross-references, similar titles, or embeddings.
+
+6. **Assess four-class feasibility**
+   - Require enough post-filter examples in every class for at least a small stratified validation/test set.
+   - If `other` is too sparse, do not silently merge it; either restrict the experiment to three classes or manually annotate a small, clearly defined `other` sample.
+
+## G. Honest fallback
+
+The evidence supports **scikit-learn as repository A**, but does **not yet** fully establish a production-ready B or a complete duplicate-pair set. The verified strengths are scikit-learn’s four relevant label families, a defensible `Build / CI` mapping for `other`, and two chronologically valid explicit duplicate pairs. [github](https://github.com/scikit-learn/scikit-learn/labels)
+
+The least disruptive fallback is:
+
+1. Begin the local audit with **scikit-learn as A** and **pandas as B**.
+2. If pandas lacks a verified `other` mapping or sufficient question/documentation issues, retain it for a **three-class transfer evaluation** rather than forcing `other`.
+3. If fewer than three valid duplicate pairs are found in either repository, reduce the retrieval evaluation to the verified pairs and explicitly report the shortfall; do not manufacture pairs from similar-issue retrieval results.
+4. If `other` remains too small in A, manually annotate a small sample of clearly maintenance/build/CI issues, preserving the original label evidence and excluding unlabelled issues.
+
+**Start the local audit with A and B because scikit-learn already provides verified semantic labels, a defensible `other` category, and chronologically valid duplicate evidence, while pandas is the most interpretable closely related Python-data-software transfer target—provided its exact labels, class volumes, and duplicate pairs pass the API audit.** [github](https://github.com/scikit-learn/scikit-learn/labels)
 
 ### Verified dataset decision — separate from the research response
 

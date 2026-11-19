@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "knotify"
+version = "0.1.0"
+description = "Confidence-aware, evidence-linked GitHub issue triage — academic project scaffold"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "pydantic>=2.10,<3",
+    "python-dotenv>=1.0,<2",
+    "streamlit>=1.45,<2",
+]
+
+[project.optional-dependencies]
+ml = [
+    "httpx>=0.28,<1",
+    "numpy>=2.0,<3",
+    "pandas>=2.2,<3",
+    "scikit-learn>=1.6,<2",
+    "rank-bm25>=0.2.2,<0.3",
+    "joblib>=1.4,<2",
+]
+embeddings = ["sentence-transformers>=3.4,<6"]
+faiss = ["faiss-cpu>=1.10,<2"]
+explain = ["shap>=0.47,<1"]
+
+[dependency-groups]
+dev = ["pytest>=8.3,<10", "ruff>=0.11,<1"]
+
+[project.scripts]
+knotify = "knotify.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/knotify"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

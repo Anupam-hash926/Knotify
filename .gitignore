@@ -1,0 +1,32 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Python / tooling
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+build/
+dist/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Never commit collected issues, model binaries, run outputs, or local keys
+/data/*
+!/data/README.md
+/artifacts/*
+!/artifacts/README.md
+/runs/*
+!/runs/README.md
+*.pem
+*.key

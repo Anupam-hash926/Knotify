@@ -1,0 +1,36 @@
+# Paths resolve relative to the project root (the parent of this configs folder).
+schema_version = 1
+seed = 42
+
+[paths]
+data = "data"
+artifacts = "artifacts"
+runs = "runs"
+
+[classification]
+labels = ["bug", "feature", "question_documentation", "other"]
+c = 1.0
+class_weight = "balanced"
+max_iter = 1000
+train_fraction = 0.6
+validation_fraction = 0.2
+test_fraction = 0.2
+policy_thresholds = [0.50, 0.60, 0.70, 0.80, 0.90, 0.95]
+minimum_accepted = 20
+target_accepted_accuracy = 0.90
+
+[embeddings]
+model = "sentence-transformers/all-MiniLM-L6-v2"
+# A concrete model revision will be recorded when first downloaded for implementation.
+device = "cpu"
+batch_size = 16
+
+[retrieval]
+candidate_depth = 50
+display_count = 5
+rrf_k = 60
+
+[llm]
+enabled = false
+timeout_seconds = 30
+max_retries = 1

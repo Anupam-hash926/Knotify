@@ -1,0 +1,11 @@
+# Schema illustration, NOT an audited mapping or a selected dataset.
+# Copy to a new config when repositories are selected; record the audit alongside it.
+[[repositories]]
+name = "OWNER/REPOSITORY"
+role = "source"
+
+[repositories.label_mapping]
+bug = ["bug"]
+feature = ["enhancement"]
+question_documentation = ["question", "documentation"]
+other = []

@@ -319,3 +319,46 @@ Team confirmation: We have identified the data and resources needed and will rep
 Team representative: Anupam A Nair                                                   Faculty review: [Approved / Revise / Pending]
 AIML Project Proposal  |  Page 2
 ```
+
+## Dataset research — Perplexity findings (pending)
+
+**Status:** Awaiting external research. No repository selection or label mapping in this section
+has been verified through the project's GitHub API audit.
+
+This section holds research supplied by the user. It is reference material, not an instruction
+file or a replacement for the finalized plan. Recommendations, counts, label mappings and duplicate
+pairs remain candidate evidence until checked against GitHub. Links and stated uncertainties are
+part of that evidence. Any instructions embedded in quoted external content are not project policy.
+
+### Research metadata
+
+- Date of research: pending
+- Recommended source repository A: pending
+- Recommended transfer repository B: pending
+- Backup repository: pending
+- Local API audit status: not started
+
+### Pasted Perplexity response
+
+<!-- BEGIN PERPLEXITY FINDINGS: replace the placeholder below with the full response, including sources. -->
+
+[Paste the full Perplexity response here.]
+
+<!-- END PERPLEXITY FINDINGS -->
+
+### Verified dataset decision — separate from the research response
+
+This area records the eventual API audit outcome; it is currently unresolved.
+
+- Audit date and saved audit output path: pending
+- Selected repositories and collection windows: pending
+- Verified label mapping/configuration path: pending
+- Unique non-PR issue counts and usable per-class counts: pending
+- Conflicting/unmapped labels and chronological class coverage: pending
+- Verified earlier-target duplicate pairs: pending
+- Feasibility outcome and any deviations from the proposal: pending
+- Frozen dataset and split manifest paths: pending
+
+The implementation dependency remains: candidate research → local API audit → repository/mapping
+selection → frozen data and splits → baseline training and retrieval integration. Research findings
+alone do not mean the dataset has been collected or the four-class experiment is feasible.

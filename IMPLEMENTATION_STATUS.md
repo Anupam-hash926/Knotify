@@ -61,6 +61,15 @@ Observed latency on the 2-core / 2 GB Linux sandbox: runtime load ≈ 13 s, firs
   long jobs are resumable (`audit`, `import`, `duplicates` each cache progress and exit with
   code 3 when paused; rerun the same command).
 
+## Decisions confirmed by the user (23 Nov 2026)
+
+- Exclude issues still labelled `Needs Triage` from supervised data (reported deviation).
+- Mask template cues in classifier input; serve the masked model and report the raw variant.
+- Retrieval evaluation uses all 47 frozen queries (33 validation-period, 14 test-period),
+  disclosed in the report. Retrieval methods are not tuned on them.
+- Stick to the final plan: frozen snapshots only, no live GitHub fetching in the app.
+- LLM comparison deferred (optional).
+
 ## Next concrete step
 
 Day 2: cache MiniLM embeddings, dense retrieval with eligibility-first

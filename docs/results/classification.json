@@ -1,0 +1,396 @@
+{
+  "test_count": 654,
+  "test_support": {
+    "bug": 298,
+    "feature": 140,
+    "question_documentation": 161,
+    "other": 55
+  },
+  "models": {
+    "majority": {
+      "n": 654,
+      "support": {
+        "bug": 298,
+        "feature": 140,
+        "question_documentation": 161,
+        "other": 55
+      },
+      "accuracy": 0.21406727828746178,
+      "macro_f1": 0.08816120906801007,
+      "per_class_f1": {
+        "bug": 0.0,
+        "feature": 0.3526448362720403,
+        "question_documentation": 0.0,
+        "other": 0.0
+      },
+      "confusion_matrix": {
+        "labels": [
+          "bug",
+          "feature",
+          "question_documentation",
+          "other"
+        ],
+        "rows_true_cols_pred": [
+          [
+            0,
+            298,
+            0,
+            0
+          ],
+          [
+            0,
+            140,
+            0,
+            0
+          ],
+          [
+            0,
+            161,
+            0,
+            0
+          ],
+          [
+            0,
+            55,
+            0,
+            0
+          ]
+        ]
+      },
+      "macro_f1_note": "Macro average over the fixed four labels; absent classes score 0."
+    },
+    "tfidf_lr_masked": {
+      "n": 654,
+      "support": {
+        "bug": 298,
+        "feature": 140,
+        "question_documentation": 161,
+        "other": 55
+      },
+      "accuracy": 0.8195718654434251,
+      "macro_f1": 0.7852466734439744,
+      "per_class_f1": {
+        "bug": 0.8670120898100173,
+        "feature": 0.8203389830508474,
+        "question_documentation": 0.7973856209150327,
+        "other": 0.65625
+      },
+      "confusion_matrix": {
+        "labels": [
+          "bug",
+          "feature",
+          "question_documentation",
+          "other"
+        ],
+        "rows_true_cols_pred": [
+          [
+            251,
+            10,
+            10,
+            27
+          ],
+          [
+            10,
+            121,
+            8,
+            1
+          ],
+          [
+            16,
+            20,
+            122,
+            3
+          ],
+          [
+            4,
+            4,
+            5,
+            42
+          ]
+        ]
+      },
+      "macro_f1_note": "Macro average over the fixed four labels; absent classes score 0."
+    },
+    "tfidf_lr_raw": {
+      "n": 654,
+      "support": {
+        "bug": 298,
+        "feature": 140,
+        "question_documentation": 161,
+        "other": 55
+      },
+      "accuracy": 0.8761467889908257,
+      "macro_f1": 0.8451306904260429,
+      "per_class_f1": {
+        "bug": 0.8934707903780069,
+        "feature": 0.9027777777777778,
+        "question_documentation": 0.896774193548387,
+        "other": 0.6875
+      },
+      "confusion_matrix": {
+        "labels": [
+          "bug",
+          "feature",
+          "question_documentation",
+          "other"
+        ],
+        "rows_true_cols_pred": [
+          [
+            260,
+            5,
+            6,
+            27
+          ],
+          [
+            8,
+            130,
+            2,
+            0
+          ],
+          [
+            13,
+            7,
+            139,
+            2
+          ],
+          [
+            3,
+            6,
+            2,
+            44
+          ]
+        ]
+      },
+      "macro_f1_note": "Macro average over the fixed four labels; absent classes score 0."
+    },
+    "embedding_lr": {
+      "n": 654,
+      "support": {
+        "bug": 298,
+        "feature": 140,
+        "question_documentation": 161,
+        "other": 55
+      },
+      "accuracy": 0.7629969418960245,
+      "macro_f1": 0.7402083612564564,
+      "per_class_f1": {
+        "bug": 0.8095238095238095,
+        "feature": 0.7816901408450704,
+        "question_documentation": 0.7244582043343654,
+        "other": 0.6451612903225806
+      },
+      "confusion_matrix": {
+        "labels": [
+          "bug",
+          "feature",
+          "question_documentation",
+          "other"
+        ],
+        "rows_true_cols_pred": [
+          [
+            221,
+            10,
+            27,
+            40
+          ],
+          [
+            9,
+            111,
+            15,
+            5
+          ],
+          [
+            18,
+            21,
+            117,
+            5
+          ],
+          [
+            0,
+            2,
+            3,
+            50
+          ]
+        ]
+      },
+      "macro_f1_note": "Macro average over the fixed four labels; absent classes score 0."
+    }
+  },
+  "selected": {
+    "model": "tfidf_lr_masked",
+    "threshold": 0.95,
+    "raw_log_loss": 0.7151174080688737,
+    "calibrated_log_loss": 0.5524875119376215,
+    "raw_reliability": [
+      {
+        "bin": [
+          0.0,
+          0.2
+        ],
+        "count": 0,
+        "mean_confidence": null,
+        "accuracy": null
+      },
+      {
+        "bin": [
+          0.2,
+          0.4
+        ],
+        "count": 65,
+        "mean_confidence": 0.35852751355384294,
+        "accuracy": 0.49230769230769234
+      },
+      {
+        "bin": [
+          0.4,
+          0.6
+        ],
+        "count": 219,
+        "mean_confidence": 0.5023429512441633,
+        "accuracy": 0.817351598173516
+      },
+      {
+        "bin": [
+          0.6,
+          0.8
+        ],
+        "count": 250,
+        "mean_confidence": 0.7056500450475796,
+        "accuracy": 0.904
+      },
+      {
+        "bin": [
+          0.8,
+          1.0
+        ],
+        "count": 120,
+        "mean_confidence": 0.8638973686664644,
+        "accuracy": 0.825
+      }
+    ],
+    "calibrated_reliability": [
+      {
+        "bin": [
+          0.0,
+          0.2
+        ],
+        "count": 0,
+        "mean_confidence": null,
+        "accuracy": null
+      },
+      {
+        "bin": [
+          0.2,
+          0.4
+        ],
+        "count": 12,
+        "mean_confidence": 0.35227115537230685,
+        "accuracy": 0.5833333333333334
+      },
+      {
+        "bin": [
+          0.4,
+          0.6
+        ],
+        "count": 128,
+        "mean_confidence": 0.5098150977609412,
+        "accuracy": 0.65625
+      },
+      {
+        "bin": [
+          0.6,
+          0.8
+        ],
+        "count": 199,
+        "mean_confidence": 0.7096569766271887,
+        "accuracy": 0.8844221105527639
+      },
+      {
+        "bin": [
+          0.8,
+          1.0
+        ],
+        "count": 315,
+        "mean_confidence": 0.8883541843575513,
+        "accuracy": 0.8761904761904762
+      }
+    ],
+    "calibrated_macro_f1_all": 0.7879220917241003,
+    "coverage_curve": [
+      {
+        "threshold": 0.5,
+        "accepted": 593,
+        "coverage": 0.9067278287461774,
+        "accepted_accuracy": 0.8532883642495784,
+        "accepted_macro_f1": 0.809604023681707
+      },
+      {
+        "threshold": 0.6,
+        "accepted": 514,
+        "coverage": 0.7859327217125383,
+        "accepted_accuracy": 0.8793774319066148,
+        "accepted_macro_f1": 0.8312533815929402
+      },
+      {
+        "threshold": 0.7,
+        "accepted": 427,
+        "coverage": 0.6529051987767585,
+        "accepted_accuracy": 0.8782201405152225,
+        "accepted_macro_f1": 0.817154189215076
+      },
+      {
+        "threshold": 0.8,
+        "accepted": 315,
+        "coverage": 0.481651376146789,
+        "accepted_accuracy": 0.8761904761904762,
+        "accepted_macro_f1": 0.8053405684010577
+      },
+      {
+        "threshold": 0.9,
+        "accepted": 139,
+        "coverage": 0.21253822629969418,
+        "accepted_accuracy": 0.9424460431654677,
+        "accepted_macro_f1": 0.43890977443609025
+      },
+      {
+        "threshold": 0.95,
+        "accepted": 31,
+        "coverage": 0.047400611620795105,
+        "accepted_accuracy": 0.967741935483871,
+        "accepted_macro_f1": 0.2459016393442623
+      }
+    ],
+    "at_frozen_threshold": {
+      "threshold": 0.95,
+      "accepted": 31,
+      "coverage": 0.047400611620795105,
+      "accepted_accuracy": 0.967741935483871,
+      "accepted_macro_f1": 0.2459016393442623
+    },
+    "coverage_at_fixed_f1": "omitted (secondary proposal measure; not pre-registered)"
+  },
+  "embedding_lr_log_loss": {
+    "raw": 0.7326080919189688,
+    "calibrated": 0.6008486372488714
+  },
+  "bootstrap": {
+    "tfidf_masked_minus_embedding": {
+      "difference": 0.04503831218751797,
+      "ci95": [
+        0.011932367416997759,
+        0.07795146428543678
+      ],
+      "resamples": 500,
+      "seed": 42
+    },
+    "tfidf_raw_minus_masked": {
+      "difference": 0.05988401698206858,
+      "ci95": [
+        0.035923913302483915,
+        0.0878817561989387
+      ],
+      "resamples": 500,
+      "seed": 42
+    }
+  }
+}

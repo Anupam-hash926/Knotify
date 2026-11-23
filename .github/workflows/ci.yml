@@ -17,8 +17,8 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           version: "0.13.9"
-      - run: uv sync --locked --python 3.12 --extra ml
-      - run: uv run --locked --extra ml ruff check .
-      - run: uv run --locked --extra ml ruff format --check .
-      - run: uv run --locked --extra ml pytest
-      - run: uv run --locked --extra ml knotify doctor
+      - run: uv sync --locked --python 3.12 --extra ml --extra explain
+      - run: uv run --locked --extra ml --extra explain ruff check .
+      - run: uv run --locked --extra ml --extra explain ruff format --check .
+      - run: uv run --locked --extra ml --extra explain pytest
+      - run: uv run --locked --extra ml --extra explain knotify doctor

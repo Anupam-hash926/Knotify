@@ -54,19 +54,32 @@ def toy_model():
     return model, calibrator, model.transform(texts)
 
 
-def test_calibrated_classifier_accepts_defers_and_explains(toy_model):
+TEXT = "App crash with error\n\ntraceback crash"
+
+
+def test_shap_explanation_lists_words_from_the_issue(toy_model):
+    pytest.importorskip("shap")  # optional `explain` extra
     from knotify.classifier import CalibratedTextClassifier
     from knotify.explain import TfidfShapExplainer
 
     model, calibrator, prepared = toy_model
     tfidf = model.pipeline.named_steps["tfidf"]
-    mean = np.asarray(tfidf.transform(prepared).mean(axis=0))
-    explainer = TfidfShapExplainer(model.pipeline, mean)
-    text = "App crash with error\n\ntraceback crash"
-    accepted = CalibratedTextClassifier(model, calibrator, 0.5, "o/r", explainer).predict(text)
+    explainer = TfidfShapExplainer(
+        model.pipeline, np.asarray(tfidf.transform(prepared).mean(axis=0))
+    )
+    result = CalibratedTextClassifier(model, calibrator, 0.5, "o/r", explainer).predict(TEXT)
+    assert result.explanation and result.explanation[0].token in {"crash", "error", "traceback"}
+    assert "raw score" in result.explanation_note
+
+
+def test_calibrated_classifier_accepts_and_defers(toy_model):
+    from knotify.classifier import CalibratedTextClassifier
+
+    model, calibrator, _ = toy_model
+    text = TEXT
+    accepted = CalibratedTextClassifier(model, calibrator, 0.5, "o/r").predict(text)
     assert accepted.predicted_label.value == "bug" and not accepted.deferred
-    assert accepted.explanation and accepted.explanation[0].token in {"crash", "error", "traceback"}
-    assert "raw score" in accepted.explanation_note
+    assert accepted.explanation == ()
     strict = CalibratedTextClassifier(model, calibrator, 1.0, "o/r").predict(text)
     assert strict.deferred and "below the review threshold" in strict.reason
     none = CalibratedTextClassifier(model, calibrator, None, "o/r").predict(text)

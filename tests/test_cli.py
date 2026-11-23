@@ -12,9 +12,8 @@ def test_doctor_is_honest_and_does_not_print_credentials(capsys, monkeypatch, em
     assert "secret-not-for-output" not in output
 
 
-@pytest.mark.parametrize("command", ["evaluate"])
-def test_reserved_commands_fail_instead_of_claiming_work(command, capsys):
+def test_unknown_command_fails_without_claiming_work(capsys):
     with pytest.raises(SystemExit) as exc:
-        main([command])
+        main(["bogus"])
     assert exc.value.code == 2
-    assert "not implemented" in capsys.readouterr().err
+    assert "invalid choice" in capsys.readouterr().err

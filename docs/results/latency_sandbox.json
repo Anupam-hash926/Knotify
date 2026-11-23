@@ -1,0 +1,18 @@
+{
+  "runs": 12,
+  "median_ms": 2739.271421000012,
+  "p90_ms": 6030.482292699799,
+  "runtime_load_seconds": 12.724630822000108,
+  "retriever": "HybridRetriever",
+  "llm_calls": 0,
+  "hardware": {
+    "platform": "Linux-6.8.0-149-generic-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "cpu_count": 2,
+    "python": "3.12.15"
+  },
+  "notes": [
+    "Pasted reports use BM25 only: sentence-transformers is not installed (embeddings extra).",
+    "Dense search backend: numpy."
+  ]
+}

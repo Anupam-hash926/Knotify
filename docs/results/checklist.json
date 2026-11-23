@@ -1,0 +1,80 @@
+{
+  "bug_reports_scored": 21,
+  "items_scored": 110,
+  "overall": {
+    "precision": 0.8333333333333334,
+    "recall": 0.75,
+    "f1": 0.7894736842105262,
+    "tp": 15,
+    "fp": 3,
+    "fn": 5,
+    "tn": 87
+  },
+  "per_item": {
+    "reproduction_steps": {
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "tn": 16
+    },
+    "expected_behavior": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8000000000000002,
+      "tp": 4,
+      "fp": 1,
+      "fn": 1,
+      "tn": 14
+    },
+    "actual_behavior": {
+      "precision": 0.0,
+      "recall": null,
+      "f1": null,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "tn": 19
+    },
+    "environment": {
+      "precision": 1.0,
+      "recall": 0.7142857142857143,
+      "f1": 0.8333333333333333,
+      "tp": 5,
+      "fp": 0,
+      "fn": 2,
+      "tn": 13
+    },
+    "version": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8000000000000002,
+      "tp": 4,
+      "fp": 1,
+      "fn": 1,
+      "tn": 12
+    },
+    "error_logs": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "tn": 13
+    }
+  },
+  "excluded": {
+    "not_bug_or_blank": 9,
+    "gold_uncertain": 11,
+    "gold_not_applicable": 5,
+    "gold_blank": 0
+  },
+  "predicted_uncertain_on_scored_items": 5,
+  "reviewers": [
+    "AGW"
+  ],
+  "markdown": "Human gold: 30 bug-labelled reports judged by AGW; **9 of 30 were judged not to be bug reports** despite the `Bug` label and are excluded. Rules were frozen (checklist-v1) before judging; rule outputs were hidden from the sheet.\n\nMissing = positive class on 110 applicable items from 21 bug reports: **precision 0.833, recall 0.750, F1 0.789** (TP 15, FP 3, FN 5, TN 87).\n\n| Item | Truly missing | Precision | Recall | F1 |\n|---|---:|---:|---:|---:|\n| reproduction_steps | 1 | \u2014 | 0.000 | \u2014 |\n| expected_behavior | 5 | 0.800 | 0.800 | 0.800 |\n| actual_behavior | 0 | 0.000 | \u2014 | \u2014 |\n| environment | 7 | 1.000 | 0.714 | 0.833 |\n| version | 5 | 0.800 | 0.800 | 0.800 |\n| error_logs | 2 | 1.000 | 1.000 | 1.000 |\n\nExcluded from binary scoring: gold uncertain 11, gold not-applicable 5. Rule predicted `uncertain` on 5 scored items (counted as not detecting missing). Per-item counts are small; rely on the overall figure. The LLM-only checklist comparison was not run (deferred).\n"
+}

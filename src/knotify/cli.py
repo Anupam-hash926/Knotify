@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from knotify import __version__
 from knotify.config import PROJECT_ROOT, load_config
 
-PENDING = ("evaluate",)
+PENDING = ()
 DEFAULT_MAPPING = PROJECT_ROOT / "configs" / "repositories.toml"
 DEFAULT_AUDIT_PLAN = PROJECT_ROOT / "configs" / "audit_candidates.toml"
 AUDIT_DIR = PROJECT_ROOT / "docs" / "audit"
@@ -62,6 +62,14 @@ def main(argv: list[str] | None = None) -> int:
     freeze = commands.add_parser("freeze", help="Write or verify the Day 3 freeze manifest")
     freeze.add_argument("repository")
     freeze.add_argument("--verify", action="store_true")
+    ev = commands.add_parser("evaluate", help="Day 4: evaluate frozen files (reads Test)")
+    ev.add_argument("repository")
+    ev.add_argument("--transfer", default="pandas-dev/pandas")
+    ev.add_argument("--report-only", action="store_true", help="Only re-render results.md")
+    lat = commands.add_parser("latency", help="Median warm analysis time on this machine")
+    lat.add_argument("repository")
+    lat.add_argument("--issues", type=int, default=12)
+    lat.add_argument("--label", default="local")
     for name in PENDING:
         commands.add_parser(name, help="Reserved: not implemented yet")
     args = parser.parse_args(argv)
@@ -83,6 +91,41 @@ def main(argv: list[str] | None = None) -> int:
         from knotify.experiment import label_audit_sheet
 
         print(label_audit_sheet(load_config(args.config), args.repository))
+        return 0
+    if args.command in ("evaluate", "latency"):
+        from knotify import evaluation
+
+        config = load_config(args.config)
+        manifest = evaluation.check_freeze()
+        run_dir = config.paths.runs / "evaluation" / manifest["serving"]["split"]
+        run_dir.mkdir(parents=True, exist_ok=True)
+        if args.command == "latency":
+            result = evaluation.measure_latency(config, args.repository, issues=args.issues)
+            (run_dir / f"latency_{args.label}.json").write_text(json.dumps(result, indent=2))
+            print(json.dumps({k: result[k] for k in ("runs", "median_ms", "p90_ms")}, indent=2))
+            return 0
+        if not args.report_only:
+            result = evaluation.evaluate_classification(config, args.repository)
+            preds = result.pop("_predictions")
+            (run_dir / "test_predictions.json").write_text(json.dumps(preds))
+            (run_dir / "classification.json").write_text(json.dumps(result, indent=2))
+            transfer = evaluation.evaluate_transfer(config, args.repository, args.transfer)
+            (run_dir / "transfer.json").write_text(json.dumps(transfer, indent=2))
+            evidence = evaluation.evidence_mechanical(config, args.repository)
+            (run_dir / "evidence_mechanical.json").write_text(json.dumps(evidence, indent=2))
+            from knotify.embeddings import load_encoder
+            from knotify.errors import ComponentUnavailable
+
+            try:
+                encoder = load_encoder(config.embeddings.local_path)
+            except ComponentUnavailable as exc:
+                print(f"Retrieval skipped ({exc}); existing retrieval.json kept if present.")
+            else:
+                retrieval = evaluation.evaluate_retrieval(config, args.repository, encoder)
+                (run_dir / "retrieval.json").write_text(json.dumps(retrieval, indent=2))
+        print("Human sheets scored:", evaluation.human_sections(config, args.repository, run_dir))
+        (run_dir / "results.md").write_text(evaluation.render_results(run_dir), encoding="utf-8")
+        print(run_dir / "results.md")
         return 0
     if args.command == "freeze":
         from knotify.freeze import verify_freeze, write_freeze

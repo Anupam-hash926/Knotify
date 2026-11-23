@@ -2,6 +2,26 @@
 
 ## Current milestone
 
+**Day 4 complete (24 Nov 2026):** all evaluations ran from the verified Day 3 freeze, including
+the two human sheets. Results: `runs/evaluation/<split>/results.md` (+ JSON and `figures/`).
+A committed copy of the report, figures and summary JSON is in `docs/results/`.
+Omissions are listed in its section 7: LLM comparison deferred, optional retrieval spot-check
+skipped, MacBook not tested. Next: Day 5 packaging.
+
+### Day 4 results so far (Test read only by `knotify.evaluation`)
+
+| Comparison | Result |
+|---|---|
+| Classification, Test n = 654 (macro-F1) | masked TF-IDF (served) **0.785**, unmasked 0.845, embedding LR 0.740, majority 0.088. Masked − embedding +0.045 (95% CI +0.012 to +0.078); unmasked − masked +0.060 (+0.036 to +0.088) |
+| Calibration (served) | log loss 0.715 → **0.552**; reliability figure `figures/reliability_test.png` |
+| Deferral at frozen 0.95 | 31/654 accepted: **coverage 4.7%, accepted accuracy 96.8%** (accepted macro-F1 0.246). Curve in `figures/coverage_test.png` |
+| Transfer, pandas n = 1,272 | masked macro-F1 **0.724** (unmasked 0.807, helped by `BUG:`-style title prefixes); **0 accepted at 0.95** (coverage 0%) |
+| Retrieval, 47 queries (Recall@5 / MRR@5) | BM25 0.362 / 0.214; dense **0.447 / 0.303**; hybrid 0.447 / 0.275. All paired MRR differences have 95% CIs that include 0 (small sample) |
+| Evidence (mechanical) | 56 template questions, 0 invalid references, 12 of 30 reports get no question |
+| Checklist vs human gold (AGW, blind) | **9 of 30 `Bug`-labelled reports judged not bug reports** (label noise). On the 21 confirmed bug reports, 110 applicable items: missing-item **precision 0.833, recall 0.750, F1 0.789** (TP 15, FP 3, FN 5). Per-item counts 0–7, so overall only |
+| Suggestions vs human judgement | Proposal definition (cites no checklist item/issue): **0/56**. Manually unsupported (item actually present): **3/56**. Confirmed bug reports: 13/21 judged appropriate; non-bug issues: 0/35 (driven by the label error). 18 of 30 issues received questions |
+| Latency (2-CPU Linux sandbox, hybrid with NumPy dense, no LLM) | median **2.74 s**, p90 6.03 s, one-time load 12.7 s (12 runs). Run `uv run knotify latency scikit-learn/scikit-learn --label windows` on a laptop to add a row |
+
 **Day 3 gate met (23 Nov 2026):** configurations and evaluation samples are frozen
 (`docs/freeze/day3_freeze.json`, 16 file hashes; `knotify freeze … --verify` reports changes).
 Confidence/deferral, SHAP explanations, evidence links, saved reports/reviews and failure states
@@ -139,6 +159,11 @@ uv run knotify calibrate scikit-learn/scikit-learn        # V-cal / V-policy onl
 uv run knotify explain-setup scikit-learn/scikit-learn
 uv run knotify review-sheets scikit-learn/scikit-learn    # freezes samples; refuses to overwrite
 uv run knotify freeze scikit-learn/scikit-learn [--verify]
+# Day 4
+uv run knotify evaluate scikit-learn/scikit-learn          # refuses if any frozen file changed
+uv run knotify latency scikit-learn/scikit-learn --label <machine>
+uv run knotify evaluate scikit-learn/scikit-learn --report-only   # re-render results.md
+uv run --with matplotlib python scripts/plot_results.py runs/evaluation/<split>/classification.json runs/evaluation/<split>/figures
 uv run streamlit run ui/app.py
 uv run pytest
 ```
@@ -150,7 +175,7 @@ snapshot and never overwrites an existing one.
 
 ## Verification (22 Nov 2026, Linux sandbox, Python 3.12.15)
 
-- `ruff check` / `ruff format --check`: pass. `pytest`: 45 passed (UI tests use an empty temporary
+- `ruff check` / `ruff format --check`: pass. `pytest`: 48 passed (UI tests use an empty temporary
   workspace, so they never read local data).
 - Real-data smoke test: Streamlit AppTest opened issue #21291 → `feature` (0.71 raw, deferred) and five
   earlier BM25 candidates, with #20137 (its maintainer-confirmed duplicate) ranked first. This is

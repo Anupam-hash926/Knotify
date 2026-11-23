@@ -1,0 +1,16 @@
+{
+  "issues": 30,
+  "suggestions": 56,
+  "invalid_references": 0,
+  "retained_after_validation": 56,
+  "issues_with_no_suggestion": 12,
+  "per_item": {
+    "reproduction_steps": 11,
+    "expected_behavior": 14,
+    "actual_behavior": 1,
+    "environment": 12,
+    "version": 15,
+    "error_logs": 3
+  },
+  "note": "Mechanical reference validity only. Whether suggestions are supported and appropriate comes from the human suggestion sheet."
+}

@@ -1,0 +1,2297 @@
+{
+  "queries": 47,
+  "relevance": "explicit duplicate statements (one known target per query)",
+  "query_periods": {
+    "validation": 33,
+    "test": 14
+  },
+  "dense_backend": "faiss",
+  "summary": {
+    "bm25": {
+      "recall@5": 0.3617021276595745,
+      "recall@5_ci95": [
+        0.23404255319148937,
+        0.48936170212765956
+      ],
+      "hit@5": 0.3617021276595745,
+      "hit@5_ci95": [
+        0.23404255319148937,
+        0.48936170212765956
+      ],
+      "mrr@5": 0.21418439716312057,
+      "mrr@5_ci95": [
+        0.12941489361702127,
+        0.30744680851063827
+      ]
+    },
+    "dense": {
+      "recall@5": 0.44680851063829785,
+      "recall@5_ci95": [
+        0.2978723404255319,
+        0.5957446808510638
+      ],
+      "hit@5": 0.44680851063829785,
+      "hit@5_ci95": [
+        0.2978723404255319,
+        0.5957446808510638
+      ],
+      "mrr@5": 0.3028368794326241,
+      "mrr@5_ci95": [
+        0.18045212765957447,
+        0.4177482269503546
+      ]
+    },
+    "hybrid": {
+      "recall@5": 0.44680851063829785,
+      "recall@5_ci95": [
+        0.2978723404255319,
+        0.574468085106383
+      ],
+      "hit@5": 0.44680851063829785,
+      "hit@5_ci95": [
+        0.2978723404255319,
+        0.574468085106383
+      ],
+      "mrr@5": 0.275177304964539,
+      "mrr@5_ci95": [
+        0.17340425531914894,
+        0.36489361702127654
+      ]
+    }
+  },
+  "paired_bootstrap": {
+    "mrr@5_hybrid_minus_bm25": {
+      "difference": 0.060992907801418444,
+      "ci95": [
+        -0.020398936170212795,
+        0.1379787234042553
+      ]
+    },
+    "mrr@5_hybrid_minus_dense": {
+      "difference": -0.02765957446808509,
+      "ci95": [
+        -0.11388297872340426,
+        0.04260638297872336
+      ]
+    },
+    "mrr@5_dense_minus_bm25": {
+      "difference": 0.08865248226950354,
+      "ci95": [
+        -0.028200354609929073,
+        0.21309397163120553
+      ]
+    }
+  },
+  "per_query": [
+    {
+      "query": 25982,
+      "relevant": [
+        "scikit-learn/scikit-learn#20943"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#21985",
+          "scikit-learn/scikit-learn#12127",
+          "scikit-learn/scikit-learn#1181",
+          "scikit-learn/scikit-learn#9518",
+          "scikit-learn/scikit-learn#9889"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#3142",
+          "scikit-learn/scikit-learn#12914",
+          "scikit-learn/scikit-learn#11444",
+          "scikit-learn/scikit-learn#253",
+          "scikit-learn/scikit-learn#13509"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#9518",
+          "scikit-learn/scikit-learn#23527",
+          "scikit-learn/scikit-learn#21985",
+          "scikit-learn/scikit-learn#7692",
+          "scikit-learn/scikit-learn#6595"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      }
+    },
+    {
+      "query": 26164,
+      "relevant": [
+        "scikit-learn/scikit-learn#22947"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#15438",
+          "scikit-learn/scikit-learn#18717",
+          "scikit-learn/scikit-learn#23376",
+          "scikit-learn/scikit-learn#2751",
+          "scikit-learn/scikit-learn#25380"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#24728",
+          "scikit-learn/scikit-learn#15682",
+          "scikit-learn/scikit-learn#19578",
+          "scikit-learn/scikit-learn#20420",
+          "scikit-learn/scikit-learn#4297"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#24728",
+          "scikit-learn/scikit-learn#15438",
+          "scikit-learn/scikit-learn#2751",
+          "scikit-learn/scikit-learn#18717",
+          "scikit-learn/scikit-learn#20420"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 9
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 20
+      }
+    },
+    {
+      "query": 26301,
+      "relevant": [
+        "scikit-learn/scikit-learn#2896"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#2896",
+          "scikit-learn/scikit-learn#26292",
+          "scikit-learn/scikit-learn#22363",
+          "scikit-learn/scikit-learn#25642",
+          "scikit-learn/scikit-learn#23436"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#22770",
+          "scikit-learn/scikit-learn#2896",
+          "scikit-learn/scikit-learn#13247",
+          "scikit-learn/scikit-learn#11209",
+          "scikit-learn/scikit-learn#12920"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#2896",
+          "scikit-learn/scikit-learn#13247",
+          "scikit-learn/scikit-learn#11209",
+          "scikit-learn/scikit-learn#25052",
+          "scikit-learn/scikit-learn#19783"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      }
+    },
+    {
+      "query": 26305,
+      "relevant": [
+        "scikit-learn/scikit-learn#25560"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#25592",
+          "scikit-learn/scikit-learn#24846",
+          "scikit-learn/scikit-learn#24703",
+          "scikit-learn/scikit-learn#26210",
+          "scikit-learn/scikit-learn#25844"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#15795",
+          "scikit-learn/scikit-learn#25798",
+          "scikit-learn/scikit-learn#10948",
+          "scikit-learn/scikit-learn#25145",
+          "scikit-learn/scikit-learn#20170"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#25145",
+          "scikit-learn/scikit-learn#25560",
+          "scikit-learn/scikit-learn#25073",
+          "scikit-learn/scikit-learn#24355",
+          "scikit-learn/scikit-learn#23393"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 10
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 8
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      }
+    },
+    {
+      "query": 26310,
+      "relevant": [
+        "scikit-learn/scikit-learn#11209"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#15796",
+          "scikit-learn/scikit-learn#22664",
+          "scikit-learn/scikit-learn#18330",
+          "scikit-learn/scikit-learn#17200",
+          "scikit-learn/scikit-learn#16371"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#21868",
+          "scikit-learn/scikit-learn#17625",
+          "scikit-learn/scikit-learn#18339",
+          "scikit-learn/scikit-learn#26292",
+          "scikit-learn/scikit-learn#18461"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#21868",
+          "scikit-learn/scikit-learn#2918",
+          "scikit-learn/scikit-learn#3044",
+          "scikit-learn/scikit-learn#11996",
+          "scikit-learn/scikit-learn#25229"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 44
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      }
+    },
+    {
+      "query": 26532,
+      "relevant": [
+        "scikit-learn/scikit-learn#7574"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#24305",
+          "scikit-learn/scikit-learn#24524",
+          "scikit-learn/scikit-learn#8792",
+          "scikit-learn/scikit-learn#23567",
+          "scikit-learn/scikit-learn#10973"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#10489",
+          "scikit-learn/scikit-learn#24305",
+          "scikit-learn/scikit-learn#8792",
+          "scikit-learn/scikit-learn#24524",
+          "scikit-learn/scikit-learn#7574"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#24305",
+          "scikit-learn/scikit-learn#24524",
+          "scikit-learn/scikit-learn#8792",
+          "scikit-learn/scikit-learn#23567",
+          "scikit-learn/scikit-learn#10973"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.2,
+        "first_relevant_rank_top50": 5
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 17
+      }
+    },
+    {
+      "query": 26695,
+      "relevant": [
+        "scikit-learn/scikit-learn#20051"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#20428",
+          "scikit-learn/scikit-learn#3794",
+          "scikit-learn/scikit-learn#23311",
+          "scikit-learn/scikit-learn#13115",
+          "scikit-learn/scikit-learn#21344"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#20428",
+          "scikit-learn/scikit-learn#20576",
+          "scikit-learn/scikit-learn#10216",
+          "scikit-learn/scikit-learn#20051",
+          "scikit-learn/scikit-learn#8775"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#20428",
+          "scikit-learn/scikit-learn#14834",
+          "scikit-learn/scikit-learn#26265",
+          "scikit-learn/scikit-learn#10553",
+          "scikit-learn/scikit-learn#12729"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.25,
+        "first_relevant_rank_top50": 4
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 16
+      }
+    },
+    {
+      "query": 26865,
+      "relevant": [
+        "scikit-learn/scikit-learn#26858"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#5904",
+          "scikit-learn/scikit-learn#15742",
+          "scikit-learn/scikit-learn#15697",
+          "scikit-learn/scikit-learn#13859",
+          "scikit-learn/scikit-learn#15644"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#18852",
+          "scikit-learn/scikit-learn#25447",
+          "scikit-learn/scikit-learn#17392",
+          "scikit-learn/scikit-learn#15129",
+          "scikit-learn/scikit-learn#11414"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#5904",
+          "scikit-learn/scikit-learn#8242",
+          "scikit-learn/scikit-learn#15129",
+          "scikit-learn/scikit-learn#14451",
+          "scikit-learn/scikit-learn#13869"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      }
+    },
+    {
+      "query": 27138,
+      "relevant": [
+        "scikit-learn/scikit-learn#27126"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#27126",
+          "scikit-learn/scikit-learn#26901",
+          "scikit-learn/scikit-learn#27122",
+          "scikit-learn/scikit-learn#24735"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#26901",
+          "scikit-learn/scikit-learn#27122",
+          "scikit-learn/scikit-learn#25029",
+          "scikit-learn/scikit-learn#24735"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#26901",
+          "scikit-learn/scikit-learn#27122",
+          "scikit-learn/scikit-learn#27126",
+          "scikit-learn/scikit-learn#24735"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 7
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.25,
+        "first_relevant_rank_top50": 4
+      }
+    },
+    {
+      "query": 27146,
+      "relevant": [
+        "scikit-learn/scikit-learn#27126"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#27138",
+          "scikit-learn/scikit-learn#27126",
+          "scikit-learn/scikit-learn#26538",
+          "scikit-learn/scikit-learn#26901"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#27138",
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#26901",
+          "scikit-learn/scikit-learn#27122",
+          "scikit-learn/scikit-learn#26538"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#27138",
+          "scikit-learn/scikit-learn#26901",
+          "scikit-learn/scikit-learn#26538",
+          "scikit-learn/scikit-learn#27122"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.3333333333333333,
+        "first_relevant_rank_top50": 3
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 10
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 6
+      }
+    },
+    {
+      "query": 27195,
+      "relevant": [
+        "scikit-learn/scikit-learn#27126"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#27138",
+          "scikit-learn/scikit-learn#27146",
+          "scikit-learn/scikit-learn#27126",
+          "scikit-learn/scikit-learn#26901"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#27138",
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#27146",
+          "scikit-learn/scikit-learn#26901",
+          "scikit-learn/scikit-learn#27122"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#27138",
+          "scikit-learn/scikit-learn#27146",
+          "scikit-learn/scikit-learn#26901",
+          "scikit-learn/scikit-learn#27122"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.25,
+        "first_relevant_rank_top50": 4
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 9
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 6
+      }
+    },
+    {
+      "query": 27260,
+      "relevant": [
+        "scikit-learn/scikit-learn#27126"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#27122",
+          "scikit-learn/scikit-learn#27126",
+          "scikit-learn/scikit-learn#26901",
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#27138"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#27122",
+          "scikit-learn/scikit-learn#27138",
+          "scikit-learn/scikit-learn#27195",
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#26901"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#27122",
+          "scikit-learn/scikit-learn#27138",
+          "scikit-learn/scikit-learn#26901",
+          "scikit-learn/scikit-learn#27080",
+          "scikit-learn/scikit-learn#27126"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 7
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.2,
+        "first_relevant_rank_top50": 5
+      }
+    },
+    {
+      "query": 27391,
+      "relevant": [
+        "scikit-learn/scikit-learn#27183"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#27183",
+          "scikit-learn/scikit-learn#22689",
+          "scikit-learn/scikit-learn#26288",
+          "scikit-learn/scikit-learn#24238",
+          "scikit-learn/scikit-learn#26997"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#4808",
+          "scikit-learn/scikit-learn#27183",
+          "scikit-learn/scikit-learn#26288",
+          "scikit-learn/scikit-learn#16144",
+          "scikit-learn/scikit-learn#5611"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#27183",
+          "scikit-learn/scikit-learn#26288",
+          "scikit-learn/scikit-learn#22689",
+          "scikit-learn/scikit-learn#4808",
+          "scikit-learn/scikit-learn#16144"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      }
+    },
+    {
+      "query": 27394,
+      "relevant": [
+        "scikit-learn/scikit-learn#27126"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#27316",
+          "scikit-learn/scikit-learn#27146",
+          "scikit-learn/scikit-learn#27126",
+          "scikit-learn/scikit-learn#27122",
+          "scikit-learn/scikit-learn#27260"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#27316",
+          "scikit-learn/scikit-learn#27146",
+          "scikit-learn/scikit-learn#27122",
+          "scikit-learn/scikit-learn#27138",
+          "scikit-learn/scikit-learn#27080"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#27316",
+          "scikit-learn/scikit-learn#27146",
+          "scikit-learn/scikit-learn#27122",
+          "scikit-learn/scikit-learn#27126",
+          "scikit-learn/scikit-learn#27138"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.3333333333333333,
+        "first_relevant_rank_top50": 3
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 7
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.25,
+        "first_relevant_rank_top50": 4
+      }
+    },
+    {
+      "query": 27460,
+      "relevant": [
+        "scikit-learn/scikit-learn#27126"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#27394",
+          "scikit-learn/scikit-learn#27126",
+          "scikit-learn/scikit-learn#27146",
+          "scikit-learn/scikit-learn#27316",
+          "scikit-learn/scikit-learn#27260"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#27146",
+          "scikit-learn/scikit-learn#27394",
+          "scikit-learn/scikit-learn#27126",
+          "scikit-learn/scikit-learn#27195",
+          "scikit-learn/scikit-learn#27080"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#27394",
+          "scikit-learn/scikit-learn#27146",
+          "scikit-learn/scikit-learn#27126",
+          "scikit-learn/scikit-learn#27316",
+          "scikit-learn/scikit-learn#27080"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.3333333333333333,
+        "first_relevant_rank_top50": 3
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.3333333333333333,
+        "first_relevant_rank_top50": 3
+      }
+    },
+    {
+      "query": 27955,
+      "relevant": [
+        "scikit-learn/scikit-learn#27676"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#25187",
+          "scikit-learn/scikit-learn#14265",
+          "scikit-learn/scikit-learn#23108",
+          "scikit-learn/scikit-learn#21209",
+          "scikit-learn/scikit-learn#1626"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#18373",
+          "scikit-learn/scikit-learn#10454",
+          "scikit-learn/scikit-learn#14110",
+          "scikit-learn/scikit-learn#5811",
+          "scikit-learn/scikit-learn#20092"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#25187",
+          "scikit-learn/scikit-learn#23108",
+          "scikit-learn/scikit-learn#5811",
+          "scikit-learn/scikit-learn#22849",
+          "scikit-learn/scikit-learn#20092"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      }
+    },
+    {
+      "query": 27987,
+      "relevant": [
+        "scikit-learn/scikit-learn#19547"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#26305",
+          "scikit-learn/scikit-learn#26961",
+          "scikit-learn/scikit-learn#27927",
+          "scikit-learn/scikit-learn#24428",
+          "scikit-learn/scikit-learn#27879"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#20006",
+          "scikit-learn/scikit-learn#19186",
+          "scikit-learn/scikit-learn#1723",
+          "scikit-learn/scikit-learn#24428",
+          "scikit-learn/scikit-learn#6049"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#24428",
+          "scikit-learn/scikit-learn#25592",
+          "scikit-learn/scikit-learn#26306",
+          "scikit-learn/scikit-learn#25560",
+          "scikit-learn/scikit-learn#20006"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      }
+    },
+    {
+      "query": 27988,
+      "relevant": [
+        "scikit-learn/scikit-learn#15346"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#24906",
+          "scikit-learn/scikit-learn#15282",
+          "scikit-learn/scikit-learn#12056",
+          "scikit-learn/scikit-learn#22207",
+          "scikit-learn/scikit-learn#6425"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#24906",
+          "scikit-learn/scikit-learn#15346",
+          "scikit-learn/scikit-learn#16093",
+          "scikit-learn/scikit-learn#18993",
+          "scikit-learn/scikit-learn#16807"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#24906",
+          "scikit-learn/scikit-learn#19478",
+          "scikit-learn/scikit-learn#20581",
+          "scikit-learn/scikit-learn#6425",
+          "scikit-learn/scikit-learn#18993"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 16
+      }
+    },
+    {
+      "query": 28178,
+      "relevant": [
+        "scikit-learn/scikit-learn#15389"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#27621",
+          "scikit-learn/scikit-learn#27927",
+          "scikit-learn/scikit-learn#26930",
+          "scikit-learn/scikit-learn#27887",
+          "scikit-learn/scikit-learn#27057"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#15389",
+          "scikit-learn/scikit-learn#21568",
+          "scikit-learn/scikit-learn#12845",
+          "scikit-learn/scikit-learn#13366",
+          "scikit-learn/scikit-learn#11777"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#24636",
+          "scikit-learn/scikit-learn#15389",
+          "scikit-learn/scikit-learn#27621",
+          "scikit-learn/scikit-learn#21568",
+          "scikit-learn/scikit-learn#27927"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      }
+    },
+    {
+      "query": 28218,
+      "relevant": [
+        "scikit-learn/scikit-learn#24656"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#24947",
+          "scikit-learn/scikit-learn#27088",
+          "scikit-learn/scikit-learn#23685",
+          "scikit-learn/scikit-learn#20520",
+          "scikit-learn/scikit-learn#23720"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#24656",
+          "scikit-learn/scikit-learn#4348",
+          "scikit-learn/scikit-learn#2764",
+          "scikit-learn/scikit-learn#26821",
+          "scikit-learn/scikit-learn#10242"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#20520",
+          "scikit-learn/scikit-learn#24656",
+          "scikit-learn/scikit-learn#24947",
+          "scikit-learn/scikit-learn#27088",
+          "scikit-learn/scikit-learn#4348"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 27
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      }
+    },
+    {
+      "query": 28243,
+      "relevant": [
+        "scikit-learn/scikit-learn#27259"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#6654",
+          "scikit-learn/scikit-learn#17817",
+          "scikit-learn/scikit-learn#19698",
+          "scikit-learn/scikit-learn#12937",
+          "scikit-learn/scikit-learn#22117"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#12937",
+          "scikit-learn/scikit-learn#27259",
+          "scikit-learn/scikit-learn#6654",
+          "scikit-learn/scikit-learn#27829",
+          "scikit-learn/scikit-learn#12164"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#6654",
+          "scikit-learn/scikit-learn#12937",
+          "scikit-learn/scikit-learn#17817",
+          "scikit-learn/scikit-learn#19698",
+          "scikit-learn/scikit-learn#27819"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 15
+      }
+    },
+    {
+      "query": 28479,
+      "relevant": [
+        "scikit-learn/scikit-learn#27903"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#25492",
+          "scikit-learn/scikit-learn#21743",
+          "scikit-learn/scikit-learn#13510",
+          "scikit-learn/scikit-learn#27749",
+          "scikit-learn/scikit-learn#25595"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#21743",
+          "scikit-learn/scikit-learn#6967",
+          "scikit-learn/scikit-learn#21868",
+          "scikit-learn/scikit-learn#25630",
+          "scikit-learn/scikit-learn#22664"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#21743",
+          "scikit-learn/scikit-learn#21868",
+          "scikit-learn/scikit-learn#25492",
+          "scikit-learn/scikit-learn#25630",
+          "scikit-learn/scikit-learn#6967"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 9
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 20
+      }
+    },
+    {
+      "query": 28887,
+      "relevant": [
+        "scikit-learn/scikit-learn#27931"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#25052",
+          "scikit-learn/scikit-learn#28083",
+          "scikit-learn/scikit-learn#26925",
+          "scikit-learn/scikit-learn#12417",
+          "scikit-learn/scikit-learn#26826"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#5722",
+          "scikit-learn/scikit-learn#27931",
+          "scikit-learn/scikit-learn#26925",
+          "scikit-learn/scikit-learn#20268",
+          "scikit-learn/scikit-learn#28772"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#26925",
+          "scikit-learn/scikit-learn#27931",
+          "scikit-learn/scikit-learn#28772",
+          "scikit-learn/scikit-learn#5870",
+          "scikit-learn/scikit-learn#12417"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 9
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      }
+    },
+    {
+      "query": 29042,
+      "relevant": [
+        "scikit-learn/scikit-learn#26890"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#25261",
+          "scikit-learn/scikit-learn#28781",
+          "scikit-learn/scikit-learn#21604",
+          "scikit-learn/scikit-learn#28666",
+          "scikit-learn/scikit-learn#26890"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#16702",
+          "scikit-learn/scikit-learn#11996",
+          "scikit-learn/scikit-learn#8540",
+          "scikit-learn/scikit-learn#12018",
+          "scikit-learn/scikit-learn#12881"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#25487",
+          "scikit-learn/scikit-learn#27482",
+          "scikit-learn/scikit-learn#16702",
+          "scikit-learn/scikit-learn#25261",
+          "scikit-learn/scikit-learn#11996"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.2,
+        "first_relevant_rank_top50": 5
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 12
+      }
+    },
+    {
+      "query": 29061,
+      "relevant": [
+        "scikit-learn/scikit-learn#21391"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#10291",
+          "scikit-learn/scikit-learn#11932",
+          "scikit-learn/scikit-learn#13176",
+          "scikit-learn/scikit-learn#28970",
+          "scikit-learn/scikit-learn#17572"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#11932",
+          "scikit-learn/scikit-learn#2584",
+          "scikit-learn/scikit-learn#11138",
+          "scikit-learn/scikit-learn#28944",
+          "scikit-learn/scikit-learn#25859"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#11932",
+          "scikit-learn/scikit-learn#29019",
+          "scikit-learn/scikit-learn#16321",
+          "scikit-learn/scikit-learn#7081",
+          "scikit-learn/scikit-learn#10291"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      }
+    },
+    {
+      "query": 29127,
+      "relevant": [
+        "scikit-learn/scikit-learn#28368"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#26864",
+          "scikit-learn/scikit-learn#28055",
+          "scikit-learn/scikit-learn#27518",
+          "scikit-learn/scikit-learn#27189",
+          "scikit-learn/scikit-learn#24013"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#4619",
+          "scikit-learn/scikit-learn#16184",
+          "scikit-learn/scikit-learn#7554",
+          "scikit-learn/scikit-learn#21523",
+          "scikit-learn/scikit-learn#6665"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#26864",
+          "scikit-learn/scikit-learn#4619",
+          "scikit-learn/scikit-learn#16184",
+          "scikit-learn/scikit-learn#28055",
+          "scikit-learn/scikit-learn#27518"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 9
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 18
+      }
+    },
+    {
+      "query": 29248,
+      "relevant": [
+        "scikit-learn/scikit-learn#22914"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#27172",
+          "scikit-learn/scikit-learn#25249",
+          "scikit-learn/scikit-learn#27991",
+          "scikit-learn/scikit-learn#25178",
+          "scikit-learn/scikit-learn#27783"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#22914",
+          "scikit-learn/scikit-learn#10540",
+          "scikit-learn/scikit-learn#12445",
+          "scikit-learn/scikit-learn#18973",
+          "scikit-learn/scikit-learn#19044"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#23537",
+          "scikit-learn/scikit-learn#22914",
+          "scikit-learn/scikit-learn#27172",
+          "scikit-learn/scikit-learn#10540",
+          "scikit-learn/scikit-learn#25249"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      }
+    },
+    {
+      "query": 29271,
+      "relevant": [
+        "scikit-learn/scikit-learn#28297"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#29101",
+          "scikit-learn/scikit-learn#28943",
+          "scikit-learn/scikit-learn#28827",
+          "scikit-learn/scikit-learn#26596",
+          "scikit-learn/scikit-learn#28384"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#28384",
+          "scikit-learn/scikit-learn#3841",
+          "scikit-learn/scikit-learn#15828",
+          "scikit-learn/scikit-learn#2645",
+          "scikit-learn/scikit-learn#2652"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#28384",
+          "scikit-learn/scikit-learn#29101",
+          "scikit-learn/scikit-learn#28943",
+          "scikit-learn/scikit-learn#3841",
+          "scikit-learn/scikit-learn#15828"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 14
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 26
+      }
+    },
+    {
+      "query": 29491,
+      "relevant": [
+        "scikit-learn/scikit-learn#29337"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#29337",
+          "scikit-learn/scikit-learn#22840",
+          "scikit-learn/scikit-learn#16594",
+          "scikit-learn/scikit-learn#19364",
+          "scikit-learn/scikit-learn#9789"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#29337",
+          "scikit-learn/scikit-learn#22840",
+          "scikit-learn/scikit-learn#2448",
+          "scikit-learn/scikit-learn#2449",
+          "scikit-learn/scikit-learn#10238"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#29337",
+          "scikit-learn/scikit-learn#22840",
+          "scikit-learn/scikit-learn#2448",
+          "scikit-learn/scikit-learn#2449",
+          "scikit-learn/scikit-learn#15741"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      }
+    },
+    {
+      "query": 29604,
+      "relevant": [
+        "scikit-learn/scikit-learn#8889"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#20067",
+          "scikit-learn/scikit-learn#8889",
+          "scikit-learn/scikit-learn#25707",
+          "scikit-learn/scikit-learn#28479",
+          "scikit-learn/scikit-learn#25595"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#8889",
+          "scikit-learn/scikit-learn#20067",
+          "scikit-learn/scikit-learn#21291",
+          "scikit-learn/scikit-learn#20137",
+          "scikit-learn/scikit-learn#13045"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#20067",
+          "scikit-learn/scikit-learn#8889",
+          "scikit-learn/scikit-learn#21136",
+          "scikit-learn/scikit-learn#25771",
+          "scikit-learn/scikit-learn#25492"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      }
+    },
+    {
+      "query": 29609,
+      "relevant": [
+        "scikit-learn/scikit-learn#26802"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#23754",
+          "scikit-learn/scikit-learn#24269",
+          "scikit-learn/scikit-learn#28878",
+          "scikit-learn/scikit-learn#26875",
+          "scikit-learn/scikit-learn#26500"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#23754",
+          "scikit-learn/scikit-learn#26802",
+          "scikit-learn/scikit-learn#26499",
+          "scikit-learn/scikit-learn#26500",
+          "scikit-learn/scikit-learn#28878"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#23754",
+          "scikit-learn/scikit-learn#28878",
+          "scikit-learn/scikit-learn#26500",
+          "scikit-learn/scikit-learn#24269",
+          "scikit-learn/scikit-learn#26802"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 8
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.2,
+        "first_relevant_rank_top50": 5
+      }
+    },
+    {
+      "query": 29640,
+      "relevant": [
+        "scikit-learn/scikit-learn#27117"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#29416",
+          "scikit-learn/scikit-learn#29248",
+          "scikit-learn/scikit-learn#29375",
+          "scikit-learn/scikit-learn#23537",
+          "scikit-learn/scikit-learn#25019"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#27117",
+          "scikit-learn/scikit-learn#14858",
+          "scikit-learn/scikit-learn#25227",
+          "scikit-learn/scikit-learn#19400",
+          "scikit-learn/scikit-learn#19416"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#27117",
+          "scikit-learn/scikit-learn#29416",
+          "scikit-learn/scikit-learn#14858",
+          "scikit-learn/scikit-learn#29248",
+          "scikit-learn/scikit-learn#25227"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      }
+    },
+    {
+      "query": 29675,
+      "relevant": [
+        "scikit-learn/scikit-learn#29674"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#29599",
+          "scikit-learn/scikit-learn#29674",
+          "scikit-learn/scikit-learn#28589",
+          "scikit-learn/scikit-learn#27126",
+          "scikit-learn/scikit-learn#27460"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#29599",
+          "scikit-learn/scikit-learn#29333",
+          "scikit-learn/scikit-learn#27394",
+          "scikit-learn/scikit-learn#28589",
+          "scikit-learn/scikit-learn#25164"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#29599",
+          "scikit-learn/scikit-learn#28589",
+          "scikit-learn/scikit-learn#27394",
+          "scikit-learn/scikit-learn#29333",
+          "scikit-learn/scikit-learn#29674"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 8
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.2,
+        "first_relevant_rank_top50": 5
+      }
+    },
+    {
+      "query": 29901,
+      "relevant": [
+        "scikit-learn/scikit-learn#18893"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#27905",
+          "scikit-learn/scikit-learn#6186",
+          "scikit-learn/scikit-learn#27360",
+          "scikit-learn/scikit-learn#18893",
+          "scikit-learn/scikit-learn#13752"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#16635",
+          "scikit-learn/scikit-learn#7642",
+          "scikit-learn/scikit-learn#13127",
+          "scikit-learn/scikit-learn#25198",
+          "scikit-learn/scikit-learn#13325"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#13325",
+          "scikit-learn/scikit-learn#28386",
+          "scikit-learn/scikit-learn#27360",
+          "scikit-learn/scikit-learn#11178",
+          "scikit-learn/scikit-learn#19105"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.25,
+        "first_relevant_rank_top50": 4
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 16
+      }
+    },
+    {
+      "query": 30013,
+      "relevant": [
+        "scikit-learn/scikit-learn#19880"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#28245",
+          "scikit-learn/scikit-learn#25935",
+          "scikit-learn/scikit-learn#28565",
+          "scikit-learn/scikit-learn#20754",
+          "scikit-learn/scikit-learn#21067"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#9650",
+          "scikit-learn/scikit-learn#13662",
+          "scikit-learn/scikit-learn#21761",
+          "scikit-learn/scikit-learn#5959",
+          "scikit-learn/scikit-learn#8093"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#25666",
+          "scikit-learn/scikit-learn#28245",
+          "scikit-learn/scikit-learn#9650",
+          "scikit-learn/scikit-learn#13662",
+          "scikit-learn/scikit-learn#25935"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 49
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      }
+    },
+    {
+      "query": 30072,
+      "relevant": [
+        "scikit-learn/scikit-learn#7574"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#24524",
+          "scikit-learn/scikit-learn#26532",
+          "scikit-learn/scikit-learn#24305",
+          "scikit-learn/scikit-learn#27592",
+          "scikit-learn/scikit-learn#20127"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#24524",
+          "scikit-learn/scikit-learn#6021",
+          "scikit-learn/scikit-learn#4791",
+          "scikit-learn/scikit-learn#10489",
+          "scikit-learn/scikit-learn#20068"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#24524",
+          "scikit-learn/scikit-learn#6021",
+          "scikit-learn/scikit-learn#26532",
+          "scikit-learn/scikit-learn#10489",
+          "scikit-learn/scikit-learn#27592"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      }
+    },
+    {
+      "query": 30240,
+      "relevant": [
+        "scikit-learn/scikit-learn#15272"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#18933",
+          "scikit-learn/scikit-learn#27028",
+          "scikit-learn/scikit-learn#3541",
+          "scikit-learn/scikit-learn#16846",
+          "scikit-learn/scikit-learn#22265"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#18933",
+          "scikit-learn/scikit-learn#22427",
+          "scikit-learn/scikit-learn#22391",
+          "scikit-learn/scikit-learn#13965",
+          "scikit-learn/scikit-learn#27259"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#18933",
+          "scikit-learn/scikit-learn#22391",
+          "scikit-learn/scikit-learn#3541",
+          "scikit-learn/scikit-learn#22427",
+          "scikit-learn/scikit-learn#22265"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 12
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 20
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 6
+      }
+    },
+    {
+      "query": 30624,
+      "relevant": [
+        "scikit-learn/scikit-learn#20634"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#27887",
+          "scikit-learn/scikit-learn#29369",
+          "scikit-learn/scikit-learn#30324",
+          "scikit-learn/scikit-learn#25662",
+          "scikit-learn/scikit-learn#25597"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#19693",
+          "scikit-learn/scikit-learn#14473",
+          "scikit-learn/scikit-learn#29009",
+          "scikit-learn/scikit-learn#19153",
+          "scikit-learn/scikit-learn#2751"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#19693",
+          "scikit-learn/scikit-learn#29009",
+          "scikit-learn/scikit-learn#25019",
+          "scikit-learn/scikit-learn#27887",
+          "scikit-learn/scikit-learn#14473"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      }
+    },
+    {
+      "query": 30655,
+      "relevant": [
+        "scikit-learn/scikit-learn#30542"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#30542",
+          "scikit-learn/scikit-learn#30479",
+          "scikit-learn/scikit-learn#6695",
+          "scikit-learn/scikit-learn#30450",
+          "scikit-learn/scikit-learn#28910"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#30542",
+          "scikit-learn/scikit-learn#30479",
+          "scikit-learn/scikit-learn#17923",
+          "scikit-learn/scikit-learn#20804",
+          "scikit-learn/scikit-learn#14044"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#30542",
+          "scikit-learn/scikit-learn#30479",
+          "scikit-learn/scikit-learn#20804",
+          "scikit-learn/scikit-learn#5326",
+          "scikit-learn/scikit-learn#6695"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      }
+    },
+    {
+      "query": 30852,
+      "relevant": [
+        "scikit-learn/scikit-learn#7574"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#29579",
+          "scikit-learn/scikit-learn#22126",
+          "scikit-learn/scikit-learn#10925",
+          "scikit-learn/scikit-learn#6147",
+          "scikit-learn/scikit-learn#15621"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#24305",
+          "scikit-learn/scikit-learn#6894",
+          "scikit-learn/scikit-learn#23567",
+          "scikit-learn/scikit-learn#10533",
+          "scikit-learn/scikit-learn#22849"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#17083",
+          "scikit-learn/scikit-learn#18373",
+          "scikit-learn/scikit-learn#177",
+          "scikit-learn/scikit-learn#13162",
+          "scikit-learn/scikit-learn#13176"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      }
+    },
+    {
+      "query": 32072,
+      "relevant": [
+        "scikit-learn/scikit-learn#31859"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#29416",
+          "scikit-learn/scikit-learn#30056",
+          "scikit-learn/scikit-learn#30131",
+          "scikit-learn/scikit-learn#16279",
+          "scikit-learn/scikit-learn#31884"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#31859",
+          "scikit-learn/scikit-learn#9979",
+          "scikit-learn/scikit-learn#19787",
+          "scikit-learn/scikit-learn#23605",
+          "scikit-learn/scikit-learn#14059"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#31859",
+          "scikit-learn/scikit-learn#9979",
+          "scikit-learn/scikit-learn#14059",
+          "scikit-learn/scikit-learn#4880",
+          "scikit-learn/scikit-learn#22884"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 7
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      }
+    },
+    {
+      "query": 32788,
+      "relevant": [
+        "scikit-learn/scikit-learn#28368"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#31859",
+          "scikit-learn/scikit-learn#29665",
+          "scikit-learn/scikit-learn#30984",
+          "scikit-learn/scikit-learn#31206",
+          "scikit-learn/scikit-learn#30321"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#16184",
+          "scikit-learn/scikit-learn#6665",
+          "scikit-learn/scikit-learn#5903",
+          "scikit-learn/scikit-learn#9941",
+          "scikit-learn/scikit-learn#4619"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#29523",
+          "scikit-learn/scikit-learn#16184",
+          "scikit-learn/scikit-learn#31859",
+          "scikit-learn/scikit-learn#29665",
+          "scikit-learn/scikit-learn#6665"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      }
+    },
+    {
+      "query": 32952,
+      "relevant": [
+        "scikit-learn/scikit-learn#22136"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#22136",
+          "scikit-learn/scikit-learn#22404",
+          "scikit-learn/scikit-learn#24462",
+          "scikit-learn/scikit-learn#30732",
+          "scikit-learn/scikit-learn#21000"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#22136",
+          "scikit-learn/scikit-learn#16470",
+          "scikit-learn/scikit-learn#21000",
+          "scikit-learn/scikit-learn#6231",
+          "scikit-learn/scikit-learn#11749"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#22136",
+          "scikit-learn/scikit-learn#21000",
+          "scikit-learn/scikit-learn#29303",
+          "scikit-learn/scikit-learn#31218",
+          "scikit-learn/scikit-learn#22427"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      }
+    },
+    {
+      "query": 33002,
+      "relevant": [
+        "scikit-learn/scikit-learn#32961"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#23357",
+          "scikit-learn/scikit-learn#31923",
+          "scikit-learn/scikit-learn#5953",
+          "scikit-learn/scikit-learn#11330",
+          "scikit-learn/scikit-learn#30761"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#29663",
+          "scikit-learn/scikit-learn#15828",
+          "scikit-learn/scikit-learn#3841",
+          "scikit-learn/scikit-learn#10433",
+          "scikit-learn/scikit-learn#2166"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#15828",
+          "scikit-learn/scikit-learn#10433",
+          "scikit-learn/scikit-learn#23357",
+          "scikit-learn/scikit-learn#3841",
+          "scikit-learn/scikit-learn#28297"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 18
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 30
+      }
+    },
+    {
+      "query": 33207,
+      "relevant": [
+        "scikit-learn/scikit-learn#15389"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#15389",
+          "scikit-learn/scikit-learn#32748",
+          "scikit-learn/scikit-learn#9144",
+          "scikit-learn/scikit-learn#12845",
+          "scikit-learn/scikit-learn#28178"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#28178",
+          "scikit-learn/scikit-learn#9144",
+          "scikit-learn/scikit-learn#21568",
+          "scikit-learn/scikit-learn#15389",
+          "scikit-learn/scikit-learn#16799"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#15389",
+          "scikit-learn/scikit-learn#9144",
+          "scikit-learn/scikit-learn#28178",
+          "scikit-learn/scikit-learn#12845",
+          "scikit-learn/scikit-learn#32748"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.25,
+        "first_relevant_rank_top50": 4
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      }
+    },
+    {
+      "query": 33355,
+      "relevant": [
+        "scikit-learn/scikit-learn#33219"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#26535",
+          "scikit-learn/scikit-learn#20721",
+          "scikit-learn/scikit-learn#20199",
+          "scikit-learn/scikit-learn#20977",
+          "scikit-learn/scikit-learn#32552"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#10449",
+          "scikit-learn/scikit-learn#4641",
+          "scikit-learn/scikit-learn#3103",
+          "scikit-learn/scikit-learn#27078",
+          "scikit-learn/scikit-learn#33219"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#32552",
+          "scikit-learn/scikit-learn#26535",
+          "scikit-learn/scikit-learn#10449",
+          "scikit-learn/scikit-learn#20721",
+          "scikit-learn/scikit-learn#4641"
+        ]
+      },
+      "bm25": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": null
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.2,
+        "first_relevant_rank_top50": 5
+      },
+      "hybrid": {
+        "recall": 0.0,
+        "hit": 0.0,
+        "reciprocal_rank": 0.0,
+        "first_relevant_rank_top50": 10
+      }
+    },
+    {
+      "query": 35300,
+      "relevant": [
+        "scikit-learn/scikit-learn#19416"
+      ],
+      "top5": {
+        "bm25": [
+          "scikit-learn/scikit-learn#21708",
+          "scikit-learn/scikit-learn#19433",
+          "scikit-learn/scikit-learn#13134",
+          "scikit-learn/scikit-learn#13194",
+          "scikit-learn/scikit-learn#19416"
+        ],
+        "dense": [
+          "scikit-learn/scikit-learn#19416",
+          "scikit-learn/scikit-learn#25594",
+          "scikit-learn/scikit-learn#14874",
+          "scikit-learn/scikit-learn#21708",
+          "scikit-learn/scikit-learn#13134"
+        ],
+        "hybrid": [
+          "scikit-learn/scikit-learn#21708",
+          "scikit-learn/scikit-learn#19416",
+          "scikit-learn/scikit-learn#19433",
+          "scikit-learn/scikit-learn#13134",
+          "scikit-learn/scikit-learn#25594"
+        ]
+      },
+      "bm25": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.2,
+        "first_relevant_rank_top50": 5
+      },
+      "dense": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 1.0,
+        "first_relevant_rank_top50": 1
+      },
+      "hybrid": {
+        "recall": 1.0,
+        "hit": 1.0,
+        "reciprocal_rank": 0.5,
+        "first_relevant_rank_top50": 2
+      }
+    }
+  ],
+  "note": "Recall against known explicit duplicates only, not an exhaustive relevant set. MRR is truncated at 5. Hit@5 equals Recall@5 here because each query has one target."
+}

@@ -1,0 +1,133 @@
+{
+  "source": "scikit-learn/scikit-learn",
+  "target": "pandas-dev/pandas",
+  "target_snapshot": "2024-09-11_2026-11-21_20261122T120313Z",
+  "target_window": [
+    "2024-09-11",
+    "2026-11-21"
+  ],
+  "count": 1272,
+  "support": {
+    "bug": 777,
+    "feature": 192,
+    "question_documentation": 221,
+    "other": 82
+  },
+  "exclusions": {
+    "conflict": 55,
+    "unmapped": 331,
+    "excluded_label": 254
+  },
+  "selected_model_raw": {
+    "n": 1272,
+    "support": {
+      "bug": 777,
+      "feature": 192,
+      "question_documentation": 221,
+      "other": 82
+    },
+    "accuracy": 0.7955974842767296,
+    "macro_f1": 0.7242132390885879,
+    "per_class_f1": {
+      "bug": 0.8689839572192514,
+      "feature": 0.654690618762475,
+      "question_documentation": 0.7577937649880095,
+      "other": 0.6153846153846154
+    },
+    "confusion_matrix": {
+      "labels": [
+        "bug",
+        "feature",
+        "question_documentation",
+        "other"
+      ],
+      "rows_true_cols_pred": [
+        [
+          650,
+          100,
+          23,
+          4
+        ],
+        [
+          20,
+          164,
+          7,
+          1
+        ],
+        [
+          32,
+          28,
+          158,
+          3
+        ],
+        [
+          17,
+          17,
+          8,
+          40
+        ]
+      ]
+    },
+    "macro_f1_note": "Macro average over the fixed four labels; absent classes score 0."
+  },
+  "at_frozen_threshold": {
+    "threshold": 0.95,
+    "accepted": 0,
+    "coverage": 0.0,
+    "accepted_accuracy": null,
+    "accepted_macro_f1": null
+  },
+  "unmasked_model_raw": {
+    "n": 1272,
+    "support": {
+      "bug": 777,
+      "feature": 192,
+      "question_documentation": 221,
+      "other": 82
+    },
+    "accuracy": 0.8663522012578616,
+    "macro_f1": 0.8067050028026925,
+    "per_class_f1": {
+      "bug": 0.9169349645846748,
+      "feature": 0.8097560975609757,
+      "question_documentation": 0.7909090909090909,
+      "other": 0.7092198581560284
+    },
+    "confusion_matrix": {
+      "labels": [
+        "bug",
+        "feature",
+        "question_documentation",
+        "other"
+      ],
+      "rows_true_cols_pred": [
+        [
+          712,
+          29,
+          31,
+          5
+        ],
+        [
+          20,
+          166,
+          5,
+          1
+        ],
+        [
+          32,
+          12,
+          174,
+          3
+        ],
+        [
+          12,
+          11,
+          9,
+          50
+        ]
+      ]
+    },
+    "macro_f1_note": "Macro average over the fixed four labels; absent classes score 0."
+  },
+  "note": "Calibration and threshold were fitted on the source repository; their reliability on the target is not verified. B labels are used for scoring only."
+}

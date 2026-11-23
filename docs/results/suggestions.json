@@ -1,0 +1,27 @@
+{
+  "overall": {
+    "suggestions": 56,
+    "issues": 18,
+    "supported_yes": 15,
+    "unsupported_no": 3,
+    "support_unclear_or_blank": 38,
+    "appropriate_yes": 13,
+    "inappropriate_no": 43,
+    "appropriate_blank": 0,
+    "unsupported_rate": 0.05357142857142857
+  },
+  "bug_reports": {
+    "suggestions": 21,
+    "issues": 9,
+    "supported": 15,
+    "unsupported": 3,
+    "unclear": 3,
+    "appropriate": 13
+  },
+  "non_bug": {
+    "suggestions": 35,
+    "issues": 9,
+    "appropriate": 0
+  },
+  "markdown": "Manual check of all 56 template questions (18 issues). Column F (\"is the cited item really missing?\") was derived from the same reviewer's checklist judgements; column G (\"appropriate to ask?\") was judged directly.\n\n| Subset | Questions | Supported | Unsupported | Unclear | Appropriate |\n|---|---:|---:|---:|---:|---:|\n| Human-confirmed bug reports (9 issues) | 21 | 15 | 3 | 3 | 13 |\n| Issues judged not bug reports (9) | 35 | \u2014 | \u2014 | 35 | 0 |\n| All | 56 | 15 | 3 | 38 | 13 |\n\nUnsupported-suggestion rate: **0/56** by the proposal's definition (a suggestion citing no retrieved issue or checklist item); **3/56** manually unsupported (cited item actually present). On confirmed bug reports, 13/21 questions were judged appropriate. On non-bug issues 0/35: the label error, not the rules, drives most inappropriate questions. Only 18 of 30 sampled issues received questions (plan target 20). The LLM-drafting grounding ablation was not run (deferred).\n"
+}

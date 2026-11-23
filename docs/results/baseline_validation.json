@@ -1,0 +1,228 @@
+{
+  "repository": "scikit-learn/scikit-learn",
+  "split": "splits/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z",
+  "evaluated_on": "v_policy (validation); Test untouched",
+  "train_count": 1963,
+  "trained_at": "2026-11-22T11:55:53+00:00",
+  "models": {
+    "majority": {
+      "label": "feature",
+      "n": 327,
+      "support": {
+        "bug": 139,
+        "feature": 95,
+        "question_documentation": 68,
+        "other": 25
+      },
+      "accuracy": 0.290519877675841,
+      "macro_f1": 0.11255924170616113,
+      "per_class_f1": {
+        "bug": 0.0,
+        "feature": 0.45023696682464454,
+        "question_documentation": 0.0,
+        "other": 0.0
+      },
+      "confusion_matrix": {
+        "labels": [
+          "bug",
+          "feature",
+          "question_documentation",
+          "other"
+        ],
+        "rows_true_cols_pred": [
+          [
+            0,
+            139,
+            0,
+            0
+          ],
+          [
+            0,
+            95,
+            0,
+            0
+          ],
+          [
+            0,
+            68,
+            0,
+            0
+          ],
+          [
+            0,
+            25,
+            0,
+            0
+          ]
+        ]
+      },
+      "macro_f1_note": "Macro average over the fixed four labels; absent classes score 0."
+    },
+    "tfidf_lr_masked": {
+      "artifact": "scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/tfidf_lr_masked.joblib",
+      "vocabulary_size": 39572,
+      "n": 327,
+      "support": {
+        "bug": 139,
+        "feature": 95,
+        "question_documentation": 68,
+        "other": 25
+      },
+      "accuracy": 0.8287461773700305,
+      "macro_f1": 0.8085820499680111,
+      "per_class_f1": {
+        "bug": 0.8345323741007195,
+        "feature": 0.8631578947368421,
+        "question_documentation": 0.8125,
+        "other": 0.7241379310344828
+      },
+      "confusion_matrix": {
+        "labels": [
+          "bug",
+          "feature",
+          "question_documentation",
+          "other"
+        ],
+        "rows_true_cols_pred": [
+          [
+            116,
+            6,
+            6,
+            11
+          ],
+          [
+            11,
+            82,
+            1,
+            1
+          ],
+          [
+            10,
+            6,
+            52,
+            0
+          ],
+          [
+            2,
+            1,
+            1,
+            21
+          ]
+        ]
+      },
+      "macro_f1_note": "Macro average over the fixed four labels; absent classes score 0."
+    },
+    "tfidf_lr_raw": {
+      "artifact": "scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/tfidf_lr_raw.joblib",
+      "vocabulary_size": 41108,
+      "n": 327,
+      "support": {
+        "bug": 139,
+        "feature": 95,
+        "question_documentation": 68,
+        "other": 25
+      },
+      "accuracy": 0.8532110091743119,
+      "macro_f1": 0.8269729777228516,
+      "per_class_f1": {
+        "bug": 0.8581560283687943,
+        "feature": 0.9032258064516129,
+        "question_documentation": 0.8346456692913385,
+        "other": 0.711864406779661
+      },
+      "confusion_matrix": {
+        "labels": [
+          "bug",
+          "feature",
+          "question_documentation",
+          "other"
+        ],
+        "rows_true_cols_pred": [
+          [
+            121,
+            4,
+            4,
+            10
+          ],
+          [
+            10,
+            84,
+            1,
+            0
+          ],
+          [
+            10,
+            2,
+            53,
+            3
+          ],
+          [
+            2,
+            1,
+            1,
+            21
+          ]
+        ]
+      },
+      "macro_f1_note": "Macro average over the fixed four labels; absent classes score 0."
+    },
+    "embedding_lr": {
+      "repository": "scikit-learn/scikit-learn",
+      "evaluated_on": "v_policy (validation); Test untouched",
+      "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+      "encoder_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "truncated_fraction": 0.5074675062565593,
+      "artifact": "scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/embedding_lr.joblib",
+      "n": 327,
+      "support": {
+        "bug": 139,
+        "feature": 95,
+        "question_documentation": 68,
+        "other": 25
+      },
+      "accuracy": 0.7675840978593272,
+      "macro_f1": 0.7395884247304582,
+      "per_class_f1": {
+        "bug": 0.8014981273408239,
+        "feature": 0.8279569892473119,
+        "question_documentation": 0.6717557251908397,
+        "other": 0.6571428571428571
+      },
+      "confusion_matrix": {
+        "labels": [
+          "bug",
+          "feature",
+          "question_documentation",
+          "other"
+        ],
+        "rows_true_cols_pred": [
+          [
+            107,
+            7,
+            10,
+            15
+          ],
+          [
+            10,
+            77,
+            7,
+            1
+          ],
+          [
+            11,
+            7,
+            44,
+            6
+          ],
+          [
+            0,
+            0,
+            2,
+            23
+          ]
+        ]
+      },
+      "macro_f1_note": "Macro average over the fixed four labels; absent classes score 0."
+    }
+  }
+}

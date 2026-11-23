@@ -1,4 +1,4 @@
-"""Shared orchestration shell. All ML adapters are explicitly unavailable by default."""
+"""Shared analyze() used by the UI and evaluation. Adapters default to explicit unavailable."""
 
 import logging
 from collections.abc import Sequence
@@ -10,6 +10,7 @@ from knotify.classifier import Classifier, UnavailableClassifier
 from knotify.config import AppConfig
 from knotify.contracts import AnalysisReport, ClassificationResult, ComponentStatus, Issue
 from knotify.data import input_hash, model_text, stable_hash
+from knotify.drafting import template_suggestions, validate_references
 from knotify.errors import ComponentUnavailable
 from knotify.retrieval import Retriever, UnavailableRetriever, eligible_history
 
@@ -75,9 +76,20 @@ def analyze(
     checklist = _run(
         "checklist", lambda: model_bundle.checklist.check(issue, classification), (), statuses
     )
-    statuses["drafting"] = ComponentStatus(
-        state="unavailable", detail="Question templates and reference validation are not built yet."
-    )
+
+    def draft():
+        if statuses["checklist"].state != "ready":
+            raise ComponentUnavailable("Templates need checklist results.")
+        drafts = template_suggestions(checklist, classification, issue.repository)
+        return validate_references(drafts, checklist, related)
+
+    suggestions = _run("drafting", draft, (), statuses)
+    if statuses["drafting"].state == "ready":
+        statuses["drafting"] = ComponentStatus(
+            state="ready",
+            detail=f"{len(suggestions)} template question(s); references checked mechanically, "
+            "meaning not verified.",
+        )
     statuses["llm"] = ComponentStatus(
         state="unavailable" if config.llm.enabled else "disabled",
         detail="No LLM adapter is connected; no API request was made.",
@@ -90,6 +102,7 @@ def analyze(
         classification=classification,
         related_issues=related,
         checklist=checklist,
+        suggestions=suggestions,
         components=statuses,
         elapsed_ms=(perf_counter() - started) * 1000,
     )

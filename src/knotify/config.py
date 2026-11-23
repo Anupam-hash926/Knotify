@@ -46,6 +46,7 @@ class ClassificationConfig(ConfigModel):
 
 class EmbeddingConfig(ConfigModel):
     model: str = "sentence-transformers/all-MiniLM-L6-v2"
+    local_path: Path = Path("models/all-MiniLM-L6-v2")
     device: Literal["cpu"] = "cpu"
     batch_size: int = Field(default=16, gt=0)
 
@@ -89,4 +90,7 @@ def load_config(path: Path | None = None, *, root: Path | None = None) -> AppCon
         name: value.resolve() if value.is_absolute() else (root / value).resolve()
         for name, value in config.paths.model_dump().items()
     }
-    return config.model_copy(update={"paths": Paths(**paths)})
+    local = config.embeddings.local_path
+    local = local.resolve() if local.is_absolute() else (root / local).resolve()
+    embeddings = config.embeddings.model_copy(update={"local_path": local})
+    return config.model_copy(update={"paths": Paths(**paths), "embeddings": embeddings})

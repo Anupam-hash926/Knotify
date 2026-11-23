@@ -2,10 +2,25 @@
 
 ## Current milestone
 
-**Day 1 gate met (22 Nov 2026):** a real imported scikit-learn issue is displayed in Streamlit with
-its TF-IDF category suggestion (raw, uncalibrated, always deferred) and up to five earlier BM25
-candidates with real links. Dataset feasibility is known and the baseline can be rerun from frozen
-data. Day 2 work (embeddings, dense/RRF, checklist, templates) has not started.
+**Day 2 gate met (23 Nov 2026):** a real imported issue produces every core output without an
+LLM: TF-IDF category suggestion (raw, uncalibrated, always deferred), five earlier related issues
+from hybrid BM25 + embedding search (RRF), a six-item missing-information checklist and
+evidence-linked template questions shown as an editable draft reply. Both classifier variants
+run, and historical filtering passes tests. Day 3 (calibration, threshold, explanations, review
+persistence) has not started. Day 1 gate met on 22 Nov 2026.
+
+### Day 2 results
+
+| Item | Result | Where |
+|---|---|---|
+| Embedding model | `sentence-transformers/all-MiniLM-L6-v2`, revision `1110a243fdf4706b3f48f1d95db1a4f5529b4d41`, downloaded once by the user (Hugging Face is blocked from the assistant's environments) | `models/all-MiniLM-L6-v2/` (gitignored) |
+| Embedding cache | 12,387 × 384 float32, L2-normalised, template-masked text; encoded in 326 s on 2 vCPU (CPU). **51% of issues exceed the 256-token limit** (median 263 tokens), so their embeddings cover only the beginning of the issue. Recorded, not worked around (no chunking, per plan) | `artifacts/scikit-learn__scikit-learn/embeddings/<snapshot>/` (`meta.json`) |
+| Embedding LR (V-policy, Test untouched) | macro-F1 **0.740** (bug 0.801, feature 0.828, question_documentation 0.672, other 0.657) vs masked TF-IDF **0.809**. Embeddings do not win; the TF-IDF serving model stays. Formal selection is on Day 3 | `runs/baseline/…/baseline_validation.json`, `artifacts/…/embedding_lr.joblib` |
+| Dense search | Eligible rows are selected *before* ranking; exact FAISS `IndexFlatIP` with an ID selector (FAISS 1.16 in the cloud run), exact NumPy fallback (used where FAISS is not installed). Both give the same ranking in tests | `retrieval.DenseRetriever` |
+| Hybrid | RRF `1/(60+rank)`, 50 candidates per method, issue-ID tie-break. Pasted text without the local encoder falls back to BM25 and the UI says so | `retrieval.HybridRetriever` |
+| Checklist | `checklist-v1`: reproduction, expected, actual, environment, version, error logs (conditional). Empty template headings and `_No response_` count as missing. Rules developed on 10 Train bugs (dev only) | `checklist.py` |
+| Template questions | One question per missing item, citing `checklist:<item>`. `reference_valid` is checked mechanically; `semantic_support` stays `not_checked`. Conditional wording while the category is deferred | `drafting.py` |
+| Debug-only retrieval check | On the 5 dev queries, dense found 3 targets in its top 50 that BM25 missed. **Not reported; the 47 evaluation queries are untouched** | — |
 
 The dataset decision, counts and corrections to the external research are recorded in
 `context.md` → "Verified dataset decision". Audit evidence: `docs/audit/`.
@@ -54,8 +69,9 @@ Observed latency on the 2-core / 2 GB Linux sandbox: runtime load ≈ 13 s, firs
   The mapping is unchanged, because unclear judgements are not evidence that it is wrong. This is a
   single-reviewer check, not an inter-annotator agreement study.
 - **LLM comparison:** deferred by the user (optional); report it as not completed unless revisited.
-- Not started: calibration/threshold, embeddings + dense/RRF, checklist, evidence templates,
-  LLM comparison, SHAP, evaluation runner, transfer scoring, review controls, UI polish.
+- Not started (Day 3+): calibration/threshold and classifier selection, TF-IDF SHAP, review
+  persistence/controls in the UI, checklist evaluation sheet (30–40 human-checked bug reports),
+  20-suggestion manual check, evaluation runner, transfer scoring, UI polish.
 - The cloud workspace cannot reach api.github.com (proxy requires a linked account); collection
   runs on the local machine. Background processes do not survive between sandboxed calls, so
   long jobs are resumable (`audit`, `import`, `duplicates` each cache progress and exit with
@@ -72,8 +88,10 @@ Observed latency on the 2-core / 2 GB Linux sandbox: runtime load ≈ 13 s, firs
 
 ## Next concrete step
 
-Day 2: cache MiniLM embeddings, dense retrieval with eligibility-first
-filtering, RRF, embedding LR, checklist and template questions.
+Day 3: fit sigmoid calibration on V-cal for both classifiers, select the serving classifier
+and threshold on V-policy, add TF-IDF SHAP (or labelled linear contributions), persist
+reports/reviews from the UI, prepare the checklist and suggestion review sheets, then freeze all
+configurations.
 
 ## Run commands
 
@@ -86,6 +104,10 @@ uv run knotify split scikit-learn/scikit-learn         # refuses to overwrite a 
 uv run knotify train scikit-learn/scikit-learn         # validation (V-policy) only
 uv run knotify duplicates scikit-learn/scikit-learn --created-from 2022-11-30
 uv run knotify label-sheet scikit-learn/scikit-learn
+# Day 2 (needs the embeddings extra and the local model folder, see README)
+uv sync --locked --python 3.12 --extra ml --extra embeddings --extra faiss
+uv run knotify embed scikit-learn/scikit-learn          # ~5 min on 2 CPU cores; refuses to overwrite
+uv run knotify train scikit-learn/scikit-learn --model embedding
 uv run streamlit run ui/app.py
 uv run pytest
 ```
@@ -97,7 +119,7 @@ snapshot and never overwrites an existing one.
 
 ## Verification (22 Nov 2026, Linux sandbox, Python 3.12.15)
 
-- `ruff check` / `ruff format --check`: pass. `pytest`: 32 passed (UI tests use an empty temporary
+- `ruff check` / `ruff format --check`: pass. `pytest`: 41 passed (UI tests use an empty temporary
   workspace, so they never read local data).
 - Real-data smoke test: Streamlit AppTest opened issue #21291 → `feature` (0.71 raw, deferred) and five
   earlier BM25 candidates, with #20137 (its maintainer-confirmed duplicate) ranked first. This is

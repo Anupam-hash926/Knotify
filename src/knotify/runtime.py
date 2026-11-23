@@ -55,9 +55,13 @@ def load_runtime(config: AppConfig, repository: str | None = None) -> Runtime:
         manifest, records, _ = load_snapshot(snapshot)
         history = tuple(to_issue(r, repository) for r in records)
         version = f"{snapshot.name}:{manifest['issues_sha256'][:12]}"
-        from knotify.retrieval import BM25Retriever
+        from knotify.retrieval import BM25Retriever, HybridRetriever
 
-        retriever = BM25Retriever(depth=config.retrieval.candidate_depth)
+        depth = config.retrieval.candidate_depth
+        retriever = BM25Retriever(depth=depth)
+        dense = _dense(config, repository, depth, notes)
+        if dense is not None:
+            retriever = HybridRetriever(retriever, dense, rrf_k=config.retrieval.rrf_k)
     except (FileNotFoundError, ImportError) as exc:
         notes.append(f"Retrieval history unavailable: {exc}")
     try:
@@ -70,9 +74,33 @@ def load_runtime(config: AppConfig, repository: str | None = None) -> Runtime:
         classifier = TextModelClassifier(TextModel.load(path))
     except (FileNotFoundError, ImportError) as exc:
         notes.append(f"Classifier unavailable: {exc}")
-    kwargs = {}
+    from knotify.checklist import RuleChecklist
+
+    kwargs = {"checklist": RuleChecklist()}
     if classifier is not None:
         kwargs["classifier"] = classifier
     if retriever is not None:
         kwargs["retriever"] = retriever
     return Runtime(ModelBundle(**kwargs), repository, history, version, tuple(notes))
+
+
+def _dense(config: AppConfig, repository: str, depth: int, notes: list[str]):
+    """Dense retriever from the cached embeddings; the encoder is optional (pasted text)."""
+    from knotify.embeddings import EmbeddingCache, load_encoder
+    from knotify.errors import ComponentUnavailable
+    from knotify.experiment import embeddings_dir
+    from knotify.retrieval import DenseRetriever
+
+    try:
+        cache = EmbeddingCache.load(embeddings_dir(config, repository))
+    except (ComponentUnavailable, FileNotFoundError) as exc:
+        notes.append(f"Dense search unavailable: {exc}")
+        return None
+    encoder = None
+    try:
+        encoder = load_encoder(config.embeddings.local_path, device=config.embeddings.device)
+    except ComponentUnavailable as exc:
+        notes.append(f"Pasted reports use BM25 only: {exc}")
+    dense = DenseRetriever(cache, encoder=encoder, depth=depth)
+    notes.append(f"Dense search backend: {dense.backend}.")
+    return dense

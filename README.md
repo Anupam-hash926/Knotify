@@ -55,6 +55,18 @@ Native FAISS and ML extras still need validation on the target MacBook. The CPU 
 explicit; optional MPS/GPU support is not implemented or required. PyTorch wheel selection for
 other platforms can be refined when the embeddings extra is first installed.
 
+## Embedding model (one-time download)
+
+Semantic search and the embedding classifier use `sentence-transformers/all-MiniLM-L6-v2`, loaded
+from `models/all-MiniLM-L6-v2/` (gitignored, about 90 MB). Download it once from the repository root:
+
+```sh
+uv run --no-project --with huggingface_hub python -c "from huggingface_hub import snapshot_download as d; d('sentence-transformers/all-MiniLM-L6-v2', local_dir='models/all-MiniLM-L6-v2', allow_patterns=['*.json','*.txt','model.safetensors','1_Pooling/*'])"
+```
+
+Without it, imported issues still get hybrid search from the cached embeddings in `artifacts/`,
+and pasted reports fall back to BM25 only (the app says so).
+
 ## Configuration and local files
 
 `configs/default.toml` is validated by `knotify.config`; paths resolve relative to this editable

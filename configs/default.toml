@@ -21,7 +21,9 @@ target_accepted_accuracy = 0.90
 
 [embeddings]
 model = "sentence-transformers/all-MiniLM-L6-v2"
-# A concrete model revision will be recorded when first downloaded for implementation.
+# Local copy downloaded once from Hugging Face (see IMPLEMENTATION_STATUS.md); the revision is
+# recorded in the embedding cache's meta.json.
+local_path = "models/all-MiniLM-L6-v2"
 device = "cpu"
 batch_size = 16
 

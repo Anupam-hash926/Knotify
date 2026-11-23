@@ -282,3 +282,98 @@ def label_audit_sheet(config: AppConfig, repo: str, per_class: int = 10) -> Path
                 ]
             )
     return path
+
+
+def embeddings_dir(config: AppConfig, repo: str) -> Path:
+    snapshot = latest_snapshot(config.paths.data, repo)
+    return config.paths.artifacts / slug(repo) / "embeddings" / snapshot.name
+
+
+def build_embeddings(config: AppConfig, repo: str) -> Path:
+    """Encode every issue in the latest frozen snapshot once (CPU) and cache the vectors."""
+    from knotify.embeddings import build_cache, load_encoder, model_revision
+    from knotify.ingest import to_issue
+
+    snapshot = latest_snapshot(config.paths.data, repo)
+    manifest, records, _ = load_snapshot(snapshot)
+    out = embeddings_dir(config, repo)
+    if (out / "vectors.npy").exists():
+        raise FileExistsError(f"Embedding cache already exists: {out}")
+    encoder = load_encoder(config.embeddings.local_path, device=config.embeddings.device)
+    cache = build_cache(
+        encoder,
+        [to_issue(r, repo) for r in records],
+        model_name=config.embeddings.model,
+        revision=model_revision(config.embeddings.local_path),
+        dataset_version=f"{snapshot.name}:{manifest['issues_sha256'][:12]}",
+        batch_size=config.embeddings.batch_size,
+    )
+    cache.save(out)
+    return out
+
+
+def train_embedding_lr(config: AppConfig, repo: str) -> dict[str, Any]:
+    """Frozen-embedding logistic regression with the same settings as TF-IDF; V-policy only."""
+    import numpy as np
+    from sklearn.linear_model import LogisticRegression
+
+    from knotify.embeddings import EmbeddingCache
+
+    split_dir = latest_split(config.paths.data, repo)
+    rows = load_split_rows(config, split_dir, ("train", "v_policy"))
+    cache = EmbeddingCache.load(embeddings_dir(config, repo))
+
+    def matrix(records):
+        ids = [f"{repo}#{r['number']}" for r in records]
+        return np.stack([cache.vectors[cache.index[i]] for i in ids])
+
+    cls = config.classification
+    model = LogisticRegression(
+        C=cls.c, class_weight="balanced", max_iter=cls.max_iter, random_state=config.seed
+    )
+    model.fit(matrix(rows["train"]), [r["target"] for r in rows["train"]])
+    proba = model.predict_proba(matrix(rows["v_policy"]))
+    classes = list(model.classes_)
+    pred = [classes[i] for i in np.argmax(proba, axis=1)]
+    y_eval = [r["target"] for r in rows["v_policy"]]
+    import joblib
+
+    artifact = config.paths.artifacts / slug(repo) / split_dir.name / "embedding_lr.joblib"
+    artifact.parent.mkdir(parents=True, exist_ok=True)
+    joblib.dump(
+        {
+            "model": model,
+            "metadata": {
+                "model_version": f"embedding_lr:{split_dir.name}",
+                "encoder": cache.meta.get("model"),
+                "encoder_revision": cache.meta.get("revision"),
+                "text_transform": cache.meta.get("text_transform"),
+                "c": cls.c,
+                "class_weight": cls.class_weight,
+                "seed": config.seed,
+                "calibrated": False,
+            },
+        },
+        artifact,
+    )
+    run_dir = config.paths.runs / "baseline" / slug(repo) / split_dir.name
+    run_dir.mkdir(parents=True, exist_ok=True)
+    result = {
+        "repository": repo,
+        "evaluated_on": "v_policy (validation); Test untouched",
+        "encoder": cache.meta.get("model"),
+        "encoder_revision": cache.meta.get("revision"),
+        "truncated_fraction": cache.meta.get("truncated_fraction"),
+        "artifact": str(artifact.relative_to(config.paths.artifacts)),
+        **classification_metrics(y_eval, pred),
+    }
+    path = run_dir / "baseline_validation.json"
+    combined = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"models": {}}
+    combined["models"]["embedding_lr"] = result
+    path.write_text(json.dumps(combined, indent=2) + "\n", encoding="utf-8")
+    with (run_dir / "v_policy_predictions_embedding_lr.csv").open("w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["number", "target", "embedding_lr"])
+        for record, p in zip(rows["v_policy"], pred, strict=True):
+            writer.writerow([record["number"], record["target"], p])
+    return result

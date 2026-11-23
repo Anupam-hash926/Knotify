@@ -9,6 +9,7 @@ from pydantic import ValidationError
 
 from knotify.config import load_config
 from knotify.contracts import Issue
+from knotify.drafting import compose_reply
 from knotify.runtime import load_runtime
 from knotify.triage import analyze
 
@@ -28,6 +29,53 @@ def application_runtime():
 def escape_md(text: str) -> str:
     """Issue titles are untrusted: show them as literal text, not Markdown."""
     return re.sub(r"([\\`*_{}\[\]()#+\-.!|<>~])", r"\\\1", text)
+
+
+STATUS_MARK = {"present": "✓", "missing": "✗", "uncertain": "?", "not_applicable": "–"}
+
+
+def score_text(scores: dict[str, float]) -> str:
+    parts = []
+    if "bm25" in scores:
+        rank = f" (#{int(scores['bm25_rank'])})" if "bm25_rank" in scores else ""
+        parts.append(f"BM25 {scores['bm25']:.1f}{rank}")
+    elif "rrf" in scores:
+        parts.append("BM25 —")
+    if "dense" in scores:
+        parts.append(f"cosine {scores['dense']:.2f} (#{int(scores['dense_rank'])})")
+    elif "rrf" in scores:
+        parts.append("embedding —")
+    return " · ".join(parts)
+
+
+def render_checklist(report):
+    st.markdown("##### Missing information")
+    status = report.components.get("checklist")
+    if status is None or status.state != "ready":
+        st.caption(status.detail if status else "Checklist unavailable.")
+        return
+    if all(item.status == "not_applicable" for item in report.checklist):
+        st.caption("Not applicable: the accepted category is not a bug report.")
+        return
+    for item in report.checklist:
+        label = item.item_id.value.replace("_", " ").capitalize()
+        st.markdown(f"{STATUS_MARK[item.status]} **{label}** · {item.status.replace('_', ' ')}")
+        st.caption(item.reason)
+    reply = compose_reply(report.suggestions)
+    st.markdown("##### Suggested follow-up")
+    if not reply:
+        st.caption("Nothing to ask: no applicable item is missing.")
+        return
+    st.text_area(
+        "Draft reply (edit before using; nothing is posted automatically)",
+        value=reply,
+        height=170,
+        key=f"reply-{report.analysis_id}",
+    )
+    st.caption(
+        "Each question cites the checklist item it comes from. Citations are checked "
+        "mechanically; the checklist rules themselves can be wrong."
+    )
 
 
 def render_report(report):
@@ -53,14 +101,14 @@ def render_report(report):
     elif not report.related_issues:
         st.caption("No earlier issue in this repository matched.")
     else:
-        st.caption(
-            "Ranked by BM25 search score — similarity, not a probability or duplicate proof."
-        )
+        hybrid = any("rrf" in item.method_scores for item in report.related_issues)
+        method = "hybrid search (BM25 + embeddings, rank fusion)" if hybrid else "BM25 search"
+        st.caption(f"Ranked by {method}. Similarity only, not a probability or duplicate proof.")
         for item in report.related_issues:
             issue = item.issue
-            score = item.method_scores.get("bm25", 0.0)
             st.markdown(f"{item.rank}. [#{issue.number}]({issue.url}) {escape_md(issue.title)}")
-            st.caption(f"{issue.created_at:%d %b %Y} · BM25 {score:.1f}")
+            st.caption(f"{issue.created_at:%d %b %Y} · {score_text(item.method_scores)}")
+    render_checklist(report)
     with st.expander("Component status"):
         for name, status in report.components.items():
             st.write(f"**{name.title()}** · {status.state}")
@@ -102,8 +150,8 @@ def main():
                 {"Component": "TF-IDF classification (uncalibrated)", "Status": "Ready"},
                 {"Component": "Calibration & deferral threshold", "Status": "Not implemented"},
                 {"Component": "BM25 search", "Status": "Ready"},
-                {"Component": "Dense / hybrid search", "Status": "Not implemented"},
-                {"Component": "Checklist & evidence-linked questions", "Status": "Not implemented"},
+                {"Component": "Dense / hybrid search", "Status": "Ready"},
+                {"Component": "Checklist & template questions", "Status": "Ready"},
                 {"Component": "Evaluation runner & review controls", "Status": "Not implemented"},
             ],
             hide_index=True,

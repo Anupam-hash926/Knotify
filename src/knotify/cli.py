@@ -46,6 +46,11 @@ def main(argv: list[str] | None = None) -> int:
     dups.add_argument("--time-budget", type=float, default=110)
     sheet = commands.add_parser("label-sheet", help="Write the ~40-example label-audit sheet")
     sheet.add_argument("repository")
+    embed = commands.add_parser("embed", help="Encode the frozen snapshot once (MiniLM, CPU)")
+    embed.add_argument("repository")
+    train.add_argument(
+        "--model", choices=("tfidf", "embedding"), default="tfidf", help="Which baseline to train"
+    )
     for name in PENDING:
         commands.add_parser(name, help="Reserved: not implemented yet")
     args = parser.parse_args(argv)
@@ -67,6 +72,19 @@ def main(argv: list[str] | None = None) -> int:
         from knotify.experiment import label_audit_sheet
 
         print(label_audit_sheet(load_config(args.config), args.repository))
+        return 0
+    if args.command == "embed":
+        from knotify.experiment import build_embeddings
+
+        path = build_embeddings(load_config(args.config), args.repository)
+        print((path / "meta.json").read_text(encoding="utf-8"))
+        return 0
+    if args.command == "train" and args.model == "embedding":
+        from knotify.experiment import train_embedding_lr
+
+        result = train_embedding_lr(load_config(args.config), args.repository)
+        keys = ("evaluated_on", "macro_f1", "accuracy", "per_class_f1", "truncated_fraction")
+        print(json.dumps({k: result[k] for k in keys}, indent=2))
         return 0
     if args.command in ("split", "train"):
         from knotify import experiment

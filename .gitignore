@@ -30,3 +30,6 @@ Thumbs.db
 !/runs/README.md
 *.pem
 *.key
+
+# Local embedding model download (Hugging Face); never commit model weights
+/models/

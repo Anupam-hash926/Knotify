@@ -1,0 +1,32 @@
+# Adopted repository selection and label mapping (decision recorded in context.md,
+# "Verified dataset decision"; evidence in docs/audit/). Labels were checked against each
+# repository's live label list and issue-template files on 2026-11-22.
+#
+# Rules: an issue is supervised only if its labels map to exactly one target; issues still
+# carrying an exclude label (template-applied "Needs Triage" = not yet maintainer-reviewed)
+# are excluded and counted. Unlabelled/conflicting/untriaged issues stay in retrieval history.
+# `other` = developer-facing maintenance (build, packaging, CI, tests, refactoring, style);
+# it is never a catch-all for unlabelled or uncertain issues.
+
+[[repositories]]
+name = "scikit-learn/scikit-learn"
+role = "source"
+window_start = "2019-01-01"
+exclude_labels = ["Needs Triage"]
+[repositories.label_mapping]
+bug = ["Bug", "Regression"]
+feature = ["Enhancement", "New Feature"]
+question_documentation = ["Question", "Documentation"]
+other = ["Build / CI", "Packaging", "Refactor"]
+
+[[repositories]]
+name = "pandas-dev/pandas"
+role = "transfer"
+# Transfer scoring uses B issues created after A's final validation cutoff (set at evaluation).
+window_start = "2019-01-01"
+exclude_labels = ["Needs Triage"]
+[repositories.label_mapping]
+bug = ["Bug", "Regression"]
+feature = ["Enhancement"]
+question_documentation = ["Docs", "Usage Question"]
+other = ["CI", "Build", "Testing", "Clean", "Code Style", "Refactor"]

@@ -1,0 +1,2029 @@
+{
+  "audit": "knotify read-only dataset feasibility audit",
+  "mode": "search-count",
+  "started_at": "2026-11-22T11:14:04+00:00",
+  "finished_at": "2026-11-22T11:35:53+00:00",
+  "authenticated": false,
+  "api_requests_final_run": 18,
+  "search_queries": 203,
+  "count_semantics": "GitHub issue search (is:issue excludes PRs) with advanced_search boolean operators at query time. 'usable' = labels of exactly one candidate target. Not yet filtered for empty bodies or exact-text duplicates.",
+  "repositories": [
+    {
+      "repository": "scikit-learn/scikit-learn",
+      "role": "candidate_source",
+      "candidate_mapping": {
+        "bug": [
+          "Bug",
+          "Regression"
+        ],
+        "feature": [
+          "Enhancement",
+          "New Feature"
+        ],
+        "question_documentation": [
+          "Question",
+          "Documentation"
+        ],
+        "other": [
+          "Build / CI",
+          "Packaging",
+          "Refactor"
+        ]
+      },
+      "issues_total": 12388,
+      "pull_requests_total": 21770,
+      "labels": {
+        "Bug": {
+          "raw": 2448,
+          "usable": 2267
+        },
+        "Regression": {
+          "raw": 68,
+          "usable": 68
+        },
+        "Enhancement": {
+          "raw": 743,
+          "usable": 689
+        },
+        "New Feature": {
+          "raw": 1253,
+          "usable": 1231
+        },
+        "Question": {
+          "raw": 121,
+          "usable": 118
+        },
+        "Documentation": {
+          "raw": 1562,
+          "usable": 1408
+        },
+        "Build / CI": {
+          "raw": 378,
+          "usable": 269
+        },
+        "Packaging": {
+          "raw": 7,
+          "usable": 4
+        },
+        "Refactor": {
+          "raw": 10,
+          "usable": 9
+        }
+      },
+      "targets": {
+        "bug": {
+          "union": 2469,
+          "usable": 2288,
+          "conflict": 181
+        },
+        "feature": {
+          "union": 1991,
+          "usable": 1916,
+          "conflict": 75
+        },
+        "question_documentation": {
+          "union": 1680,
+          "usable": 1523,
+          "conflict": 157
+        },
+        "other": {
+          "union": 393,
+          "usable": 281,
+          "conflict": 112
+        }
+      },
+      "mapped_any": 6268,
+      "multi_target_conflicts": 260,
+      "usable_total": 6008,
+      "unmapped": 6120,
+      "yearly_usable": {
+        "<2019": {
+          "bug": 824,
+          "feature": 708,
+          "question_documentation": 558,
+          "other": 67,
+          "all_issues": 5754
+        },
+        "2019": {
+          "bug": 117,
+          "feature": 101,
+          "question_documentation": 96,
+          "other": 32,
+          "all_issues": 1200
+        },
+        "2020": {
+          "bug": 181,
+          "feature": 273,
+          "question_documentation": 234,
+          "other": 20,
+          "all_issues": 1187
+        },
+        "2021": {
+          "bug": 119,
+          "feature": 229,
+          "question_documentation": 151,
+          "other": 26,
+          "all_issues": 908
+        },
+        "2022": {
+          "bug": 239,
+          "feature": 165,
+          "question_documentation": 123,
+          "other": 39,
+          "all_issues": 777
+        },
+        "2023": {
+          "bug": 254,
+          "feature": 163,
+          "question_documentation": 85,
+          "other": 20,
+          "all_issues": 758
+        },
+        "2024": {
+          "bug": 220,
+          "feature": 132,
+          "question_documentation": 126,
+          "other": 30,
+          "all_issues": 718
+        },
+        "2025": {
+          "bug": 172,
+          "feature": 83,
+          "question_documentation": 87,
+          "other": 26,
+          "all_issues": 549
+        },
+        "2026+": {
+          "bug": 162,
+          "feature": 62,
+          "question_documentation": 63,
+          "other": 21,
+          "all_issues": 537
+        }
+      },
+      "duplicate_evidence_counts": {
+        "text_duplicate_of": 373,
+        "closed_reason_duplicate": 17
+      },
+      "queries": [
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue",
+          "total_count": 12388,
+          "incomplete": false,
+          "at": "2026-11-22T11:14:13+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression)",
+          "total_count": 2469,
+          "incomplete": false,
+          "at": "2026-11-22T11:14:23+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression) -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor",
+          "total_count": 2288,
+          "incomplete": false,
+          "at": "2026-11-22T11:14:27+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Bug",
+          "total_count": 2448,
+          "incomplete": false,
+          "at": "2026-11-22T11:14:34+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Bug -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor",
+          "total_count": 2267,
+          "incomplete": false,
+          "at": "2026-11-22T11:14:43+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Regression",
+          "total_count": 68,
+          "incomplete": false,
+          "at": "2026-11-22T11:14:53+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor",
+          "total_count": 68,
+          "incomplete": false,
+          "at": "2026-11-22T11:15:01+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Enhancement OR label:\"New Feature\")",
+          "total_count": 1991,
+          "incomplete": false,
+          "at": "2026-11-22T11:15:10+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Enhancement OR label:\"New Feature\") -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor",
+          "total_count": 1916,
+          "incomplete": false,
+          "at": "2026-11-22T11:16:28+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Enhancement",
+          "total_count": 743,
+          "incomplete": false,
+          "at": "2026-11-22T11:16:28+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Enhancement -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor",
+          "total_count": 689,
+          "incomplete": false,
+          "at": "2026-11-22T11:16:29+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:\"New Feature\"",
+          "total_count": 1253,
+          "incomplete": false,
+          "at": "2026-11-22T11:16:29+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:\"New Feature\" -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor",
+          "total_count": 1231,
+          "incomplete": false,
+          "at": "2026-11-22T11:16:30+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Question OR label:Documentation)",
+          "total_count": 1680,
+          "incomplete": false,
+          "at": "2026-11-22T11:16:30+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Question OR label:Documentation) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor",
+          "total_count": 1523,
+          "incomplete": false,
+          "at": "2026-11-22T11:16:31+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Question",
+          "total_count": 121,
+          "incomplete": false,
+          "at": "2026-11-22T11:16:31+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Question -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor",
+          "total_count": 118,
+          "incomplete": false,
+          "at": "2026-11-22T11:16:32+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Documentation",
+          "total_count": 1562,
+          "incomplete": false,
+          "at": "2026-11-22T11:16:32+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Documentation -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor",
+          "total_count": 1408,
+          "incomplete": false,
+          "at": "2026-11-22T11:17:28+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:\"Build / CI\" OR label:Packaging OR label:Refactor)",
+          "total_count": 393,
+          "incomplete": false,
+          "at": "2026-11-22T11:17:29+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:\"Build / CI\" OR label:Packaging OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation",
+          "total_count": 281,
+          "incomplete": false,
+          "at": "2026-11-22T11:17:29+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:\"Build / CI\"",
+          "total_count": 378,
+          "incomplete": false,
+          "at": "2026-11-22T11:17:30+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:\"Build / CI\" -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation",
+          "total_count": 269,
+          "incomplete": false,
+          "at": "2026-11-22T11:17:30+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Packaging",
+          "total_count": 7,
+          "incomplete": false,
+          "at": "2026-11-22T11:17:31+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Packaging -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation",
+          "total_count": 4,
+          "incomplete": false,
+          "at": "2026-11-22T11:17:31+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Refactor",
+          "total_count": 10,
+          "incomplete": false,
+          "at": "2026-11-22T11:17:32+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue label:Refactor -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation",
+          "total_count": 9,
+          "incomplete": false,
+          "at": "2026-11-22T11:17:32+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression OR label:Enhancement OR label:\"New Feature\" OR label:Question OR label:Documentation OR label:\"Build / CI\" OR label:Packaging OR label:Refactor)",
+          "total_count": 6268,
+          "incomplete": false,
+          "at": "2026-11-22T11:17:33+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression) -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:<2019-01-01",
+          "total_count": 824,
+          "incomplete": false,
+          "at": "2026-11-22T11:18:29+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Enhancement OR label:\"New Feature\") -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:<2019-01-01",
+          "total_count": 708,
+          "incomplete": false,
+          "at": "2026-11-22T11:18:30+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Question OR label:Documentation) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor created:<2019-01-01",
+          "total_count": 558,
+          "incomplete": false,
+          "at": "2026-11-22T11:18:30+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:\"Build / CI\" OR label:Packaging OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation created:<2019-01-01",
+          "total_count": 67,
+          "incomplete": false,
+          "at": "2026-11-22T11:18:31+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue created:<2019-01-01",
+          "total_count": 5754,
+          "incomplete": false,
+          "at": "2026-11-22T11:18:31+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression) -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2019-01-01..2019-12-31",
+          "total_count": 117,
+          "incomplete": false,
+          "at": "2026-11-22T11:18:32+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Enhancement OR label:\"New Feature\") -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2019-01-01..2019-12-31",
+          "total_count": 101,
+          "incomplete": false,
+          "at": "2026-11-22T11:18:32+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Question OR label:Documentation) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor created:2019-01-01..2019-12-31",
+          "total_count": 96,
+          "incomplete": false,
+          "at": "2026-11-22T11:18:33+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:\"Build / CI\" OR label:Packaging OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation created:2019-01-01..2019-12-31",
+          "total_count": 32,
+          "incomplete": false,
+          "at": "2026-11-22T11:18:33+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue created:2019-01-01..2019-12-31",
+          "total_count": 1200,
+          "incomplete": false,
+          "at": "2026-11-22T11:18:34+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression) -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2020-01-01..2020-12-31",
+          "total_count": 181,
+          "incomplete": false,
+          "at": "2026-11-22T11:19:33+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Enhancement OR label:\"New Feature\") -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2020-01-01..2020-12-31",
+          "total_count": 273,
+          "incomplete": false,
+          "at": "2026-11-22T11:19:33+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Question OR label:Documentation) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor created:2020-01-01..2020-12-31",
+          "total_count": 234,
+          "incomplete": false,
+          "at": "2026-11-22T11:19:34+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:\"Build / CI\" OR label:Packaging OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation created:2020-01-01..2020-12-31",
+          "total_count": 20,
+          "incomplete": false,
+          "at": "2026-11-22T11:19:34+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue created:2020-01-01..2020-12-31",
+          "total_count": 1187,
+          "incomplete": false,
+          "at": "2026-11-22T11:19:35+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression) -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2021-01-01..2021-12-31",
+          "total_count": 119,
+          "incomplete": false,
+          "at": "2026-11-22T11:19:35+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Enhancement OR label:\"New Feature\") -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2021-01-01..2021-12-31",
+          "total_count": 229,
+          "incomplete": false,
+          "at": "2026-11-22T11:19:36+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Question OR label:Documentation) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor created:2021-01-01..2021-12-31",
+          "total_count": 151,
+          "incomplete": false,
+          "at": "2026-11-22T11:19:36+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:\"Build / CI\" OR label:Packaging OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation created:2021-01-01..2021-12-31",
+          "total_count": 26,
+          "incomplete": false,
+          "at": "2026-11-22T11:19:37+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue created:2021-01-01..2021-12-31",
+          "total_count": 908,
+          "incomplete": false,
+          "at": "2026-11-22T11:19:37+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression) -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2022-01-01..2022-12-31",
+          "total_count": 239,
+          "incomplete": false,
+          "at": "2026-11-22T11:20:33+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Enhancement OR label:\"New Feature\") -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2022-01-01..2022-12-31",
+          "total_count": 165,
+          "incomplete": false,
+          "at": "2026-11-22T11:20:34+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Question OR label:Documentation) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor created:2022-01-01..2022-12-31",
+          "total_count": 123,
+          "incomplete": false,
+          "at": "2026-11-22T11:20:34+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:\"Build / CI\" OR label:Packaging OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation created:2022-01-01..2022-12-31",
+          "total_count": 39,
+          "incomplete": false,
+          "at": "2026-11-22T11:20:35+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue created:2022-01-01..2022-12-31",
+          "total_count": 777,
+          "incomplete": false,
+          "at": "2026-11-22T11:20:35+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression) -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2023-01-01..2023-12-31",
+          "total_count": 254,
+          "incomplete": false,
+          "at": "2026-11-22T11:20:36+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Enhancement OR label:\"New Feature\") -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2023-01-01..2023-12-31",
+          "total_count": 163,
+          "incomplete": false,
+          "at": "2026-11-22T11:20:37+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Question OR label:Documentation) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor created:2023-01-01..2023-12-31",
+          "total_count": 85,
+          "incomplete": false,
+          "at": "2026-11-22T11:20:37+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:\"Build / CI\" OR label:Packaging OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation created:2023-01-01..2023-12-31",
+          "total_count": 20,
+          "incomplete": false,
+          "at": "2026-11-22T11:20:38+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue created:2023-01-01..2023-12-31",
+          "total_count": 758,
+          "incomplete": false,
+          "at": "2026-11-22T11:20:38+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression) -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2024-01-01..2024-12-31",
+          "total_count": 220,
+          "incomplete": false,
+          "at": "2026-11-22T11:21:34+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Enhancement OR label:\"New Feature\") -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2024-01-01..2024-12-31",
+          "total_count": 132,
+          "incomplete": false,
+          "at": "2026-11-22T11:21:35+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Question OR label:Documentation) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor created:2024-01-01..2024-12-31",
+          "total_count": 126,
+          "incomplete": false,
+          "at": "2026-11-22T11:21:35+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:\"Build / CI\" OR label:Packaging OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation created:2024-01-01..2024-12-31",
+          "total_count": 30,
+          "incomplete": false,
+          "at": "2026-11-22T11:21:36+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue created:2024-01-01..2024-12-31",
+          "total_count": 718,
+          "incomplete": false,
+          "at": "2026-11-22T11:21:37+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression) -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2025-01-01..2025-12-31",
+          "total_count": 172,
+          "incomplete": false,
+          "at": "2026-11-22T11:21:37+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Enhancement OR label:\"New Feature\") -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:2025-01-01..2025-12-31",
+          "total_count": 83,
+          "incomplete": false,
+          "at": "2026-11-22T11:21:38+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Question OR label:Documentation) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor created:2025-01-01..2025-12-31",
+          "total_count": 87,
+          "incomplete": false,
+          "at": "2026-11-22T11:21:38+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:\"Build / CI\" OR label:Packaging OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation created:2025-01-01..2025-12-31",
+          "total_count": 26,
+          "incomplete": false,
+          "at": "2026-11-22T11:21:39+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue created:2025-01-01..2025-12-31",
+          "total_count": 549,
+          "incomplete": false,
+          "at": "2026-11-22T11:21:39+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Bug OR label:Regression) -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:>=2026-01-01",
+          "total_count": 162,
+          "incomplete": false,
+          "at": "2026-11-22T11:22:36+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Enhancement OR label:\"New Feature\") -label:Bug -label:Regression -label:Question -label:Documentation -label:\"Build / CI\" -label:Packaging -label:Refactor created:>=2026-01-01",
+          "total_count": 62,
+          "incomplete": false,
+          "at": "2026-11-22T11:22:36+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:Question OR label:Documentation) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:\"Build / CI\" -label:Packaging -label:Refactor created:>=2026-01-01",
+          "total_count": 63,
+          "incomplete": false,
+          "at": "2026-11-22T11:22:37+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue (label:\"Build / CI\" OR label:Packaging OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:\"New Feature\" -label:Question -label:Documentation created:>=2026-01-01",
+          "total_count": 21,
+          "incomplete": false,
+          "at": "2026-11-22T11:22:37+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue created:>=2026-01-01",
+          "total_count": 537,
+          "incomplete": false,
+          "at": "2026-11-22T11:22:38+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue \"duplicate of\"",
+          "total_count": 373,
+          "incomplete": false,
+          "at": "2026-11-22T11:22:38+00:00"
+        },
+        {
+          "query": "repo:scikit-learn/scikit-learn is:issue reason:duplicate",
+          "total_count": 17,
+          "incomplete": false,
+          "at": "2026-11-22T11:22:39+00:00"
+        }
+      ],
+      "duplicate_sample": {
+        "search_hits": 373,
+        "sampled": 100,
+        "explicit_candidates_in_sample": 12,
+        "checked_pairs": [
+          {
+            "query": 21291,
+            "target": 20137,
+            "evidence": "comment",
+            "query_created_at": "2021-10-09T09:03:15Z",
+            "target_created_at": "2021-05-26T17:13:27Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/21291",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/20137"
+          },
+          {
+            "query": 21291,
+            "target": 20137,
+            "evidence": "comment",
+            "query_created_at": "2021-10-09T09:03:15Z",
+            "target_created_at": "2021-05-26T17:13:27Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/21291",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/20137"
+          },
+          {
+            "query": 16955,
+            "target": 15821,
+            "evidence": "comment",
+            "query_created_at": "2020-04-18T09:53:47Z",
+            "target_created_at": "2019-12-07T18:20:53Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/16955",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/15821"
+          },
+          {
+            "query": 16832,
+            "target": 9414,
+            "evidence": "comment",
+            "query_created_at": "2020-04-03T00:40:49Z",
+            "target_created_at": "2017-07-19T16:34:13Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/16832",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/9414"
+          },
+          {
+            "query": 19853,
+            "target": 13339,
+            "evidence": "comment",
+            "query_created_at": "2021-04-09T17:34:43Z",
+            "target_created_at": "2019-02-28T16:37:16Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/19853",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/13339"
+          },
+          {
+            "query": 21410,
+            "target": 21312,
+            "evidence": "comment",
+            "query_created_at": "2021-10-22T18:43:34Z",
+            "target_created_at": "2021-10-12T16:04:44Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/21410",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/21312"
+          },
+          {
+            "query": 12480,
+            "target": 11954,
+            "evidence": "comment",
+            "query_created_at": "2018-10-29T09:32:39Z",
+            "target_created_at": "2018-08-31T05:05:46Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/12480",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/11954"
+          },
+          {
+            "query": 35300,
+            "target": 19416,
+            "evidence": "comment",
+            "query_created_at": "2026-11-02T18:52:09Z",
+            "target_created_at": "2021-02-09T18:44:32Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/35300",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/19416"
+          },
+          {
+            "query": 7975,
+            "target": 7821,
+            "evidence": "comment",
+            "query_created_at": "2016-12-04T06:18:52Z",
+            "target_created_at": "2016-11-03T19:04:45Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/7975",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/7821"
+          },
+          {
+            "query": 22709,
+            "target": 6454,
+            "evidence": "comment",
+            "query_created_at": "2022-03-06T17:06:50Z",
+            "target_created_at": "2016-02-26T12:16:33Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/22709",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/6454"
+          },
+          {
+            "query": 7559,
+            "target": 6545,
+            "evidence": "comment",
+            "query_created_at": "2016-10-03T14:12:51Z",
+            "target_created_at": "2016-03-14T22:37:13Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/7559",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/6545"
+          },
+          {
+            "query": 25859,
+            "target": 18748,
+            "evidence": "comment",
+            "query_created_at": "2023-03-15T13:02:13Z",
+            "target_created_at": "2020-11-03T08:30:16Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/25859",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/18748"
+          },
+          {
+            "query": 14607,
+            "target": 17170,
+            "evidence": "comment",
+            "query_created_at": "2019-08-08T16:32:32Z",
+            "target_created_at": "2020-05-09T15:38:36Z",
+            "target_is_pr": false,
+            "target_earlier": false,
+            "verified": false,
+            "query_url": "https://github.com/scikit-learn/scikit-learn/issues/14607",
+            "target_url": "https://github.com/scikit-learn/scikit-learn/issues/17170"
+          }
+        ],
+        "verified_pairs": 12,
+        "budget_exhausted": false,
+        "notes": []
+      }
+    },
+    {
+      "repository": "pandas-dev/pandas",
+      "role": "candidate_transfer",
+      "candidate_mapping": {
+        "bug": [
+          "Bug",
+          "Regression"
+        ],
+        "feature": [
+          "Enhancement"
+        ],
+        "question_documentation": [
+          "Docs",
+          "Usage Question"
+        ],
+        "other": [
+          "CI",
+          "Build",
+          "Testing",
+          "Clean",
+          "Code Style",
+          "Refactor"
+        ]
+      },
+      "issues_total": 28694,
+      "pull_requests_total": 39817,
+      "labels": {
+        "Bug": {
+          "raw": 9436,
+          "usable": 9043
+        },
+        "Regression": {
+          "raw": 1058,
+          "usable": 1032
+        },
+        "Enhancement": {
+          "raw": 3818,
+          "usable": 3568
+        },
+        "Docs": {
+          "raw": 2639,
+          "usable": 2294
+        },
+        "Usage Question": {
+          "raw": 1731,
+          "usable": 1667
+        },
+        "CI": {
+          "raw": 622,
+          "usable": 496
+        },
+        "Build": {
+          "raw": 606,
+          "usable": 477
+        },
+        "Testing": {
+          "raw": 955,
+          "usable": 696
+        },
+        "Clean": {
+          "raw": 305,
+          "usable": 245
+        },
+        "Code Style": {
+          "raw": 172,
+          "usable": 124
+        },
+        "Refactor": {
+          "raw": 155,
+          "usable": 136
+        }
+      },
+      "targets": {
+        "bug": {
+          "union": 9983,
+          "usable": 9571,
+          "conflict": 412
+        },
+        "feature": {
+          "union": 3818,
+          "usable": 3568,
+          "conflict": 250
+        },
+        "question_documentation": {
+          "union": 4340,
+          "usable": 3933,
+          "conflict": 407
+        },
+        "other": {
+          "union": 2550,
+          "usable": 1955,
+          "conflict": 595
+        }
+      },
+      "mapped_any": 19856,
+      "multi_target_conflicts": 829,
+      "usable_total": 19027,
+      "unmapped": 8838,
+      "yearly_usable": {
+        "<2019": {
+          "bug": 3748,
+          "feature": 1799,
+          "question_documentation": 1801,
+          "other": 983,
+          "all_issues": 14067
+        },
+        "2019": {
+          "bug": 493,
+          "feature": 187,
+          "question_documentation": 350,
+          "other": 225,
+          "all_issues": 2587
+        },
+        "2020": {
+          "bug": 1104,
+          "feature": 369,
+          "question_documentation": 418,
+          "other": 222,
+          "all_issues": 2940
+        },
+        "2021": {
+          "bug": 922,
+          "feature": 301,
+          "question_documentation": 359,
+          "other": 163,
+          "all_issues": 2161
+        },
+        "2022": {
+          "bug": 825,
+          "feature": 256,
+          "question_documentation": 318,
+          "other": 127,
+          "all_issues": 1887
+        },
+        "2023": {
+          "bug": 1020,
+          "feature": 237,
+          "question_documentation": 254,
+          "other": 102,
+          "all_issues": 2049
+        },
+        "2024": {
+          "bug": 704,
+          "feature": 203,
+          "question_documentation": 205,
+          "other": 57,
+          "all_issues": 1392
+        },
+        "2025": {
+          "bug": 426,
+          "feature": 158,
+          "question_documentation": 128,
+          "other": 38,
+          "all_issues": 896
+        },
+        "2026+": {
+          "bug": 329,
+          "feature": 58,
+          "question_documentation": 100,
+          "other": 38,
+          "all_issues": 715
+        }
+      },
+      "duplicate_evidence_counts": {
+        "text_duplicate_of": 1131,
+        "closed_reason_duplicate": 41,
+        "label:Duplicate Report": 1134
+      },
+      "queries": [
+        {
+          "query": "repo:pandas-dev/pandas is:issue",
+          "total_count": 28694,
+          "incomplete": false,
+          "at": "2026-11-22T11:22:53+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression)",
+          "total_count": 9983,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:36+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression) -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor",
+          "total_count": 9571,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:37+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Bug",
+          "total_count": 9436,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:37+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Bug -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor",
+          "total_count": 9043,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:38+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Regression",
+          "total_count": 1058,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:38+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor",
+          "total_count": 1032,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:38+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement",
+          "total_count": 3818,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:39+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement -label:Bug -label:Regression -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor",
+          "total_count": 3568,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:39+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement",
+          "total_count": 3818,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:39+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement -label:Bug -label:Regression -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor",
+          "total_count": 3568,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:39+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Docs OR label:\"Usage Question\")",
+          "total_count": 4340,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:40+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Docs OR label:\"Usage Question\") -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor",
+          "total_count": 3933,
+          "incomplete": false,
+          "at": "2026-11-22T11:23:40+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Docs",
+          "total_count": 2639,
+          "incomplete": false,
+          "at": "2026-11-22T11:24:37+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Docs -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor",
+          "total_count": 2294,
+          "incomplete": false,
+          "at": "2026-11-22T11:24:47+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:\"Usage Question\"",
+          "total_count": 1731,
+          "incomplete": false,
+          "at": "2026-11-22T11:24:47+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:\"Usage Question\" -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor",
+          "total_count": 1667,
+          "incomplete": false,
+          "at": "2026-11-22T11:24:48+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor)",
+          "total_count": 2550,
+          "incomplete": false,
+          "at": "2026-11-22T11:24:48+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\"",
+          "total_count": 1955,
+          "incomplete": false,
+          "at": "2026-11-22T11:24:49+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:CI",
+          "total_count": 622,
+          "incomplete": false,
+          "at": "2026-11-22T11:24:49+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:CI -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\"",
+          "total_count": 496,
+          "incomplete": false,
+          "at": "2026-11-22T11:24:50+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Build",
+          "total_count": 606,
+          "incomplete": false,
+          "at": "2026-11-22T11:24:50+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Build -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\"",
+          "total_count": 477,
+          "incomplete": false,
+          "at": "2026-11-22T11:24:51+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Testing",
+          "total_count": 955,
+          "incomplete": false,
+          "at": "2026-11-22T11:25:39+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Testing -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\"",
+          "total_count": 696,
+          "incomplete": false,
+          "at": "2026-11-22T11:25:39+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Clean",
+          "total_count": 305,
+          "incomplete": false,
+          "at": "2026-11-22T11:25:40+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Clean -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\"",
+          "total_count": 245,
+          "incomplete": false,
+          "at": "2026-11-22T11:25:40+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:\"Code Style\"",
+          "total_count": 172,
+          "incomplete": false,
+          "at": "2026-11-22T11:25:40+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:\"Code Style\" -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\"",
+          "total_count": 124,
+          "incomplete": false,
+          "at": "2026-11-22T11:25:41+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Refactor",
+          "total_count": 155,
+          "incomplete": false,
+          "at": "2026-11-22T11:25:41+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Refactor -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\"",
+          "total_count": 136,
+          "incomplete": false,
+          "at": "2026-11-22T11:25:42+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression OR label:Enhancement OR label:Docs OR label:\"Usage Question\" OR label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor)",
+          "total_count": 19856,
+          "incomplete": false,
+          "at": "2026-11-22T11:25:42+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression) -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:<2019-01-01",
+          "total_count": 3748,
+          "incomplete": false,
+          "at": "2026-11-22T11:25:43+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement -label:Bug -label:Regression -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:<2019-01-01",
+          "total_count": 1799,
+          "incomplete": false,
+          "at": "2026-11-22T11:26:39+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Docs OR label:\"Usage Question\") -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:<2019-01-01",
+          "total_count": 1801,
+          "incomplete": false,
+          "at": "2026-11-22T11:26:47+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\" created:<2019-01-01",
+          "total_count": 983,
+          "incomplete": false,
+          "at": "2026-11-22T11:26:47+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue created:<2019-01-01",
+          "total_count": 14067,
+          "incomplete": false,
+          "at": "2026-11-22T11:26:48+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression) -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2019-01-01..2019-12-31",
+          "total_count": 493,
+          "incomplete": false,
+          "at": "2026-11-22T11:26:48+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement -label:Bug -label:Regression -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2019-01-01..2019-12-31",
+          "total_count": 187,
+          "incomplete": false,
+          "at": "2026-11-22T11:26:49+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Docs OR label:\"Usage Question\") -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2019-01-01..2019-12-31",
+          "total_count": 350,
+          "incomplete": false,
+          "at": "2026-11-22T11:26:49+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\" created:2019-01-01..2019-12-31",
+          "total_count": 225,
+          "incomplete": false,
+          "at": "2026-11-22T11:26:50+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue created:2019-01-01..2019-12-31",
+          "total_count": 2587,
+          "incomplete": false,
+          "at": "2026-11-22T11:26:50+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression) -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2020-01-01..2020-12-31",
+          "total_count": 1104,
+          "incomplete": false,
+          "at": "2026-11-22T11:26:51+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement -label:Bug -label:Regression -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2020-01-01..2020-12-31",
+          "total_count": 369,
+          "incomplete": false,
+          "at": "2026-11-22T11:27:40+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Docs OR label:\"Usage Question\") -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2020-01-01..2020-12-31",
+          "total_count": 418,
+          "incomplete": false,
+          "at": "2026-11-22T11:27:41+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\" created:2020-01-01..2020-12-31",
+          "total_count": 222,
+          "incomplete": false,
+          "at": "2026-11-22T11:27:41+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue created:2020-01-01..2020-12-31",
+          "total_count": 2940,
+          "incomplete": false,
+          "at": "2026-11-22T11:27:42+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression) -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2021-01-01..2021-12-31",
+          "total_count": 922,
+          "incomplete": false,
+          "at": "2026-11-22T11:27:43+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement -label:Bug -label:Regression -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2021-01-01..2021-12-31",
+          "total_count": 301,
+          "incomplete": false,
+          "at": "2026-11-22T11:27:43+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Docs OR label:\"Usage Question\") -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2021-01-01..2021-12-31",
+          "total_count": 359,
+          "incomplete": false,
+          "at": "2026-11-22T11:27:44+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\" created:2021-01-01..2021-12-31",
+          "total_count": 163,
+          "incomplete": false,
+          "at": "2026-11-22T11:27:44+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue created:2021-01-01..2021-12-31",
+          "total_count": 2161,
+          "incomplete": false,
+          "at": "2026-11-22T11:27:45+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression) -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2022-01-01..2022-12-31",
+          "total_count": 825,
+          "incomplete": false,
+          "at": "2026-11-22T11:27:45+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement -label:Bug -label:Regression -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2022-01-01..2022-12-31",
+          "total_count": 256,
+          "incomplete": false,
+          "at": "2026-11-22T11:28:41+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Docs OR label:\"Usage Question\") -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2022-01-01..2022-12-31",
+          "total_count": 318,
+          "incomplete": false,
+          "at": "2026-11-22T11:28:58+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\" created:2022-01-01..2022-12-31",
+          "total_count": 127,
+          "incomplete": false,
+          "at": "2026-11-22T11:28:58+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue created:2022-01-01..2022-12-31",
+          "total_count": 1887,
+          "incomplete": false,
+          "at": "2026-11-22T11:28:59+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression) -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2023-01-01..2023-12-31",
+          "total_count": 1020,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:00+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement -label:Bug -label:Regression -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2023-01-01..2023-12-31",
+          "total_count": 237,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:00+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Docs OR label:\"Usage Question\") -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2023-01-01..2023-12-31",
+          "total_count": 254,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:00+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\" created:2023-01-01..2023-12-31",
+          "total_count": 102,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:01+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue created:2023-01-01..2023-12-31",
+          "total_count": 2049,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:01+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression) -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2024-01-01..2024-12-31",
+          "total_count": 704,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:02+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement -label:Bug -label:Regression -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2024-01-01..2024-12-31",
+          "total_count": 203,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:42+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Docs OR label:\"Usage Question\") -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2024-01-01..2024-12-31",
+          "total_count": 205,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:43+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\" created:2024-01-01..2024-12-31",
+          "total_count": 57,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:43+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue created:2024-01-01..2024-12-31",
+          "total_count": 1392,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:44+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression) -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2025-01-01..2025-12-31",
+          "total_count": 426,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:44+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement -label:Bug -label:Regression -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2025-01-01..2025-12-31",
+          "total_count": 158,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:45+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Docs OR label:\"Usage Question\") -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:2025-01-01..2025-12-31",
+          "total_count": 128,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:45+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\" created:2025-01-01..2025-12-31",
+          "total_count": 38,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:46+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue created:2025-01-01..2025-12-31",
+          "total_count": 896,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:46+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Bug OR label:Regression) -label:Enhancement -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:>=2026-01-01",
+          "total_count": 329,
+          "incomplete": false,
+          "at": "2026-11-22T11:29:47+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:Enhancement -label:Bug -label:Regression -label:Docs -label:\"Usage Question\" -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:>=2026-01-01",
+          "total_count": 58,
+          "incomplete": false,
+          "at": "2026-11-22T11:30:43+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:Docs OR label:\"Usage Question\") -label:Bug -label:Regression -label:Enhancement -label:CI -label:Build -label:Testing -label:Clean -label:\"Code Style\" -label:Refactor created:>=2026-01-01",
+          "total_count": 100,
+          "incomplete": false,
+          "at": "2026-11-22T11:30:53+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue (label:CI OR label:Build OR label:Testing OR label:Clean OR label:\"Code Style\" OR label:Refactor) -label:Bug -label:Regression -label:Enhancement -label:Docs -label:\"Usage Question\" created:>=2026-01-01",
+          "total_count": 38,
+          "incomplete": false,
+          "at": "2026-11-22T11:30:54+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue created:>=2026-01-01",
+          "total_count": 715,
+          "incomplete": false,
+          "at": "2026-11-22T11:30:55+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue \"duplicate of\"",
+          "total_count": 1131,
+          "incomplete": false,
+          "at": "2026-11-22T11:30:55+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue reason:duplicate",
+          "total_count": 41,
+          "incomplete": false,
+          "at": "2026-11-22T11:30:56+00:00"
+        },
+        {
+          "query": "repo:pandas-dev/pandas is:issue label:\"Duplicate Report\"",
+          "total_count": 1134,
+          "incomplete": false,
+          "at": "2026-11-22T11:30:56+00:00"
+        }
+      ],
+      "duplicate_sample": {
+        "search_hits": 1131,
+        "sampled": 100,
+        "explicit_candidates_in_sample": 13,
+        "checked_pairs": [
+          {
+            "query": 68041,
+            "target": 45801,
+            "evidence": "comment",
+            "query_created_at": "2026-09-04T22:29:23Z",
+            "target_created_at": "2022-02-03T17:09:49Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/pandas-dev/pandas/issues/68041",
+            "target_url": "https://github.com/pandas-dev/pandas/issues/45801"
+          },
+          {
+            "query": 14741,
+            "target": 11759,
+            "evidence": "comment",
+            "query_created_at": "2016-11-25T12:28:09Z",
+            "target_created_at": "2015-12-04T13:55:40Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/pandas-dev/pandas/issues/14741",
+            "target_url": "https://github.com/pandas-dev/pandas/issues/11759"
+          },
+          {
+            "query": 31308,
+            "target": 20565,
+            "evidence": "comment",
+            "query_created_at": "2020-01-25T14:10:14Z",
+            "target_created_at": "2018-03-31T01:11:36Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/pandas-dev/pandas/issues/31308",
+            "target_url": "https://github.com/pandas-dev/pandas/issues/20565"
+          },
+          {
+            "query": 51386,
+            "target": 37516,
+            "evidence": "comment",
+            "query_created_at": "2023-02-14T17:23:37Z",
+            "target_created_at": "2020-10-30T09:34:18Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/pandas-dev/pandas/issues/51386",
+            "target_url": "https://github.com/pandas-dev/pandas/issues/37516"
+          },
+          {
+            "query": 66281,
+            "target": 61125,
+            "evidence": "comment",
+            "query_created_at": "2026-07-10T18:41:46Z",
+            "target_created_at": "2025-03-15T03:21:13Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/pandas-dev/pandas/issues/66281",
+            "target_url": "https://github.com/pandas-dev/pandas/issues/61125"
+          },
+          {
+            "query": 41693,
+            "target": 11700,
+            "evidence": "comment",
+            "query_created_at": "2021-05-27T18:41:45Z",
+            "target_created_at": "2015-11-25T13:37:40Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/pandas-dev/pandas/issues/41693",
+            "target_url": "https://github.com/pandas-dev/pandas/issues/11700"
+          },
+          {
+            "query": 40647,
+            "target": 29138,
+            "evidence": "comment",
+            "query_created_at": "2021-03-26T11:14:24Z",
+            "target_created_at": "2019-10-21T19:18:27Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/pandas-dev/pandas/issues/40647",
+            "target_url": "https://github.com/pandas-dev/pandas/issues/29138"
+          },
+          {
+            "query": 33232,
+            "target": 17257,
+            "evidence": "comment",
+            "query_created_at": "2020-04-02T03:54:22Z",
+            "target_created_at": "2017-08-15T13:21:02Z",
+            "target_is_pr": false,
+            "target_earlier": true,
+            "verified": true,
+            "query_url": "https://github.com/pandas-dev/pandas/issues/33232",
+            "target_url": "https://github.com/pandas-dev/pandas/issues/17257"
+          }
+        ],
+        "verified_pairs": 8,
+        "budget_exhausted": true,
+        "notes": []
+      }
+    },
+    {
+      "repository": "streamlit/streamlit",
+      "role": "backup",
+      "candidate_mapping": {
+        "bug": [
+          "type:bug",
+          "type:regression"
+        ],
+        "feature": [
+          "type:enhancement"
+        ],
+        "question_documentation": [
+          "type:docs",
+          "type:question"
+        ],
+        "other": []
+      },
+      "issues_total": 6215,
+      "pull_requests_total": 11688,
+      "labels": {
+        "type:bug": {
+          "raw": 3105,
+          "usable": 3068
+        },
+        "type:regression": {
+          "raw": 148,
+          "usable": 146
+        },
+        "type:enhancement": {
+          "raw": 2520,
+          "usable": 2485
+        },
+        "type:docs": {
+          "raw": 118,
+          "usable": 97
+        },
+        "type:question": {
+          "raw": 35,
+          "usable": 32
+        }
+      },
+      "targets": {
+        "bug": {
+          "union": 3106,
+          "usable": 3069,
+          "conflict": 37
+        },
+        "feature": {
+          "union": 2520,
+          "usable": 2485,
+          "conflict": 35
+        },
+        "question_documentation": {
+          "union": 153,
+          "usable": 129,
+          "conflict": 24
+        },
+        "other": {
+          "union": 0,
+          "usable": 0,
+          "conflict": 0
+        }
+      },
+      "mapped_any": 5731,
+      "multi_target_conflicts": 48,
+      "usable_total": 5683,
+      "unmapped": 484,
+      "duplicate_evidence_counts": {
+        "text_duplicate_of": 312,
+        "closed_reason_duplicate": 89,
+        "label:status:duplicate": 13
+      },
+      "queries": [
+        {
+          "query": "repo:streamlit/streamlit is:issue",
+          "total_count": 6215,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:07+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue (label:\"type:bug\" OR label:\"type:regression\")",
+          "total_count": 3106,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:44+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue (label:\"type:bug\" OR label:\"type:regression\") -label:\"type:enhancement\" -label:\"type:docs\" -label:\"type:question\"",
+          "total_count": 3069,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:45+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:bug\"",
+          "total_count": 3105,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:45+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:bug\" -label:\"type:enhancement\" -label:\"type:docs\" -label:\"type:question\"",
+          "total_count": 3068,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:46+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:regression\"",
+          "total_count": 148,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:46+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:regression\" -label:\"type:enhancement\" -label:\"type:docs\" -label:\"type:question\"",
+          "total_count": 146,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:47+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:enhancement\"",
+          "total_count": 2520,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:47+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:enhancement\" -label:\"type:bug\" -label:\"type:regression\" -label:\"type:docs\" -label:\"type:question\"",
+          "total_count": 2485,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:47+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:enhancement\"",
+          "total_count": 2520,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:47+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:enhancement\" -label:\"type:bug\" -label:\"type:regression\" -label:\"type:docs\" -label:\"type:question\"",
+          "total_count": 2485,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:47+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue (label:\"type:docs\" OR label:\"type:question\")",
+          "total_count": 153,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:48+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue (label:\"type:docs\" OR label:\"type:question\") -label:\"type:bug\" -label:\"type:regression\" -label:\"type:enhancement\"",
+          "total_count": 129,
+          "incomplete": false,
+          "at": "2026-11-22T11:31:48+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:docs\"",
+          "total_count": 118,
+          "incomplete": false,
+          "at": "2026-11-22T11:32:45+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:docs\" -label:\"type:bug\" -label:\"type:regression\" -label:\"type:enhancement\"",
+          "total_count": 97,
+          "incomplete": false,
+          "at": "2026-11-22T11:32:53+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:question\"",
+          "total_count": 35,
+          "incomplete": false,
+          "at": "2026-11-22T11:32:53+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"type:question\" -label:\"type:bug\" -label:\"type:regression\" -label:\"type:enhancement\"",
+          "total_count": 32,
+          "incomplete": false,
+          "at": "2026-11-22T11:32:54+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue (label:\"type:bug\" OR label:\"type:regression\" OR label:\"type:enhancement\" OR label:\"type:docs\" OR label:\"type:question\")",
+          "total_count": 5731,
+          "incomplete": false,
+          "at": "2026-11-22T11:32:54+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue \"duplicate of\"",
+          "total_count": 312,
+          "incomplete": false,
+          "at": "2026-11-22T11:32:55+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue reason:duplicate",
+          "total_count": 89,
+          "incomplete": false,
+          "at": "2026-11-22T11:32:55+00:00"
+        },
+        {
+          "query": "repo:streamlit/streamlit is:issue label:\"status:duplicate\"",
+          "total_count": 13,
+          "incomplete": false,
+          "at": "2026-11-22T11:32:56+00:00"
+        }
+      ],
+      "duplicate_sample": {
+        "search_hits": 312,
+        "sampled": 100,
+        "explicit_candidates_in_sample": 0,
+        "checked_pairs": [],
+        "verified_pairs": 0,
+        "budget_exhausted": true,
+        "notes": []
+      }
+    },
+    {
+      "repository": "fastapi/fastapi",
+      "role": "backup",
+      "candidate_mapping": {
+        "bug": [
+          "bug"
+        ],
+        "feature": [
+          "enhancement",
+          "feature"
+        ],
+        "question_documentation": [
+          "docs",
+          "question"
+        ],
+        "other": [
+          "ci",
+          "refactor",
+          "internal"
+        ]
+      },
+      "issues_total": 3555,
+      "pull_requests_total": 6616,
+      "labels": {
+        "bug": {
+          "raw": 121,
+          "usable": 113
+        },
+        "enhancement": {
+          "raw": 0,
+          "usable": 0
+        },
+        "feature": {
+          "raw": 145,
+          "usable": 114
+        },
+        "docs": {
+          "raw": 19,
+          "usable": 10
+        },
+        "question": {
+          "raw": 3125,
+          "usable": 3096
+        },
+        "ci": {
+          "raw": 0,
+          "usable": 0
+        },
+        "refactor": {
+          "raw": 0,
+          "usable": 0
+        },
+        "internal": {
+          "raw": 1,
+          "usable": 0
+        }
+      },
+      "targets": {
+        "bug": {
+          "union": 121,
+          "usable": 113,
+          "conflict": 8
+        },
+        "feature": {
+          "union": 145,
+          "usable": 114,
+          "conflict": 31
+        },
+        "question_documentation": {
+          "union": 3138,
+          "usable": 3100,
+          "conflict": 38
+        },
+        "other": {
+          "union": 1,
+          "usable": 0,
+          "conflict": 1
+        }
+      },
+      "mapped_any": 3366,
+      "multi_target_conflicts": 39,
+      "usable_total": 3327,
+      "unmapped": 189,
+      "duplicate_evidence_counts": {
+        "text_duplicate_of": 45,
+        "closed_reason_duplicate": 9,
+        "label:duplicate": 0
+      },
+      "queries": [
+        {
+          "query": "repo:fastapi/fastapi is:issue",
+          "total_count": 3555,
+          "incomplete": false,
+          "at": "2026-11-22T11:32:58+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:bug",
+          "total_count": 121,
+          "incomplete": false,
+          "at": "2026-11-22T11:33:47+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:bug -label:enhancement -label:feature -label:docs -label:question -label:ci -label:refactor -label:internal",
+          "total_count": 113,
+          "incomplete": false,
+          "at": "2026-11-22T11:33:47+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:bug",
+          "total_count": 121,
+          "incomplete": false,
+          "at": "2026-11-22T11:33:47+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:bug -label:enhancement -label:feature -label:docs -label:question -label:ci -label:refactor -label:internal",
+          "total_count": 113,
+          "incomplete": false,
+          "at": "2026-11-22T11:33:47+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue (label:enhancement OR label:feature)",
+          "total_count": 145,
+          "incomplete": false,
+          "at": "2026-11-22T11:33:48+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue (label:enhancement OR label:feature) -label:bug -label:docs -label:question -label:ci -label:refactor -label:internal",
+          "total_count": 114,
+          "incomplete": false,
+          "at": "2026-11-22T11:33:48+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:enhancement",
+          "total_count": 0,
+          "incomplete": false,
+          "at": "2026-11-22T11:33:49+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:enhancement -label:bug -label:docs -label:question -label:ci -label:refactor -label:internal",
+          "total_count": 0,
+          "incomplete": false,
+          "at": "2026-11-22T11:33:49+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:feature",
+          "total_count": 145,
+          "incomplete": false,
+          "at": "2026-11-22T11:33:50+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:feature -label:bug -label:docs -label:question -label:ci -label:refactor -label:internal",
+          "total_count": 114,
+          "incomplete": false,
+          "at": "2026-11-22T11:33:50+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue (label:docs OR label:question)",
+          "total_count": 3138,
+          "incomplete": false,
+          "at": "2026-11-22T11:33:50+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue (label:docs OR label:question) -label:bug -label:enhancement -label:feature -label:ci -label:refactor -label:internal",
+          "total_count": 3100,
+          "incomplete": false,
+          "at": "2026-11-22T11:34:47+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:docs",
+          "total_count": 19,
+          "incomplete": false,
+          "at": "2026-11-22T11:34:56+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:docs -label:bug -label:enhancement -label:feature -label:ci -label:refactor -label:internal",
+          "total_count": 10,
+          "incomplete": false,
+          "at": "2026-11-22T11:34:56+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:question",
+          "total_count": 3125,
+          "incomplete": false,
+          "at": "2026-11-22T11:34:57+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:question -label:bug -label:enhancement -label:feature -label:ci -label:refactor -label:internal",
+          "total_count": 3096,
+          "incomplete": false,
+          "at": "2026-11-22T11:34:57+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue (label:ci OR label:refactor OR label:internal)",
+          "total_count": 1,
+          "incomplete": false,
+          "at": "2026-11-22T11:34:58+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue (label:ci OR label:refactor OR label:internal) -label:bug -label:enhancement -label:feature -label:docs -label:question",
+          "total_count": 0,
+          "incomplete": false,
+          "at": "2026-11-22T11:34:58+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:ci",
+          "total_count": 0,
+          "incomplete": false,
+          "at": "2026-11-22T11:34:59+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:ci -label:bug -label:enhancement -label:feature -label:docs -label:question",
+          "total_count": 0,
+          "incomplete": false,
+          "at": "2026-11-22T11:34:59+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:refactor",
+          "total_count": 0,
+          "incomplete": false,
+          "at": "2026-11-22T11:34:59+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:refactor -label:bug -label:enhancement -label:feature -label:docs -label:question",
+          "total_count": 0,
+          "incomplete": false,
+          "at": "2026-11-22T11:35:48+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:internal",
+          "total_count": 1,
+          "incomplete": false,
+          "at": "2026-11-22T11:35:49+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:internal -label:bug -label:enhancement -label:feature -label:docs -label:question",
+          "total_count": 0,
+          "incomplete": false,
+          "at": "2026-11-22T11:35:49+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue (label:bug OR label:enhancement OR label:feature OR label:docs OR label:question OR label:ci OR label:refactor OR label:internal)",
+          "total_count": 3366,
+          "incomplete": false,
+          "at": "2026-11-22T11:35:50+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue \"duplicate of\"",
+          "total_count": 45,
+          "incomplete": false,
+          "at": "2026-11-22T11:35:50+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue reason:duplicate",
+          "total_count": 9,
+          "incomplete": false,
+          "at": "2026-11-22T11:35:51+00:00"
+        },
+        {
+          "query": "repo:fastapi/fastapi is:issue label:duplicate",
+          "total_count": 0,
+          "incomplete": false,
+          "at": "2026-11-22T11:35:51+00:00"
+        }
+      ],
+      "duplicate_sample": {
+        "search_hits": 45,
+        "sampled": 45,
+        "explicit_candidates_in_sample": 0,
+        "checked_pairs": [],
+        "verified_pairs": 0,
+        "budget_exhausted": true,
+        "notes": []
+      }
+    }
+  ]
+}

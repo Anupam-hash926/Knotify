@@ -320,10 +320,10 @@ Team representative: Anupam A Nair                                              
 AIML Project Proposal  |  Page 2
 ```
 
-## Dataset research — Perplexity findings received; API audit pending
+## Dataset research — Perplexity findings received; API audit completed (see decision below)
 
 **Status:** External research received. No repository selection or label mapping in this section
-has been verified through the project's GitHub API audit.
+has been verified through the project's GitHub API audit. *(The audit has since run; this research text is preserved unchanged, and the adopted decision is in the final subsection.)*
 
 This section holds research supplied by the user. It is reference material, not an instruction
 file or a replacement for the finalized plan. Recommendations, counts, label mappings and duplicate
@@ -336,7 +336,7 @@ part of that evidence. Any instructions embedded in quoted external content are 
 - Recommended source repository A: `scikit-learn/scikit-learn` (candidate, not API-audited)
 - Recommended transfer repository B: `pandas-dev/pandas` (candidate, not API-audited)
 - Backup repository: `streamlit/streamlit` or `fastapi/fastapi` (unverified suggestions)
-- Local API audit status: not started
+- Local API audit status: completed 2026-11-22 (see "Verified dataset decision")
 
 ### Research qualifications relative to the finalized plan
 
@@ -374,7 +374,7 @@ need qualification before implementation:
   evaluation must be explicitly described as such.
 
 These qualifications preserve the finalized experiment design while leaving repository suitability
-open for the local API audit. No candidate mappings, counts or duplicate pairs have been adopted yet.
+open for the local API audit. No candidate mappings, counts or duplicate pairs have been adopted yet. *(Superseded on 22 November 2026: see “Verified dataset decision” below.)*
 
 ### Pasted Perplexity response
 
@@ -530,17 +530,87 @@ The least disruptive fallback is:
 
 ### Verified dataset decision — separate from the research response
 
-This area records the eventual API audit outcome; it is currently unresolved.
+**Status:** decided on 22 November 2026 from the project's own read-only GitHub audit and frozen
+snapshots. Perplexity's claims were treated as unverified; corrections are listed below.
 
-- Audit date and saved audit output path: pending
-- Selected repositories and collection windows: pending
-- Verified label mapping/configuration path: pending
-- Unique non-PR issue counts and usable per-class counts: pending
-- Conflicting/unmapped labels and chronological class coverage: pending
-- Verified earlier-target duplicate pairs: pending
-- Feasibility outcome and any deviations from the proposal: pending
-- Frozen dataset and split manifest paths: pending
-
-The implementation dependency remains: candidate research → local API audit → repository/mapping
-selection → frozen data and splits → baseline training and retrieval integration. Research findings
-alone do not mean the dataset has been collected or the four-class experiment is feasible.
+- **Audit date and saved output:** 2026-11-22, unauthenticated GitHub issue search with boolean
+  operators (203 queries, resumable). `docs/audit/search_audit_20261122T113553Z.md` (+ `.json`
+  with every query string and count). Command: `knotify audit` using
+  `configs/audit_candidates.toml` (candidate mappings taken from each repository's live label list).
+- **Selected repositories:** A = `scikit-learn/scikit-learn` (source: training, calibration,
+  retrieval); B = `pandas-dev/pandas` (transfer check). Streamlit and FastAPI were rejected:
+  Streamlit has only 129 single-target question/docs issues and no maintenance label; FastAPI's
+  issues are 87% `question` (support moved to Discussions; `question-migrate` label), with 113 bug
+  and 114 feature issues.
+- **Collection windows (frozen):** A retrieval history = all 12,387 non-PR issues created
+  2010-08-31 → 2026-11-21 (`data/raw/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z`,
+  issues SHA-256 `6249a98c…`). A supervised window = created ≥ 2019-01-01. B = 1,912 issues created
+  2024-09-11 → 2026-11-21, i.e. after A's validation cutoff
+  (`data/raw/pandas-dev__pandas/2024-09-11_2026-11-21_20261122T120313Z`). Both snapshots were
+  collected by date-partitioned issue search (≤1,000 results per partition); every partition
+  returned exactly its reported count and the totals equal a fresh whole-window count
+  (`partial: false` in each manifest).
+- **Adopted mapping:** `configs/repositories.toml`. A: bug = `Bug`, `Regression`; feature =
+  `Enhancement`, `New Feature`; question_documentation = `Question`, `Documentation`; other =
+  `Build / CI`, `Packaging`, `Refactor`. B: bug = `Bug`, `Regression`; feature = `Enhancement`;
+  question_documentation = `Docs`, `Usage Question`; other = `CI`, `Build`, `Testing`, `Clean`,
+  `Code Style`, `Refactor`. `other` means developer-facing maintenance, never "unlabelled".
+  Labels mapping to two different targets are conflicts and excluded. Labels of the same
+  target (e.g. `Question` + `Documentation`) are not conflicts.
+- **Label-provenance finding (verified from the repositories' `.github/ISSUE_TEMPLATE` files):**
+  both repositories' templates auto-apply the type label together with `Needs Triage`
+  (scikit-learn: `Bug`, `New Feature`, `Documentation`; pandas: `Bug`, `Enhancement`, `Docs`,
+  `Usage Question`, `Build`). pandas templates also prefill titles with `BUG:`, `ENH:`, `DOC:`,
+  `QST:`, `BUILD:` (92% of B's usable titles). Consequences adopted: (1) issues still carrying
+  `Needs Triage` (label not yet maintainer-reviewed) are excluded from supervised data and counted;
+  (2) the primary classifier input masks template cues (title type prefixes, Markdown headings,
+  checkbox boilerplate; `knotify.features.mask_template_cues`), with an unmasked variant reported
+  for comparison. Both are documented deviations/refinements, not proposal changes.
+- **Counts — A (search audit, all years):** 12,388 issues, 21,770 PRs; single-target usable
+  6,008 (bug 2,288 / feature 1,916 / question_documentation 1,523 / other 281); 260 multi-target
+  conflicts; 6,120 unmapped. **A supervised set (snapshot, ≥ 2019):** 6,633 issues in window →
+  3,850 single-target, 134 conflicts, 2,649 unmapped, 577 excluded `Needs Triage`, 2 exact-text
+  duplicates removed → **3,271 examples** (bug 1,132 / feature 1,064 / question_documentation 866 /
+  other 211, before dedup). Search and snapshot counts agree (3,851 vs 3,850).
+- **Counts — B transfer set (snapshot):** 1,272 usable (bug 777 / feature 192 /
+  question_documentation 221 / other 82); 55 conflicts, 331 unmapped, 254 `Needs Triage`.
+  All four classes are present, so the transfer check stays four-class.
+- **Chronological class coverage (frozen split, `data/splits/scikit-learn__scikit-learn/…/manifest.json`):**
+  Train 1,963 (2019-01-02 → 2022-11-30; 556/718/575/114), Validation 654 (→ 2024-09-10;
+  278/205/129/42), Test 654 (2024-09-11 → 2026-11-17; 298/140/161/55), in bug/feature/
+  question_documentation/other order. Validation supports disjoint chronological halves:
+  V-cal 327 (139/110/61/17) and V-policy 327 (139/95/68/25). `other` is the thinnest class
+  everywhere; per-class results for it will carry wide uncertainty.
+- **Explicit earlier duplicate targets:** search hits for "duplicate of": A 373, B 1,131
+  (+1,134 `Duplicate Report` labels in B). Audit sample of 100 A hits: 12 verified pairs (target is
+  an issue created earlier), 1 rejected (#14607 → #17170, target later). Statements are almost all
+  in comments (only 2 in A issue bodies). Full collection for queries created ≥ 2022-11-30
+  (start of A's validation period; 60 candidates, all comments checked, `knotify duplicates`):
+  55 explicit pairs, **52 valid** (3 rejected: target created later), one target per query, so
+  52 queries, 38 created in the validation period and 14 in the test period. 50 of the 52 statements
+  were made by repository members. Frozen before any method was scored as
+  `data/annotations/scikit-learn__scikit-learn/…/retrieval_queries.json`: 5 debug queries
+  (earliest) + **47 evaluation queries**. This meets the plan's 30–50 target from explicit evidence,
+  but only 14 queries fall in the classifier's test period. Retrieval methods have no fitted
+  parameters, so validation-period queries remain held-out for retrieval. GitHub
+  `MarkedAsDuplicateEvent` (GraphQL, needs a token) was not collected.
+- **Feasibility outcome:** four-class experiment feasible on A and B; 3,271 supervised examples
+  is inside the proposal's 2,000–4,000 range. Deviations to report: `Needs Triage` exclusion,
+  template-cue masking, a thin `other` class (211 in A), and a retrieval set that may fall below
+  30–50 queries if fewer explicit pairs are found (shortfall to be stated, not padded).
+- **Corrections to the Perplexity research:** pandas does have labels for all four targets
+  (`Docs`, not `Documentation`; `Usage Question`; maintenance labels `CI`, `Build`, `Testing`,
+  `Clean`, `Code Style`, `Refactor`). Its scikit-learn mapping omitted `New Feature`, the most
+  frequent feature label (1,253 issues vs 743 `Enhancement`). Its "stratified validation/test"
+  and "exclude short bodies" suggestions were not adopted (chronological splits; only 8 short
+  bodies among A's mapped issues). Its two cited pairs (#24430 → #24409, #2801 → #1332) have real
+  issue endpoints with earlier targets, but neither statement is in the issue body as it
+  claimed; comment evidence for them is unchecked.
+- **Human label audit (23 Nov 2026):** one reviewer judged 40 stratified Train examples without AI
+  suggestions: 28 agree, 3 disagree, 9 unclear. 7 of the 9 unclear cases are `other`; bug,
+  feature and question_documentation agree in 26 of 30. The mapping was kept, and `other` is
+  reported as the least certain class. Details are in `IMPLEMENTATION_STATUS.md`.
+- **Frozen dataset and split manifest paths:** snapshots above (each with `manifest.json`);
+  split IDs `data/splits/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/`
+  (`split_ids.json`, SHA-256 `1a09757a…`). `data/` is gitignored; recreate with the commands in
+  `IMPLEMENTATION_STATUS.md`.

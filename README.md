@@ -3,8 +3,10 @@
 **Confidence-aware, evidence-linked GitHub issue triage.**
 
 An academic AIML project with a local Streamlit interface and a CPU-first Python pipeline.
-This commit is a **runnable scaffold**, not a completed ML application. It includes no collected
-dataset, trained model, invented recommendations or measured performance.
+**Status: Day 1 baseline.** A read-only dataset audit, frozen scikit-learn/pandas snapshots,
+chronological splits, an uncalibrated TF-IDF classifier and BM25 retrieval are working; see
+[implementation status](IMPLEMENTATION_STATUS.md) for measured validation results and what is
+not built yet. Datasets and models are local (gitignored) and reproducible with the commands there.
 
 ## Project references
 
@@ -90,7 +92,7 @@ The next product milestone is a real imported issue with TF-IDF classification a
 following the final plan. The UI direction is aesthetic, clean and sleek: restrained colour,
 clear typography, generous spacing, good empty/error states and inspectable evidence.
 
-**Dataset selection is the first implementation gate.** Public issues will come from audited
-existing open-source repositories, not this Knotify repository. No source repositories or usable
-class counts have been confirmed yet. The example label mapping is not training ground truth.
-The dataset audit and collection must precede model tuning; see the implementation status file.
+**Dataset:** source `scikit-learn/scikit-learn`, transfer `pandas-dev/pandas`, chosen by the
+read-only audit in `docs/audit/`; the adopted mapping is `configs/repositories.toml`, and the
+rationale and counts are in `context.md` ("Verified dataset decision"). A `GITHUB_TOKEN` is
+optional: without one, collection uses resumable, rate-limited issue search.

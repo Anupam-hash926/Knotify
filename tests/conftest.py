@@ -20,3 +20,15 @@ def issue_factory():
         return Issue(**(values | changes))
 
     return make
+
+
+@pytest.fixture
+def empty_workspace(tmp_path, monkeypatch):
+    """Point the app at empty data/artifact folders so UI tests never use local datasets."""
+    config = tmp_path / "test.toml"
+    paths = {name: (tmp_path / name).as_posix() for name in ("data", "artifacts", "runs")}
+    config.write_text(
+        "[paths]\n" + "".join(f'{k} = "{v}"\n' for k, v in paths.items()), encoding="utf-8"
+    )
+    monkeypatch.setenv("KNOTIFY_CONFIG", str(config))
+    return tmp_path

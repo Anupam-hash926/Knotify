@@ -5,7 +5,7 @@ from streamlit.testing.v1 import AppTest
 APP = Path(__file__).resolve().parents[1] / "ui" / "app.py"
 
 
-def test_empty_state_and_report_preview_are_honest():
+def test_empty_state_and_report_preview_are_honest(empty_workspace):
     app = AppTest.from_file(str(APP)).run(timeout=20)
     assert not app.exception
     assert "Less noise" in app.title[0].value
@@ -18,7 +18,7 @@ def test_empty_state_and_report_preview_are_honest():
     assert app.session_state["report"].classification.predicted_label is None
 
 
-def test_invalid_input_and_readiness_page():
+def test_invalid_input_and_readiness_page(empty_workspace):
     app = AppTest.from_file(str(APP)).run(timeout=20)
     app.button[0].click().run(timeout=20)
     assert app.error

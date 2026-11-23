@@ -1,0 +1,51 @@
+# CANDIDATE label mappings for the read-only dataset audit (knotify audit).
+# Label names were taken from each repository's live /labels listing on 2026-11-22.
+# These are hypotheses to be measured, NOT the adopted mapping. Per-label usable counts let the
+# audit decision drop a weak label without re-querying. Labels absent from a target list are
+# ignored for target derivation (status/workflow/module/priority labels).
+
+year_buckets = [2010, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]  # first = "< 2019"
+
+[[repositories]]
+name = "scikit-learn/scikit-learn"
+role = "candidate_source"
+yearly = true
+duplicate_labels = []
+[repositories.candidate_mapping]
+bug = ["Bug", "Regression"]
+feature = ["Enhancement", "New Feature"]
+question_documentation = ["Question", "Documentation"]
+other = ["Build / CI", "Packaging", "Refactor"]
+
+[[repositories]]
+name = "pandas-dev/pandas"
+role = "candidate_transfer"
+yearly = true
+duplicate_labels = ["Duplicate Report"]
+[repositories.candidate_mapping]
+bug = ["Bug", "Regression"]
+feature = ["Enhancement"]
+question_documentation = ["Docs", "Usage Question"]
+other = ["CI", "Build", "Testing", "Clean", "Code Style", "Refactor"]
+
+[[repositories]]
+name = "streamlit/streamlit"
+role = "backup"
+yearly = false
+duplicate_labels = ["status:duplicate"]
+[repositories.candidate_mapping]
+bug = ["type:bug", "type:regression"]
+feature = ["type:enhancement"]
+question_documentation = ["type:docs", "type:question"]
+other = []
+
+[[repositories]]
+name = "fastapi/fastapi"
+role = "backup"
+yearly = false
+duplicate_labels = ["duplicate"]
+[repositories.candidate_mapping]
+bug = ["bug"]
+feature = ["enhancement", "feature"]
+question_documentation = ["docs", "question"]
+other = ["ci", "refactor", "internal"]

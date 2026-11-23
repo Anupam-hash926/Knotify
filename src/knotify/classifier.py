@@ -129,3 +129,74 @@ class TextModelClassifier:
             "yet, so this category is a suggestion for human review.",
             model_version=self.model.metadata.get("model_version"),
         )
+
+
+class CalibratedTextClassifier:
+    """Serving adapter: TF-IDF raw probabilities, V-cal sigmoid calibration and the V-policy
+    threshold. Below the threshold (or with no qualifying threshold) the category is deferred."""
+
+    def __init__(
+        self,
+        model: TextModel,
+        calibrator,
+        threshold: float | None,
+        repository: str,
+        explainer=None,
+    ):
+        self.model, self.calibrator = model, calibrator
+        self.threshold, self.repository = threshold, repository
+        self.explainer = explainer
+
+    def predict(self, text: str) -> ClassificationResult:
+        import numpy as np
+
+        from knotify.selection import align
+
+        features = self.model.transform([text])
+        raw = align(self.model.pipeline.predict_proba(features), list(self.model.pipeline.classes_))
+        cal = align(self.calibrator.predict_proba(features), list(self.calibrator.classes_))
+        raw_d = {Category(label): float(p) for label, p in zip(LABELS, raw[0], strict=True)}
+        cal_d = {Category(label): float(p) for label, p in zip(LABELS, cal[0], strict=True)}
+        predicted = Category(LABELS[int(np.argmax(cal[0]))])
+        top = float(cal[0].max())
+        if self.threshold is None:
+            deferred, reason = (
+                True,
+                (
+                    "No confidence threshold reached 90% accepted accuracy on validation, so every "
+                    "category is deferred to a maintainer."
+                ),
+            )
+        elif top < self.threshold:
+            deferred, reason = (
+                True,
+                (
+                    f"Calibrated confidence {top:.2f} is below the review threshold "
+                    f"{self.threshold:.2f}; a maintainer should decide."
+                ),
+            )
+        else:
+            deferred, reason = (
+                False,
+                (
+                    f"Calibrated confidence {top:.2f} meets the threshold {self.threshold:.2f} "
+                    "(chosen on validation data); still subject to human review."
+                ),
+            )
+        explanation, note = (), None
+        if self.explainer is not None:
+            try:
+                explanation, note = self.explainer.explain(features[0], predicted.value)
+            except Exception:  # an explanation failure must not remove the prediction
+                note = "Explanation unavailable for this input."
+        return ClassificationResult(
+            predicted_label=predicted,
+            raw_probabilities=raw_d,
+            calibrated_probabilities=cal_d,
+            explanation=explanation,
+            explanation_note=note,
+            deferred=deferred,
+            reason=reason,
+            model_version=self.model.metadata.get("model_version"),
+            calibration_repository=self.repository,
+        )

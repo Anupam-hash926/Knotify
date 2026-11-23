@@ -38,7 +38,7 @@ def source_repository(mapping_path: Path | None = None) -> str | None:
 
 
 def load_runtime(config: AppConfig, repository: str | None = None) -> Runtime:
-    from knotify.experiment import latest_snapshot, latest_split, slug
+    from knotify.experiment import latest_snapshot
 
     repository = repository or source_repository()
     if repository is None:
@@ -65,13 +65,7 @@ def load_runtime(config: AppConfig, repository: str | None = None) -> Runtime:
     except (FileNotFoundError, ImportError) as exc:
         notes.append(f"Retrieval history unavailable: {exc}")
     try:
-        from knotify.classifier import TextModel, TextModelClassifier
-
-        split = latest_split(config.paths.data, repository)
-        path = config.paths.artifacts / slug(repository) / split.name / SERVING_MODEL
-        if not path.exists():
-            raise FileNotFoundError(f"No trained model at {path.name}; run `knotify train`.")
-        classifier = TextModelClassifier(TextModel.load(path))
+        classifier = _classifier(config, repository, notes)
     except (FileNotFoundError, ImportError) as exc:
         notes.append(f"Classifier unavailable: {exc}")
     from knotify.checklist import RuleChecklist
@@ -104,3 +98,44 @@ def _dense(config: AppConfig, repository: str, depth: int, notes: list[str]):
     dense = DenseRetriever(cache, encoder=encoder, depth=depth)
     notes.append(f"Dense search backend: {dense.backend}.")
     return dense
+
+
+def _classifier(config: AppConfig, repository: str, notes: list[str]):
+    """Frozen serving choice from ``serving.json`` (calibrated); else the uncalibrated baseline."""
+    import json
+
+    from knotify.classifier import CalibratedTextClassifier, TextModel, TextModelClassifier
+    from knotify.experiment import latest_split, slug
+
+    split = latest_split(config.paths.data, repository)
+    art = config.paths.artifacts / slug(repository) / split.name
+    serving = art / "serving.json"
+    if serving.exists():
+        spec = json.loads(serving.read_text(encoding="utf-8"))
+        if spec["family"] != "tfidf":
+            raise FileNotFoundError("Only the TF-IDF serving family is implemented in the app.")
+        import joblib
+
+        model = TextModel.load(config.paths.artifacts / spec["artifact"])
+        calibrator = joblib.load(config.paths.artifacts / spec["calibrator"])["calibrator"]
+        explainer = None
+        background = art / "shap_background_mean.npy"
+        if background.exists():
+            try:
+                import numpy as np
+
+                from knotify.explain import TfidfShapExplainer
+
+                explainer = TfidfShapExplainer(model.pipeline, np.load(background))
+            except ImportError:
+                notes.append("Explanations unavailable: install the `explain` extra (SHAP).")
+        else:
+            notes.append("Explanations unavailable: run `knotify explain-setup`.")
+        return CalibratedTextClassifier(
+            model, calibrator, spec["threshold"], repository, explainer=explainer
+        )
+    path = art / SERVING_MODEL
+    if not path.exists():
+        raise FileNotFoundError(f"No trained model at {path.name}; run `knotify train`.")
+    notes.append("Classifier is uncalibrated; run `knotify calibrate`.")
+    return TextModelClassifier(TextModel.load(path))

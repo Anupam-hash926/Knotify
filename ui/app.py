@@ -8,9 +8,10 @@ import streamlit as st
 from pydantic import ValidationError
 
 from knotify.config import load_config
-from knotify.contracts import Issue
+from knotify.contracts import Category, Issue, Review
 from knotify.drafting import compose_reply
 from knotify.runtime import load_runtime
+from knotify.storage import save_report, save_review
 from knotify.triage import analyze
 
 st.set_page_config(page_title="Knotify · Issue intelligence", page_icon="◈", layout="wide")
@@ -78,6 +79,49 @@ def render_checklist(report):
     )
 
 
+def render_review(report):
+    st.markdown("##### Maintainer review")
+    runs = application_config().paths.runs
+    saved = st.session_state.get("saved_reports", {})
+    key = str(report.analysis_id)
+    if key not in saved:
+        st.caption("Save the report first; reviews always refer to a saved, unchanged report.")
+        if st.button("Save report", key=f"save-{key}"):
+            try:
+                saved[key] = save_report(report, runs).name
+                st.session_state.saved_reports = saved
+                st.rerun()
+            except OSError:
+                st.error("The report could not be saved locally.")
+        return
+    st.caption(f"Saved locally as {saved[key]}.")
+    with st.form(f"review-{key}"):
+        decision = st.radio(
+            "Decision", ["accepted", "rejected", "edited"], horizontal=True, key=f"d-{key}"
+        )
+        options = ["(no change)"] + [c.value for c in Category]
+        corrected = st.selectbox("Correct category (if edited)", options, key=f"c-{key}")
+        note = st.text_input("Note (optional)", key=f"n-{key}")
+        submitted = st.form_submit_button("Record review")
+    if submitted:
+        try:
+            review = Review(
+                analysis_id=report.analysis_id,
+                decision=decision,
+                corrected_category=None if corrected == "(no change)" else Category(corrected),
+                note=note,
+            )
+            path = save_review(review, runs)
+        except (ValueError, OSError) as exc:
+            st.error(
+                "Review not saved: an edited review needs a corrected category or a note."
+                if isinstance(exc, ValueError)
+                else "Review not saved: local storage failed."
+            )
+        else:
+            st.success(f"Review recorded ({path.name}). The original report is unchanged.")
+
+
 def render_report(report):
     classification = report.classification
     st.markdown(f"**{escape_md(report.issue.title)}**")
@@ -88,13 +132,22 @@ def render_report(report):
         st.warning("Human review required — classifier not connected.")
     else:
         label = classification.predicted_label.value.replace("_", " / ")
-        st.markdown(f"Suggested: **{label}**")
         if classification.deferred:
-            st.caption(f"Deferred to human review. {classification.reason}")
+            st.markdown(f"**Needs a maintainer's decision** · candidate: {label}")
+        else:
+            st.markdown(f"Suggested: **{label}**")
+        st.caption(classification.reason)
         probabilities = classification.calibrated_probabilities or classification.raw_probabilities
         kind = "calibrated" if classification.calibrated_probabilities else "raw, uncalibrated"
         for name, value in sorted(probabilities.items(), key=lambda kv: -kv[1]):
             st.progress(value, text=f"{name.value.replace('_', ' / ')} · {value:.2f} ({kind})")
+        st.caption("Confidence applies to the category only, not to search results or questions.")
+        if classification.explanation:
+            with st.expander("Why this candidate? (word contributions)"):
+                for token in classification.explanation:
+                    sign = "supports" if token.contribution > 0 else "argues against"
+                    st.markdown(f"`{token.token}` · {sign} {label} ({token.contribution:+.3f})")
+                st.caption(classification.explanation_note)
     st.markdown("##### Related earlier issues")
     if report.components["retrieval"].state != "ready":
         st.caption(report.components["retrieval"].detail)
@@ -109,6 +162,7 @@ def render_report(report):
             st.markdown(f"{item.rank}. [#{issue.number}]({issue.url}) {escape_md(issue.title)}")
             st.caption(f"{issue.created_at:%d %b %Y} · {score_text(item.method_scores)}")
     render_checklist(report)
+    render_review(report)
     with st.expander("Component status"):
         for name, status in report.components.items():
             st.write(f"**{name.title()}** · {status.state}")

@@ -31,4 +31,7 @@ def empty_workspace(tmp_path, monkeypatch):
         "[paths]\n" + "".join(f'{k} = "{v}"\n' for k, v in paths.items()), encoding="utf-8"
     )
     monkeypatch.setenv("KNOTIFY_CONFIG", str(config))
+    import streamlit as st
+
+    st.cache_resource.clear()  # the app caches its config/runtime per process
     return tmp_path

@@ -1,0 +1,119 @@
+{
+  "frozen_at": "2026-11-23T02:49:23+00:00",
+  "repository": "scikit-learn/scikit-learn",
+  "git_head_at_freeze": "fca230dbf1a23416da7f6615bd793149cb61f087",
+  "serving": {
+    "model": "tfidf_lr_masked",
+    "family": "tfidf",
+    "threshold": 0.95,
+    "split": "2010-01-01_2026-11-21_20261122T115450Z"
+  },
+  "checklist_rule_version": "checklist-v1",
+  "retrieval": {
+    "candidate_depth": 50,
+    "display_count": 5,
+    "rrf_k": 60
+  },
+  "classification": {
+    "labels": [
+      "bug",
+      "feature",
+      "question_documentation",
+      "other"
+    ],
+    "c": 1.0,
+    "class_weight": "balanced",
+    "max_iter": 1000,
+    "train_fraction": 0.6,
+    "validation_fraction": 0.2,
+    "test_fraction": 0.2,
+    "policy_thresholds": [
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      0.95
+    ],
+    "minimum_accepted": 20,
+    "target_accepted_accuracy": 0.9
+  },
+  "embedding": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "max_seq_length": 256,
+    "truncated_fraction": 0.5074675062565593,
+    "dimension": 384
+  },
+  "llm_comparison": "deferred by the user (not completed)",
+  "files": {
+    "snapshot_issues": {
+      "path": "data/raw/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/issues.jsonl",
+      "sha256": "6249a98ce82f62226633ecbd68d85c87b9a81554814973306a5103b6385e5270"
+    },
+    "split_ids": {
+      "path": "data/splits/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/split_ids.json",
+      "sha256": "1a09757a2962e2be691a5cd3886334ff148dcab283bff23cd0b3feb77104e853"
+    },
+    "label_mapping": {
+      "path": "configs/repositories.toml",
+      "sha256": "f877df6767fadb94fcf05f0dd3b73cbfa28e31bdff84e6bc8096861b4448a48e"
+    },
+    "default_config": {
+      "path": "configs/default.toml",
+      "sha256": "3ba2901eac33fe1374db941e74abdba285d56ca73379dba80f0c0775dc259db7"
+    },
+    "serving_spec": {
+      "path": "artifacts/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/serving.json",
+      "sha256": "24d07a11a596141dce595497051c5643c0bfcb8343dced88005a18c37c95ca69"
+    },
+    "serving_model": {
+      "path": "artifacts/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/tfidf_lr_masked.joblib",
+      "sha256": "8cc55d4570bbb630bd18c332c9a198779f68a2bb2ebfad83e8605c815136d96b"
+    },
+    "serving_calibrator": {
+      "path": "artifacts/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/calibrator_tfidf_lr_masked.joblib",
+      "sha256": "2b5da38a036ab1dec0f177e26fa844bddbccbaf0ba72065f4684c9247fb78c04"
+    },
+    "tfidf_raw_model": {
+      "path": "artifacts/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/tfidf_lr_raw.joblib",
+      "sha256": "cb53363d85802f7e42f627ea1fd878cdaa6defb333f54edcc37f0116e973eb26"
+    },
+    "embedding_lr_model": {
+      "path": "artifacts/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/embedding_lr.joblib",
+      "sha256": "302848c8bc0578f255bdaad738f0ea15e93a1efb7d65460320db0bdc0552a6e5"
+    },
+    "embedding_lr_calibrator": {
+      "path": "artifacts/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/calibrator_embedding_lr.joblib",
+      "sha256": "540975bf06091e04c1b59310645871ff54b2f88e6146fb071ec7d0837a91831b"
+    },
+    "embedding_vectors": {
+      "path": "artifacts/scikit-learn__scikit-learn/embeddings/2010-01-01_2026-11-21_20261122T115450Z/vectors.npy",
+      "sha256": "0d25f400640f2a6d418e99e113668d97ff66bc2950fefad227f7001a12fc0836"
+    },
+    "embedding_meta": {
+      "path": "artifacts/scikit-learn__scikit-learn/embeddings/2010-01-01_2026-11-21_20261122T115450Z/meta.json",
+      "sha256": "52ad5ef555b9700329bcc9ed0de95cf38dc0919f54ab96696e7f1c854e4bf392"
+    },
+    "shap_background": {
+      "path": "artifacts/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/shap_background_mean.npy",
+      "sha256": "84715218fb25e26b56af8db65d9089442abe15c5eeb98e625b92a4e0e878f75f"
+    },
+    "retrieval_queries": {
+      "path": "data/annotations/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/retrieval_queries.json",
+      "sha256": "8af84e69f6da47da15afc106a1b3d4e4fdb70bb1d38850a6112209ef78f9f5cb"
+    },
+    "evaluation_samples": {
+      "path": "data/annotations/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/evaluation_samples.json",
+      "sha256": "be5c7fd63626eb17817855cab0335701fe0dc39a9bae98f33fb5776eb9e8357d"
+    },
+    "retrieval_pools": {
+      "path": "data/annotations/scikit-learn__scikit-learn/2010-01-01_2026-11-21_20261122T115450Z/retrieval_pools.json",
+      "sha256": "3a082942d3aefe366e7868cdc3fb0a0825caaa26a7da8022304e0df1bd1bb49c"
+    }
+  },
+  "rules": [
+    "Test results are produced only by the Day 4 evaluation runner from these files.",
+    "Rerun Test only for a documented bug fix, never for tuning."
+  ]
+}

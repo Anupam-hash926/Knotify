@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from knotify import __version__
 from knotify.config import PROJECT_ROOT, load_config
 
-PENDING = ("calibrate", "evaluate")
+PENDING = ("evaluate",)
 DEFAULT_MAPPING = PROJECT_ROOT / "configs" / "repositories.toml"
 DEFAULT_AUDIT_PLAN = PROJECT_ROOT / "configs" / "audit_candidates.toml"
 AUDIT_DIR = PROJECT_ROOT / "docs" / "audit"
@@ -51,6 +51,17 @@ def main(argv: list[str] | None = None) -> int:
     train.add_argument(
         "--model", choices=("tfidf", "embedding"), default="tfidf", help="Which baseline to train"
     )
+    calib = commands.add_parser(
+        "calibrate", help="Calibrate on V-cal; choose classifier and threshold on V-policy"
+    )
+    calib.add_argument("repository")
+    shap_setup = commands.add_parser("explain-setup", help="Save the Train SHAP background")
+    shap_setup.add_argument("repository")
+    sheets = commands.add_parser("review-sheets", help="Freeze evaluation samples; write sheets")
+    sheets.add_argument("repository")
+    freeze = commands.add_parser("freeze", help="Write or verify the Day 3 freeze manifest")
+    freeze.add_argument("repository")
+    freeze.add_argument("--verify", action="store_true")
     for name in PENDING:
         commands.add_parser(name, help="Reserved: not implemented yet")
     args = parser.parse_args(argv)
@@ -72,6 +83,42 @@ def main(argv: list[str] | None = None) -> int:
         from knotify.experiment import label_audit_sheet
 
         print(label_audit_sheet(load_config(args.config), args.repository))
+        return 0
+    if args.command == "freeze":
+        from knotify.freeze import verify_freeze, write_freeze
+
+        path = PROJECT_ROOT / "docs" / "freeze" / "day3_freeze.json"
+        if args.verify:
+            problems = verify_freeze(path)
+            print("intact" if not problems else f"CHANGED: {problems}")
+            return 0 if not problems else 1
+        manifest = write_freeze(load_config(args.config), args.repository, path)
+        print(json.dumps({k: manifest[k] for k in ("serving", "checklist_rule_version")}, indent=2))
+        print(f"{len(manifest['files'])} files hashed -> {path}")
+        return 0
+    if args.command == "review-sheets":
+        from knotify.annotation import prepare_sheets
+
+        print(json.dumps(prepare_sheets(load_config(args.config), args.repository), indent=2))
+        return 0
+    if args.command == "explain-setup":
+        from knotify.explain import build_background
+
+        print(build_background(load_config(args.config), args.repository))
+        return 0
+    if args.command == "calibrate":
+        from knotify.selection import calibrate_and_select
+
+        report = calibrate_and_select(load_config(args.config), args.repository)
+        summary = {
+            "selection": report["selection"],
+            "policy": report["policy"],
+            "log_loss": {
+                k: {"raw": v["raw"]["log_loss"], "calibrated": v["calibrated"]["log_loss"]}
+                for k, v in report["candidates"].items()
+            },
+        }
+        print(json.dumps(summary, indent=2))
         return 0
     if args.command == "embed":
         from knotify.experiment import build_embeddings

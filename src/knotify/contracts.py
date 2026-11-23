@@ -58,6 +58,11 @@ class Issue(Record):
         return self
 
 
+class TokenContribution(Record):
+    token: str
+    contribution: float = Field(allow_inf_nan=False)
+
+
 class ClassificationResult(Record):
     predicted_label: Category | None = None
     raw_probabilities: dict[Category, Probability] | None = None
@@ -66,6 +71,8 @@ class ClassificationResult(Record):
     reason: str = "Classifier is not implemented."
     model_version: str | None = None
     calibration_repository: str | None = None
+    explanation: tuple[TokenContribution, ...] = ()
+    explanation_note: str | None = None
 
     @model_validator(mode="after")
     def probabilities_are_complete(self):

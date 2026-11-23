@@ -12,7 +12,7 @@ def test_doctor_is_honest_and_does_not_print_credentials(capsys, monkeypatch, em
     assert "secret-not-for-output" not in output
 
 
-@pytest.mark.parametrize("command", ["calibrate", "evaluate"])
+@pytest.mark.parametrize("command", ["evaluate"])
 def test_reserved_commands_fail_instead_of_claiming_work(command, capsys):
     with pytest.raises(SystemExit) as exc:
         main([command])

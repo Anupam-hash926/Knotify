@@ -2,6 +2,31 @@
 
 ## Current milestone
 
+**Day 3 gate met (23 Nov 2026):** configurations and evaluation samples are frozen
+(`docs/freeze/day3_freeze.json`, 16 file hashes; `knotify freeze … --verify` reports changes).
+Confidence/deferral, SHAP explanations, evidence links, saved reports/reviews and failure states
+work in the app. **No new features after this point** (plan rule). Human judgements for three
+review sheets are pending (see below). The LLM comparison is deferred.
+
+### Day 3 results (validation only; Test untouched)
+
+| Item | Result |
+|---|---|
+| Calibration | Sigmoid on V-cal (327) via `FrozenEstimator`, so no refit. V-policy log loss: TF-IDF 0.677 → **0.573**; embedding LR 0.685 → 0.604 |
+| Selection | Rule: best raw macro-F1 on V-policy, < 0.01 → TF-IDF. **TF-IDF (masked) chosen**: 0.809 vs 0.740 |
+| Threshold | Declared rule (≥ 90% accepted accuracy, ≥ 20 accepted, grid 0.50–0.95) → **0.95**: 30/327 accepted (**9.2% coverage**, 93.3% accuracy, accepted macro-F1 0.24, mostly one class). Accepted accuracy plateaus at 85–88% for thresholds 0.5–0.9 (e.g. 0.80 → 49% coverage at 87.6%). The target was declared in advance and is **not** changed after seeing results; the trade-off is reported |
+| Reliability (calibrated, V-policy) | 5 bins (counts 0/4/51/111/161); top bin mean confidence 0.90 vs accuracy 0.88 |
+| Explanations | `shap.LinearExplainer`, Train-mean background, raw logit of the predicted class; verified equal to coef × (x − mean) (max diff 0.0) and summing to the logit difference. Words in the issue only; absent-vocabulary total shown |
+| Reviews | Save report → accept/reject/edit (edited needs a category or note) → append-only JSON in `runs/` |
+| Frozen samples | Checklist: 30 bug-labelled validation/test issues (15 form, 15 free-text; 18 test-period), rule outputs hidden in `evaluation_samples.json`. Suggestions: 56 questions from **18** issues (only 18 of 30 receive questions; below the plan's 20, reported as is). Retrieval spot-check (optional): 10 of 47 queries, 105 method-blind pooled pairs |
+
+### Waiting on human judgement (files in `data/annotations/scikit-learn__scikit-learn/<split>/`)
+
+1. `checklist_review.xlsx`: 30 reports × 6 items (about 60–75 min). Fill this **before** opening #2.
+2. `suggestion_review.xlsx`: 56 rows, supported? / appropriate? (about 20 min).
+3. `retrieval_review.xlsx`: optional, 105 pairs (about 30–40 min). Without it, retrieval metrics
+   use explicit-duplicate relevance only and "related" relevance is reported as not judged.
+
 **Day 2 gate met (23 Nov 2026):** a real imported issue produces every core output without an
 LLM: TF-IDF category suggestion (raw, uncalibrated, always deferred), five earlier related issues
 from hybrid BM25 + embedding search (RRF), a six-item missing-information checklist and
@@ -88,10 +113,10 @@ Observed latency on the 2-core / 2 GB Linux sandbox: runtime load ≈ 13 s, firs
 
 ## Next concrete step
 
-Day 3: fit sigmoid calibration on V-cal for both classifiers, select the serving classifier
-and threshold on V-policy, add TF-IDF SHAP (or labelled linear contributions), persist
-reports/reviews from the UI, prepare the checklist and suggestion review sheets, then freeze all
-configurations.
+Day 4 (after the sheets are filled, or with the optional one skipped): one evaluation runner
+over the frozen files: Test classification (both models, raw/calibrated, reliability, coverage
+at the frozen threshold), pandas transfer, retrieval Recall@5/Hit@5/MRR@5 on the 47 queries,
+checklist P/R/F1 vs the human sheet, evidence checks, latency; bootstrap intervals if time permits.
 
 ## Run commands
 
@@ -108,6 +133,12 @@ uv run knotify label-sheet scikit-learn/scikit-learn
 uv sync --locked --python 3.12 --extra ml --extra embeddings --extra faiss
 uv run knotify embed scikit-learn/scikit-learn          # ~5 min on 2 CPU cores; refuses to overwrite
 uv run knotify train scikit-learn/scikit-learn --model embedding
+# Day 3
+uv sync --locked --python 3.12 --extra ml --extra embeddings --extra explain
+uv run knotify calibrate scikit-learn/scikit-learn        # V-cal / V-policy only
+uv run knotify explain-setup scikit-learn/scikit-learn
+uv run knotify review-sheets scikit-learn/scikit-learn    # freezes samples; refuses to overwrite
+uv run knotify freeze scikit-learn/scikit-learn [--verify]
 uv run streamlit run ui/app.py
 uv run pytest
 ```
@@ -119,7 +150,7 @@ snapshot and never overwrites an existing one.
 
 ## Verification (22 Nov 2026, Linux sandbox, Python 3.12.15)
 
-- `ruff check` / `ruff format --check`: pass. `pytest`: 41 passed (UI tests use an empty temporary
+- `ruff check` / `ruff format --check`: pass. `pytest`: 45 passed (UI tests use an empty temporary
   workspace, so they never read local data).
 - Real-data smoke test: Streamlit AppTest opened issue #21291 → `feature` (0.71 raw, deferred) and five
   earlier BM25 candidates, with #20137 (its maintainer-confirmed duplicate) ranked first. This is

@@ -1,0 +1,19 @@
+{
+  "runs": 36,
+  "median_ms": 2878.630699997302,
+  "p90_ms": 4811.009399996692,
+  "runtime_load_seconds": 9.842204999993555,
+  "retriever": "HybridRetriever",
+  "llm_calls": 0,
+  "hardware": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+    "cpu_count": 8,
+    "python": "3.12.16"
+  },
+  "notes": [
+    "Pasted reports use BM25 only: sentence-transformers is not installed (embeddings extra).",
+    "Dense search backend: numpy.",
+    "Explanations unavailable: install the `explain` extra (SHAP)."
+  ]
+}

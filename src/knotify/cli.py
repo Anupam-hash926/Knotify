@@ -123,7 +123,14 @@ def main(argv: list[str] | None = None) -> int:
             else:
                 retrieval = evaluation.evaluate_retrieval(config, args.repository, encoder)
                 (run_dir / "retrieval.json").write_text(json.dumps(retrieval, indent=2))
-        print("Human sheets scored:", evaluation.human_sections(config, args.repository, run_dir))
+        try:
+            scored = evaluation.human_sections(config, args.repository, run_dir)
+            print("Human sheets scored:", scored)
+        except ImportError as exc:
+            print(
+                f"Human sheets not re-scored ({exc.name} missing). Run: uv sync --locked "
+                "--python 3.12 --extra ml --extra explain. Existing results are kept."
+            )
         (run_dir / "results.md").write_text(evaluation.render_results(run_dir), encoding="utf-8")
         print(run_dir / "results.md")
         return 0

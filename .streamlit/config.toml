@@ -1,10 +1,29 @@
+# Visual theme only: colours, borders and type. No behaviour is configured here except the
+# local-only server settings below.
 [theme]
 base = "light"
-primaryColor = "#256B5D"
-backgroundColor = "#FAFAF7"
-secondaryBackgroundColor = "#F0F2EC"
-textColor = "#1D2925"
-font = "sans serif"
+primaryColor = "#1F6F5C"            # spruce: buttons, focus, progress
+backgroundColor = "#F4F7F6"         # pale grey-green paper
+secondaryBackgroundColor = "#E8EFEC"
+textColor = "#17241F"
+borderColor = "#D3DED9"
+showWidgetBorder = true
+baseRadius = "0.65rem"
+buttonRadius = "0.65rem"
+linkColor = "#1D5FA6"
+linkUnderline = false
+font = "sans-serif"
+headingFontWeights = [700, 700, 600, 600, 600, 600]
+metricValueFontWeight = 700
+dataframeHeaderBackgroundColor = "#E8EFEC"
+
+[theme.sidebar]
+backgroundColor = "#12312B"         # deep spruce, matches the knot logo
+secondaryBackgroundColor = "#1B4239"
+textColor = "#DCEAE4"
+primaryColor = "#7FD8BE"            # mint, the knot colour
+borderColor = "#2A564C"
+linkColor = "#9FE3CF"
 
 [server]
 address = "127.0.0.1"
@@ -12,3 +31,6 @@ headless = true
 
 [browser]
 gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"   # hide the Deploy shortcut; keep rerun and settings

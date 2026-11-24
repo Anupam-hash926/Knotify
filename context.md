@@ -193,9 +193,8 @@ CLI status and Streamlit interaction. `.github/workflows/ci.yml` defines default
 on Linux, Windows and macOS. The initial local verification results are recorded in
 `IMPLEMENTATION_STATUS.md`; CI configuration alone is not evidence of a passing hosted run.
 
-The initial scaffold does not complete Day 1 of the product plan: there is no real imported dataset,
-trained classifier, retrieval implementation, checklist, annotation set or measured model result.
-The next integration milestone remains a real imported issue displayed with TF-IDF and BM25.
+*Update (24 Nov 2026):* the scaffold description above is historical. All five plan checkpoints are
+now complete; see `IMPLEMENTATION_STATUS.md`, `docs/results/results.md` and `docs/REPORT_NOTES.md`.
 
 The user specifically raised dataset readiness during scaffold creation. Data will come from
 existing public open-source GitHub repositories, not the new Knotify repository. No actual source

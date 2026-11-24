@@ -22,9 +22,9 @@ def test_invalid_input_and_readiness_page(empty_workspace):
     app = AppTest.from_file(str(APP)).run(timeout=20)
     app.button[0].click().run(timeout=20)
     assert app.error
-    app.radio[0].set_value("Project readiness").run(timeout=20)
+    app.radio[0].set_value("About this model").run(timeout=20)
     assert not app.exception
-    assert "clear starting point" in app.title[0].value
+    assert "About this model" in app.title[0].value
 
 
 def test_report_must_be_saved_before_review_and_edits_need_content(empty_workspace):

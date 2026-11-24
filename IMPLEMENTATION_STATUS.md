@@ -2,6 +2,21 @@
 
 ## Current milestone
 
+**Day 5 complete (24 Nov 2026): delivered.** All five plan checkpoints are met. Day 5 checks:
+- A fresh clone with the shared `data/` and `artifacts/` passes all checks. Re-running
+  `knotify evaluate` there reproduced every headline number in `docs/results/` exactly.
+- The app starts and analyses an issue with all network access blocked (zero connection
+  attempts). The embedding model loads in Hugging Face offline mode.
+- Final README, demo guide (`docs/DEMO.md`) and report notes (`docs/REPORT_NOTES.md`) are written.
+- The stale "Project readiness" page was replaced by "About this model", which reads live runtime
+  facts and committed results. A deprecated Streamlit option was removed.
+- Visual polish (presentation only; no behaviour change): spruce/mint theme in
+  `.streamlit/config.toml`, an offline SVG knot logo (`ui/assets/`), category and checklist
+  status badges, a summary strip per report, a wider report column and the Deploy shortcut
+  hidden. Screenshots of the real app are in `docs/screenshots/`.
+- Open (optional): a latency row from a real laptop
+  (`uv run knotify latency scikit-learn/scikit-learn --label windows`); MacBook test (skipped by the team).
+
 **Day 4 complete (24 Nov 2026):** all evaluations ran from the verified Day 3 freeze, including
 the two human sheets. Results: `runs/evaluation/<split>/results.md` (+ JSON and `figures/`).
 A committed copy of the report, figures and summary JSON is in `docs/results/`.
@@ -175,7 +190,7 @@ snapshot and never overwrites an existing one.
 
 ## Verification (22 Nov 2026, Linux sandbox, Python 3.12.15)
 
-- `ruff check` / `ruff format --check`: pass. `pytest`: 48 passed (UI tests use an empty temporary
+- `ruff check` / `ruff format --check`: pass. `pytest`: 49 passed (UI tests use an empty temporary
   workspace, so they never read local data).
 - Real-data smoke test: Streamlit AppTest opened issue #21291 → `feature` (0.71 raw, deferred) and five
   earlier BM25 candidates, with #20137 (its maintainer-confirmed duplicate) ranked first. This is

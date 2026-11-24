@@ -1,110 +1,111 @@
 # Knotify
 
-**Confidence-aware, evidence-linked GitHub issue triage.**
+**A confidence-aware, evidence-linked triage assistant for GitHub issues.**
+AIML mini-project, Department of CSE, Ramaiah Institute of Technology. Faculty guide: Prof. Uzma
+Sulthana. Team: Anupam A Nair, Abhay G Warrier, Chinmay Panghri.
 
-An academic AIML project with a local Streamlit interface and a CPU-first Python pipeline.
-**Status: Day 1 baseline.** A read-only dataset audit, frozen scikit-learn/pandas snapshots,
-chronological splits, an uncalibrated TF-IDF classifier and BM25 retrieval are working; see
-[implementation status](IMPLEMENTATION_STATUS.md) for measured validation results and what is
-not built yet. Datasets and models are local (gitignored) and reproducible with the commands there.
+Given an issue, Knotify runs locally on a CPU with no LLM and posts nothing to GitHub:
 
-## Project references
+1. **suggests a category**: `bug`, `feature`, `question_documentation` or `other`. It shows a calibrated
+   confidence, and defers to a maintainer when confidence is below a threshold chosen on validation data.
+2. **explains the suggestion** with SHAP word contributions for the TF-IDF model.
+3. **finds up to five related earlier issues** with hybrid search: BM25 plus MiniLM embeddings,
+   fused by reciprocal rank fusion (RRF). Only same-repository, earlier issues are searched.
+4. **checks for missing debugging information** (reproduction, expected/actual behaviour,
+   environment, version, error logs) and drafts follow-up questions that cite the checklist.
+5. **records the maintainer's review** (accept / reject / edit) without altering the saved report.
 
-- [Final five-day plan](KNOTIFY_FINAL_PLAN.md): agreed scope and implementation sequence.
-- [Context](context.md): factual background, submitted proposal details, decisions and code map.
-- [Implementation status](IMPLEMENTATION_STATUS.md): current completion and next milestone.
-- [Submitted proposal](Knotify_AIML_Project_Proposal%20%281%29%20%281%29.pdf): unchanged original.
+![Knotify analysing scikit-learn issue 32072: auto-labelled bug, confirmed duplicate ranked first](docs/screenshots/02_auto_labelled_32072.png)
 
-## Quick start — macOS or Windows
+More screenshots in [`docs/screenshots/`](docs/screenshots/).
 
-Install [uv](https://docs.astral.sh/uv/getting-started/installation/) if needed. For example,
-with an existing Python installation: `python -m pip install --user uv`. If the executable is
-not on PATH, use `python -m uv` in place of `uv` in the following commands.
+## Results at a glance
 
-From this repository root:
+Held-out, chronologically later issues; full tables in [`docs/results/results.md`](docs/results/results.md).
 
-```sh
-uv sync --locked --python 3.12
-uv run knotify doctor
-uv run streamlit run ui/app.py
-```
+| What | Result |
+|---|---|
+| Category, scikit-learn Test (654 issues) | Macro-F1 **0.785** (TF-IDF, template text masked); embedding classifier 0.740; majority 0.088 |
+| Confidence | Log loss 0.715 → **0.552** after calibration. At the frozen threshold, 4.7% of issues are auto-categorised at **96.8%** accuracy; the rest are deferred |
+| Transfer to pandas (1,272 issues) | Macro-F1 0.724; no issue passes the scikit-learn-calibrated threshold |
+| Related issues (47 explicit-duplicate queries) | Recall@5: BM25 0.362, embeddings 0.447, hybrid 0.447 (differences not statistically conclusive) |
+| Missing-information checklist (21 human-confirmed bug reports) | Precision 0.833, recall 0.750, **F1 0.789** |
+| Follow-up questions (56) | 0 without valid evidence; 3 asked for information already present |
 
-Open the localhost address printed by Streamlit. The shell has an issue-input form, an honest
-unavailable-state report preview, and a project-readiness view. No GitHub token or LLM key is
-required. Initial dependency/Python installation requires internet; opening the installed shell
-does not. Python 3.12 is the development target for both Windows and the 16 GB MacBook.
+Limitations and deviations from the proposal: [`docs/REPORT_NOTES.md`](docs/REPORT_NOTES.md).
 
-## Dependencies grow with implementation
+## Quick start (Windows or macOS)
 
-The default environment installs the app/contracts and development tools. Heavy components are
-optional so the UI and tests do not need PyTorch, FAISS, models or GPU drivers.
+1. **Install uv.** Windows (PowerShell):
+   `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`.
+   macOS: `curl -LsSf https://astral.sh/uv/install.sh | sh`. Then open a **new** terminal.
+2. **Get the code:** `git clone https://github.com/Anupam-hash926/Knotify.git` and `cd Knotify`.
+3. **Copy the shared data:** put the team's `data/` and `artifacts/` folders into the repository
+   root (about 150 MB; not in Git). Copy them rather than re-importing: GitHub content changes
+   over time, and the results are tied to these exact files. `uv run knotify freeze
+   scikit-learn/scikit-learn --verify` should print `intact`.
+4. **Install and launch:**
 
-```sh
-# When implementing the baseline/importer:
-uv sync --locked --extra ml
-# When implementing semantic embeddings:
-uv sync --locked --extra ml --extra embeddings
-# Optional native search/explanation dependencies:
-uv sync --locked --extra ml --extra embeddings --extra faiss --extra explain
-```
+   ```sh
+   uv sync --locked --python 3.12 --extra ml --extra explain
+   uv run streamlit run ui/app.py
+   ```
 
-Use the same extras on later `uv sync` commands; syncing without them removes optional packages.
-Installing an extra does not implement the corresponding feature. The lock records resolved
-versions; only the default scaffold environment has been locally exercised at this stage.
-Native FAISS and ML extras still need validation on the target MacBook. The CPU configuration is
-explicit; optional MPS/GPU support is not implemented or required. PyTorch wheel selection for
-other platforms can be refined when the embeddings extra is first installed.
+   Open the printed `localhost` address and enter issue **32072**. See [`docs/DEMO.md`](docs/DEMO.md).
 
-## Embedding model (one-time download)
-
-Semantic search and the embedding classifier use `sentence-transformers/all-MiniLM-L6-v2`, loaded
-from `models/all-MiniLM-L6-v2/` (gitignored, about 90 MB). Download it once from the repository root:
+**Optional: full search for pasted text.** Imported issues already get hybrid search from the cached
+embeddings. To also embed pasted reports, add `--extra embeddings` to `uv sync` and download the
+model once (about 90 MB, gitignored):
 
 ```sh
 uv run --no-project --with huggingface_hub python -c "from huggingface_hub import snapshot_download as d; d('sentence-transformers/all-MiniLM-L6-v2', local_dir='models/all-MiniLM-L6-v2', allow_patterns=['*.json','*.txt','model.safetensors','1_Pooling/*'])"
 ```
 
-Without it, imported issues still get hybrid search from the cached embeddings in `artifacts/`,
-and pasted reports fall back to BM25 only (the app says so).
+The app makes no network requests while running; the model loads in offline mode.
 
-## Configuration and local files
+## Reproducing the pipeline
 
-`configs/default.toml` is validated by `knotify.config`; paths resolve relative to this editable
-checkout, not the shell's current directory. `knotify --config /path/config.toml doctor` validates
-an alternate config. Repository mapping is an unaudited example, not a chosen dataset.
+Each step is a `knotify` command. Steps that page through GitHub are read-only and resumable:
+they exit with code 3 when paused, so run them again. A `GITHUB_TOKEN` in `.env` is optional.
 
-Copy `.env.example` to `.env` only when credentials are needed. The scaffold does not read secrets
-into the UI or make external API calls. The CLI loads `.env`; future API adapters can use the same
-explicit bootstrap. `.env`, Streamlit secrets, datasets, artifacts and run outputs are ignored.
+| Stage | Command |
+|---|---|
+| Dataset audit | `uv run knotify audit` → `docs/audit/` |
+| Frozen snapshots | `uv run knotify import scikit-learn/scikit-learn --start 2010-01-01 --end 2026-11-21` and `uv run knotify import pandas-dev/pandas --start 2024-09-11 --end 2026-11-21` |
+| Chronological splits | `uv run knotify split scikit-learn/scikit-learn` |
+| Classifiers | `uv run knotify train scikit-learn/scikit-learn` (TF-IDF) and `uv run knotify embed …` followed by `uv run knotify train … --model embedding` |
+| Calibration, selection, threshold | `uv run knotify calibrate scikit-learn/scikit-learn` (validation only) |
+| Explanations | `uv run knotify explain-setup scikit-learn/scikit-learn` |
+| Evaluation samples / sheets | `uv run knotify duplicates …`, `uv run knotify review-sheets …`, `uv run knotify label-sheet …` |
+| Freeze | `uv run knotify freeze scikit-learn/scikit-learn [--verify]` |
+| Evaluation (reads Test) | `uv run knotify evaluate scikit-learn/scikit-learn`; latency: `uv run knotify latency … --label <machine>` |
 
-`data/`, `artifacts/` and `runs/` each explain their intended contents. Model/config hashes will
-identify future runs; source labels never enter `data.model_text()`.
+Re-running `knotify evaluate` on the shared data reproduces `docs/results/` exactly; this was checked from
+a fresh clone. Creating new snapshots, splits or freezes never overwrites existing ones.
 
 ## Checks
 
 ```sh
-uv run ruff check .
-uv run ruff format --check .
-uv run pytest
-uv run knotify schema
+uv run ruff check . && uv run ruff format --check .
+uv run pytest            # 49 tests; UI tests use an empty temporary workspace
+uv run knotify doctor    # lists snapshots, models and optional packages; prints no secrets
 ```
 
-Tests cover contracts, probability validation, temporal eligibility, metric edge cases,
-component failure isolation, append-only report/review files, CLI honesty and Streamlit flows.
-CI runs the lightweight suite on Linux, Windows and macOS. There is no ML accuracy claim yet.
+GitHub Actions runs these on Linux, Windows and macOS.
 
-## Code map
+## Project layout
 
-`src/knotify` contains shared contracts, config, adapter protocols, an `analyze()` orchestration
-shell, eligibility/metric helpers, storage and CLI. `ui/app.py` is a thin Streamlit view.
-`ModelBundle` accepts classifier/retriever/checklist implementations; defaults report unavailable.
-No service container, queue, database, frontend build system or web API is needed for this stage.
+```text
+src/knotify/   contracts, config, GitHub client, audit, ingest, data/splits, features,
+               classifier, embeddings, retrieval, checklist, drafting, triage (shared analyze()),
+               selection (calibration/threshold), explain (SHAP), annotation, freeze,
+               evaluation, storage, runtime, cli
+ui/app.py      Streamlit interface (thin view over analyze())
+configs/       default settings, audited repository mapping, audit candidates
+docs/          audit evidence, freeze manifest, results, demo guide, report notes
+data/ artifacts/ runs/ models/   local only (gitignored)
+```
 
-The next product milestone is a real imported issue with TF-IDF classification and BM25 retrieval,
-following the final plan. The UI direction is aesthetic, clean and sleek: restrained colour,
-clear typography, generous spacing, good empty/error states and inspectable evidence.
-
-**Dataset:** source `scikit-learn/scikit-learn`, transfer `pandas-dev/pandas`, chosen by the
-read-only audit in `docs/audit/`; the adopted mapping is `configs/repositories.toml`, and the
-rationale and counts are in `context.md` ("Verified dataset decision"). A `GITHUB_TOKEN` is
-optional: without one, collection uses resumable, rate-limited issue search.
+Project background and decisions: [`context.md`](context.md), [`KNOTIFY_FINAL_PLAN.md`](KNOTIFY_FINAL_PLAN.md).
+Build log and exact artifact paths: [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md). The submitted
+proposal PDF is unchanged.

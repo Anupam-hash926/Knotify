@@ -1,6 +1,6 @@
 # Knotify — evaluation results
 
-Generated 2026-11-23 23:17 UTC from the Day 3 freeze (`docs/freeze/day3_freeze.json`); copied to `docs/results/` for the repository. Test split read only by `knotify.evaluation`.
+Generated 2026-11-24 00:14 UTC from the Day 3 freeze (`docs/freeze/day3_freeze.json`); copied to `docs/results/` for the repository. Test split read only by `knotify.evaluation`.
 
 ## 1. Category classification — scikit-learn Test (n = 654)
 
@@ -113,6 +113,7 @@ Unsupported-suggestion rate: **0/56** by the proposal's definition (a suggestion
 | Machine | Runs | Median | p90 | One-time load | Retriever |
 |---|---:|---:|---:|---:|---|
 | Linux-6.8.0-149-generic-x86_64-with-glib (2 CPU) | 12 | 2.74 s | 6.03 s | 12.7 s | HybridRetriever |
+| Windows-11-10.0.26300-SP0 (8 CPU) | 36 | 2.88 s | 4.81 s | 9.8 s | HybridRetriever |
 
 ## 7. Not completed
 

@@ -42,6 +42,11 @@ def load_encoder(local_path: Path, *, device: str = "cpu"):
         raise ComponentUnavailable(
             f"Embedding model folder not found ({local_path.name}); see IMPLEMENTATION_STATUS.md."
         )
+    import os
+
+    # Local folder only: never contact Hugging Face at run time (offline demos must not stall).
+    os.environ.setdefault("HF_HUB_OFFLINE", "1")
+    os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
     try:
         from sentence_transformers import SentenceTransformer
     except ImportError as exc:
